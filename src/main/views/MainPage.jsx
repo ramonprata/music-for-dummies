@@ -12,9 +12,9 @@ import Controls from '../../main/views/Controls';
 import Neck from '../../stringInstrument/views/Neck';
 import { NECK_HEIGHT, NECK_WIDTH } from '../../shared/utils';
 
-getAscendingChromaticScale('C', 12);
-getMajorScale('A', 7);
-getMinorScale('A', 7);
+// getAscendingChromaticScale('C', 12);
+// getMajorScale('A', 7);
+// getMinorScale('A', 7);
 
 const MainPage = () => {
   const [showNotes, setShowNotes] = useState(false);
