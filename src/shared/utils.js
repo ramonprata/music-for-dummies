@@ -1,3 +1,5 @@
+import { ROOMS, MAX_ROOM_WIDTH } from './defaultValues';
+
 const wood = require('../images/wood.jpg');
 const wood1 = require('../images/wood1.jpg');
 const wood2 = require('../images/wood2.jpg');
@@ -10,15 +12,16 @@ const wood8 = require('../images/wood8.jpg');
 const wood9 = require('../images/wood9.jpg');
 const wood10 = require('../images/wood10.jpg');
 
-export const NECK_WIDTH = window.innerWidth * 0.9;
-export const NECK_HEIGHT = 160;
-export const markRooms = [12, 10, 8, 3];
-export const ROOMS = 15;
+export const NECK_WIDTH = (() => {
+  return Array(ROOMS)
+    .fill(true)
+    .reduce((a, c, idx) => {
+      return (a += Number(MAX_ROOM_WIDTH - idx * 4.5));
+    });
+})();
 
-const MAX_ROOM_WIDTH = 52 + ROOMS * (NECK_WIDTH * (25 / 10000));
-
-export const calcRoomContainerWidth = (NECK_WIDTH = window.innerWidth, idx = 0) => {
-  return Number(MAX_ROOM_WIDTH - idx * (NECK_WIDTH * (25 / 10000)));
+export const calcGridNoteWidth = (idx = 0) => {
+  return Number(MAX_ROOM_WIDTH - idx * 4.5);
 };
 
 export const woodNecksDesign = {

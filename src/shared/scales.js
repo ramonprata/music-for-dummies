@@ -1,10 +1,10 @@
 import {
-  ukuleleStrings,
+  DEFAULT_UKE_STRINGS,
   ascendingChromaticNotes,
-  units,
+  scaleSteps,
   descendingChromaticScale,
 } from './defaultValues';
-const { semiTone, tone } = units;
+const { semiTone, tone } = scaleSteps;
 
 const mountIntervals = (pattern, numberOfNotes) => {
   let mountedPattern = [];
@@ -21,9 +21,9 @@ const getNoteIndex = (fromNote) => {
   return noteIndex >= 0 ? noteIndex : 0;
 };
 
-const getNextAscendingNote = (currentNote, units) => {
+const getNextAscendingNote = (currentNote, scaleSteps) => {
   const currentNoteIndex = getNoteIndex(currentNote);
-  const indexJump = currentNoteIndex + Number(units / semiTone);
+  const indexJump = currentNoteIndex + Number(scaleSteps / semiTone);
   if (indexJump >= ascendingChromaticNotes.length) {
     const overpassedIndex = indexJump - ascendingChromaticNotes.length;
     return ascendingChromaticNotes[overpassedIndex];
