@@ -1,12 +1,12 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { markRooms, NUMBER_OF_LINES } from '../../shared';
+import { MARK_ROOMS } from '../../shared';
 
 const NeckMarker = (props) => {
   const { room } = props;
   const classes = useStyles(props)();
   const { marker } = classes;
-  const showMarker = markRooms.includes(room);
+  const showMarker = MARK_ROOMS.includes(room);
   return showMarker && <div className={marker} />;
 };
 
@@ -14,8 +14,8 @@ const useStyles = () =>
   makeStyles(() =>
     createStyles({
       marker: {
-        height: NUMBER_OF_LINES * 4.5,
-        width: NUMBER_OF_LINES * 4.5,
+        height: 24,
+        width: 24,
         borderRadius: '50%',
         backgroundColor: '#2f4353',
         backgroundImage: 'linear-gradient(315deg, #2f4353 0%, #d2ccc4 74%)',

@@ -6,23 +6,24 @@ import { NECK_WIDTH } from '../../shared';
 const GridNotes = (props) => {
   const { renderLines } = props;
   const classes = useStyles(props)();
-  const {} = classes;
+  const { gridContainer } = classes;
 
   return (
-    <Grid
-      container
-      direction="column"
-      style={{
-        width: NECK_WIDTH,
-        zIndex: 3,
-        position: 'absolute',
-      }}
-    >
+    <Grid container direction="column" className={gridContainer}>
       {renderLines()}
     </Grid>
   );
 };
 
-const useStyles = () => makeStyles(() => createStyles({}));
+const useStyles = () =>
+  makeStyles(() =>
+    createStyles({
+      gridContainer: {
+        width: NECK_WIDTH,
+        zIndex: 3,
+        position: 'absolute',
+      },
+    })
+  );
 
 export default GridNotes;

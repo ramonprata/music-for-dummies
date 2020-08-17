@@ -1,9 +1,4 @@
-import {
-  DEFAULT_UKE_STRINGS,
-  ascendingChromaticNotes,
-  scaleSteps,
-  descendingChromaticScale,
-} from './defaultValues';
+import { ascendingChromaticNotes, scaleSteps, descendingChromaticScale } from './defaultValues';
 const { semiTone, tone } = scaleSteps;
 
 const mountIntervals = (pattern, numberOfNotes) => {

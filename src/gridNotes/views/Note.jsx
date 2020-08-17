@@ -2,8 +2,8 @@ import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Typography, Paper } from '@material-ui/core';
 
-const Note = (props) => {
-  const classes = useStyles(props)();
+const Note = () => {
+  const classes = useStyles()();
   const { note } = classes;
 
   return (
@@ -26,7 +26,6 @@ const useStyles = () =>
         backgroundColor: '#323130',
         '&:hover': {
           backgroundColor: theme.palette.primary.main,
-          backgroundImage: '',
         },
         '& *': {
           color: '#fff',
@@ -36,4 +35,4 @@ const useStyles = () =>
     })
   );
 
-export default Note;
+export default React.memo(Note, () => true);

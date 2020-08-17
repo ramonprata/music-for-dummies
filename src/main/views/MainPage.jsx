@@ -1,92 +1,42 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { Grid, Paper, Typography } from '@material-ui/core';
-import {
-  woodNecksDesign,
-  getAscendingChromaticScale,
-  getMajorScale,
-  getMinorScale,
-} from '../../shared';
-import Controls from '../../main/views/Controls';
+import { Grid, Paper } from '@material-ui/core';
+
 import Neck from '../../stringInstrument/views/Neck';
-import { NECK_WIDTH, NUMBER_OF_LINES, ROOMS } from '../../shared/';
+import { NECK_WIDTH, ROOMS } from '../../shared/';
 import GridNotes from '../../gridNotes/views/GridNotes';
 import GridNotesLine from '../../gridNotes/views/GridNotesLine';
-import { tabs } from '../mainUtils';
-import CustomTabs from '../../shared/components/CustomTabs';
+import { useContextStore } from '../../shared/hooks/useContextStore';
+import PanelConfig from './PanelConfig';
 
 const MainPage = () => {
-  const [showNotes, setShowNotes] = useState(false);
-  const [selectedNeck, setSelectedNeck] = useState('wood');
   const classes = useStyles()();
+  const { instrumentStrings } = useContextStore();
   const { pageContainer, containerBox, gridNotesContainer, controlsContainer } = classes;
-  const [instrument, setInstrument] = useState('guitar');
-
-  const onSelectInstrument = (value) => {
-    setInstrument(value);
-  };
-
-  const mapTabs = () => {
-    return tabs.map((tab) => {
-      switch (tab.id) {
-        case 0:
-          return {
-            ...tab,
-            renderTab: () => (
-              <Controls
-                instrument={instrument}
-                onSelectInstrument={setInstrument}
-                selectedNeck={selectedNeck}
-                woodNecksDesign={woodNecksDesign}
-                onSelectNeck={setSelectedNeck}
-                showNotes={showNotes}
-                setShowNotes={setShowNotes}
-              />
-            ),
-          };
-
-        default:
-          return {
-            ...tab,
-            renderTab: () => <Typography>{tab.label}</Typography>,
-          };
-      }
-    });
-  };
 
   return (
     <Paper square className={pageContainer}>
       <Grid
         container
-        justify="space-around"
+        justify="space-between"
         alignItems="center"
         direction="column"
         className={containerBox}
       >
-        <Grid item>
-          <Paper className={controlsContainer}>
-            <CustomTabs tabs={mapTabs()} />
-          </Paper>
+        <Grid item container direction="column" justify="flex-end" className={controlsContainer}>
+          <PanelConfig />
         </Grid>
 
-        <Grid
-          container
-          item
-          direction="column"
-          justify="space-between"
-          className={gridNotesContainer}
-        >
+        <Grid container item direction="column" justify="center" className={gridNotesContainer}>
           <GridNotes
-            numberOfLines={NUMBER_OF_LINES}
+            numberOfLines={instrumentStrings.length}
             renderLines={() =>
-              Array(NUMBER_OF_LINES)
-                .fill(true)
-                .map((_, idx) => (
-                  <GridNotesLine key={`grid-note-line-${idx}`} numberOfCols={ROOMS} />
-                ))
+              instrumentStrings.map((_, idx) => (
+                <GridNotesLine key={`grid-note-line-${idx}`} numberOfCols={ROOMS} />
+              ))
             }
           />
-          <Neck selectedNeck={selectedNeck} />
+          <Neck />
         </Grid>
       </Grid>
     </Paper>
@@ -94,24 +44,25 @@ const MainPage = () => {
 };
 
 const useStyles = () =>
-  makeStyles(() =>
+  makeStyles((theme) =>
     createStyles({
       pageContainer: {
         width: window.innerWidth,
         height: window.innerHeight,
+        backgroundColor: theme.palette.primary.dark,
       },
       containerBox: {
-        height: '100%',
+        height: window.innerHeight,
       },
       controlsContainer: {
         width: NECK_WIDTH,
-        marginBottom: 8,
+        height: '60vh',
       },
       gridNotesContainer: {
         width: NECK_WIDTH,
+        height: '40vh',
         overflowX: 'scroll',
         overflowY: 'hidden',
-        whiteSpace: 'nowrap',
       },
     })
   );

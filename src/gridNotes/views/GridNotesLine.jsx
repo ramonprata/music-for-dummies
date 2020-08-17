@@ -4,8 +4,10 @@ import { Grid } from '@material-ui/core/';
 import GridNotesCol from './GridNotesCol';
 import { GRID_NOTE_LINE_HEIGHT } from '../../shared';
 import Note from './Note';
+import { useContextStore } from '../../shared/hooks/useContextStore';
 
 const GridNotesLine = (props) => {
+  const { showNotesOnInstrument } = useContextStore();
   const { numberOfCols } = props;
   const classes = useStyles(props)();
   const { lineContainer } = classes;
@@ -16,7 +18,7 @@ const GridNotesLine = (props) => {
         .fill(true)
         .map((_, idx) => (
           <GridNotesCol key={`grid-note-col-${idx}`} index={idx}>
-            <Note />
+            {showNotesOnInstrument && <Note />}
           </GridNotesCol>
         ))}
     </Grid>
@@ -32,4 +34,6 @@ const useStyles = () =>
     })
   );
 
-export default GridNotesLine;
+export default React.memo(GridNotesLine, (prevProps, nextProps) => {
+  return prevProps.showNotesOnInstrument === nextProps.showNotesOnInstrument;
+});

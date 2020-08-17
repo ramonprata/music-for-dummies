@@ -27,8 +27,9 @@ const useStyles = ({ index, showFrets }) =>
       colContainer: {
         borderLeft: showFrets && 'solid 3px #b4a576',
         width: calcGridNoteWidth(index),
+        overflow: 'hidden',
       },
     })
   );
 
-export default GridNotesCol;
+export default React.memo(GridNotesCol);
