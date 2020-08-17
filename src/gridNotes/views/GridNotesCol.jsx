@@ -32,4 +32,4 @@ const useStyles = ({ index, showFrets }) =>
     })
   );
 
-export default React.memo(GridNotesCol);
+export default GridNotesCol;

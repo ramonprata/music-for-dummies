@@ -23,4 +23,4 @@ const useStyles = () =>
     })
   );
 
-export default React.memo(NeckMarker, () => true);
+export default NeckMarker;

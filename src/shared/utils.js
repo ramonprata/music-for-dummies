@@ -10,7 +10,7 @@ const wood10 = require('../images/wood10.jpg');
 
 export const NECK_WIDTH = (() => {
   return Array(ROOMS)
-    .fill(true)
+    .fill(0)
     .reduce((a, c, idx) => {
       return (a += Number(MAX_ROOM_WIDTH - idx * 4.5));
     });

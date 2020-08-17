@@ -8,10 +8,10 @@ import GridNotes from '../../gridNotes/views/GridNotes';
 import GridNotesLine from '../../gridNotes/views/GridNotesLine';
 import { useContextStore } from '../../shared/hooks/useContextStore';
 import PanelConfig from './PanelConfig';
+import GridNotesContainer from '../../gridNotes/views/GridNotesContainer';
 
 const MainPage = () => {
   const classes = useStyles()();
-  const { instrumentStrings } = useContextStore();
   const { pageContainer, containerBox, gridNotesContainer, controlsContainer } = classes;
 
   return (
@@ -28,14 +28,7 @@ const MainPage = () => {
         </Grid>
 
         <Grid container item direction="column" justify="center" className={gridNotesContainer}>
-          <GridNotes
-            numberOfLines={instrumentStrings.length}
-            renderLines={() =>
-              instrumentStrings.map((_, idx) => (
-                <GridNotesLine key={`grid-note-line-${idx}`} numberOfCols={ROOMS} />
-              ))
-            }
-          />
+          <GridNotesContainer />
           <Neck />
         </Grid>
       </Grid>

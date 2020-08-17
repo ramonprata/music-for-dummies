@@ -17,7 +17,7 @@ const Neck = () => {
     <Grid container className={neckContainer}>
       <Grid container direction="row" wrap="nowrap" className={containerFrets}>
         {Array(ROOMS)
-          .fill(true)
+          .fill(0)
           .map((_, idx) => (
             <GridNotesCol index={idx} showFrets={true} key={`marker-${idx}`}>
               <NeckMarker room={idx + 1} />
@@ -52,4 +52,4 @@ const useStyles = (neckDesignApply, numberOfStrings, gridHeight) =>
     })
   );
 
-export default React.memo(Neck);
+export default Neck;

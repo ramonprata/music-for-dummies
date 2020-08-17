@@ -59,4 +59,4 @@ const useStyles = () =>
     })
   );
 
-export default React.memo(WoodItem);
+export default WoodItem;

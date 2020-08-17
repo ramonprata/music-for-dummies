@@ -90,4 +90,4 @@ const useStyles = () =>
     })
   );
 
-export default React.memo(InstrumentConfig);
+export default InstrumentConfig;

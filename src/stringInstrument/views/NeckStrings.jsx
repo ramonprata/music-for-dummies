@@ -29,4 +29,4 @@ const useStyles = () =>
     })
   );
 
-export default React.memo(NeckStrings, () => true);
+export default NeckStrings;

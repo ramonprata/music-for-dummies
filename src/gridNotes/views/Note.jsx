@@ -1,24 +1,27 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { Typography, Paper } from '@material-ui/core';
 
-const Note = () => {
-  const classes = useStyles()();
+const Note = (props) => {
+  const { showNotesOnInstrument } = props;
+  const classes = useStyles(showNotesOnInstrument)();
   const { note } = classes;
 
   return (
-    <Paper className={note} elevation={3}>
-      <Typography color="textSecondary" variant="subtitle2">
-        #
-      </Typography>
-    </Paper>
+    <div className={note}>
+      <span>#</span>
+    </div>
   );
 };
 
-const useStyles = () =>
+const useStyles = (showNotesOnInstrument) =>
   makeStyles((theme) =>
     createStyles({
       note: {
+        border: '1px solid #323130',
+        borderRadius: 4,
+        '-webkit-box-shadow': '5px 5px 15px rgba(0,0,0,0.4)',
+        '-moz-box-shadow': '5px 5px 15px rgba(0,0,0,0.4)',
+        display: !showNotesOnInstrument ? 'none' : 'block',
         height: 22,
         width: 22,
         padding: 2,
@@ -35,4 +38,4 @@ const useStyles = () =>
     })
   );
 
-export default React.memo(Note, () => true);
+export default React.memo(Note, (p, n) => p.showNotesOnInstrument === n.showNotesOnInstrument);
