@@ -1,37 +1,28 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { Grid, Paper } from '@material-ui/core';
-
+import { Paper } from '@material-ui/core';
 import Neck from '../../stringInstrument/views/Neck';
-import { NECK_WIDTH, ROOMS } from '../../shared/';
-import GridNotes from '../../gridNotes/views/GridNotes';
-import GridNotesLine from '../../gridNotes/views/GridNotesLine';
-import { useContextStore } from '../../shared/hooks/useContextStore';
+import { NECK_WIDTH } from '../../shared/';
 import PanelConfig from './PanelConfig';
 import GridNotesContainer from '../../gridNotes/views/GridNotesContainer';
+import CssGridContainer from '../../shared/components/CssGridContainer';
+import CssGridItem from '../../shared/components/CssGridItem';
 
 const MainPage = () => {
   const classes = useStyles()();
-  const { pageContainer, containerBox, gridNotesContainer, controlsContainer } = classes;
+  const { pageContainer, gridNotesContainer } = classes;
 
   return (
     <Paper square className={pageContainer}>
-      <Grid
-        container
-        justify="space-between"
-        alignItems="center"
-        direction="column"
-        className={containerBox}
-      >
-        <Grid item container direction="column" justify="flex-end" className={controlsContainer}>
+      <CssGridContainer justifyItems="center">
+        <CssGridContainer templateRow="1fr minmax(234px, auto)" repeatCol={false} rowGap="8px">
           <PanelConfig />
-        </Grid>
-
-        <Grid container item direction="column" justify="center" className={gridNotesContainer}>
-          <GridNotesContainer />
-          <Neck />
-        </Grid>
-      </Grid>
+          <CssGridItem className={gridNotesContainer} align="center">
+            <GridNotesContainer />
+            <Neck />
+          </CssGridItem>
+        </CssGridContainer>
+      </CssGridContainer>
     </Paper>
   );
 };
@@ -43,19 +34,12 @@ const useStyles = () =>
         width: window.innerWidth,
         height: window.innerHeight,
         backgroundColor: theme.palette.primary.dark,
+        margin: 0,
+        overflow: 'hidden',
       },
-      containerBox: {
-        height: window.innerHeight,
-      },
-      controlsContainer: {
-        width: NECK_WIDTH,
-        height: '60vh',
-      },
+
       gridNotesContainer: {
         width: NECK_WIDTH,
-        height: '40vh',
-        overflowX: 'scroll',
-        overflowY: 'hidden',
       },
     })
   );

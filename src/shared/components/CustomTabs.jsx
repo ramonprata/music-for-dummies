@@ -1,26 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Paper, Typography } from '@material-ui/core';
+import CssGridContainer from './CssGridContainer';
+import CssGridItem from './CssGridItem';
 
 function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-  const classes = useStyles();
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      className={classes.panel}
-      {...other}
-    >
-      {value === index && children}
-    </div>
-  );
+  const { children, value, index } = props;
+  return <CssGridItem>{value === index && children}</CssGridItem>;
 }
 
 TabPanel.propTypes = {
@@ -36,12 +25,6 @@ function a11yProps(index) {
   };
 }
 
-const useStyles = makeStyles(() => ({
-  panel: {
-    height: window.innerHeight * 0.5,
-  },
-}));
-
 export default function CustomTabs(props) {
   const { tabs } = props;
   const [value, setValue] = React.useState(0);
@@ -51,7 +34,7 @@ export default function CustomTabs(props) {
   };
 
   return (
-    <Grid item container direction="column" justify="center">
+    <CssGridContainer templateCol="1fr" repeatCol={false}>
       <Paper square variant="elevation" elevation={0}>
         <Tabs
           indicatorColor="primary"
@@ -74,6 +57,6 @@ export default function CustomTabs(props) {
           {tab.renderTab()}
         </TabPanel>
       ))}
-    </Grid>
+    </CssGridContainer>
   );
 }

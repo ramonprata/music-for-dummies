@@ -7,7 +7,7 @@ import { setNeckModel } from '../store/mainActions';
 import InstrumentConfig from './InstrumentConfig';
 import { getNeckDesign } from '../../stringInstrument/stringInstrumentUtils';
 
-const PanelConfig = (props) => {
+const PanelConfig = () => {
   const { dispatch, selectedNeckModel } = useContextStore();
   const woodNecksDesign = getNeckDesign(selectedNeckModel);
 
@@ -35,7 +35,7 @@ const PanelConfig = (props) => {
     });
   };
   return (
-    <Paper square variant="outlined">
+    <Paper square elevation={2}>
       <CustomTabs tabs={mapTabs()} />
     </Paper>
   );
