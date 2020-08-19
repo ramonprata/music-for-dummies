@@ -1,4 +1,7 @@
 export const ascendingChromaticNotes = [
+  'A',
+  'A#',
+  'B',
   'C',
   'C#',
   'D',
@@ -8,9 +11,6 @@ export const ascendingChromaticNotes = [
   'F#',
   'G',
   'G#',
-  'A',
-  'A#',
-  'B',
 ];
 export const descendingChromaticScale = [
   'C',
@@ -26,6 +26,8 @@ export const descendingChromaticScale = [
   'Bb',
   'C',
 ];
+
+export const naturalNotes = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
 export const scaleSteps = {
   semiTone: 0.5,

@@ -2,11 +2,13 @@ import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
 import Neck from '../../stringInstrument/views/Neck';
-import { NECK_WIDTH } from '../../shared/';
+import { NECK_WIDTH, getMajorScale } from '../../shared/';
 import PanelConfig from './PanelConfig';
 import GridNotesContainer from '../../gridNotes/views/GridNotesContainer';
 import CssGridContainer from '../../shared/components/CssGridContainer';
 import CssGridItem from '../../shared/components/CssGridItem';
+
+const majorScale = getMajorScale('D#', 6);
 
 const MainPage = () => {
   const classes = useStyles()();
