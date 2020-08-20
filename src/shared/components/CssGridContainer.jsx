@@ -3,18 +3,19 @@ import PropTypes from 'prop-types';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 const CssGridContainer = (props) => {
-  const { style } = props;
+  const { style, className } = props;
   const classes = useStyles(props)();
   const { container } = classes;
 
   return (
-    <div className={container} style={{ ...style }}>
+    <div className={[className, container].join(' ')} style={{ ...style }}>
       {props.children}
     </div>
   );
 };
 
 CssGridContainer.propTypes = {
+  className: PropTypes.string,
   templateCol: PropTypes.string,
   templateRow: PropTypes.string,
   repeatCol: PropTypes.bool,
@@ -46,6 +47,7 @@ CssGridContainer.propTypes = {
 };
 
 CssGridContainer.defaultProps = {
+  className: '',
   templateCol: '1fr',
   templateRow: 'auto',
   repeatCol: true,

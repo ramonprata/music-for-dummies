@@ -9,7 +9,7 @@ import CssGridItem from './CssGridItem';
 
 function TabPanel(props) {
   const { children, value, index } = props;
-  return <CssGridItem>{value === index && children}</CssGridItem>;
+  return value === index && children;
 }
 
 TabPanel.propTypes = {
@@ -34,7 +34,7 @@ export default function CustomTabs(props) {
   };
 
   return (
-    <CssGridContainer templateCol="1fr" repeatCol={false}>
+    <CssGridContainer repeatCol={false}>
       <Paper square variant="elevation" elevation={0}>
         <Tabs
           indicatorColor="primary"
@@ -51,12 +51,12 @@ export default function CustomTabs(props) {
             />
           ))}
         </Tabs>
+        {tabs.map((tab) => (
+          <TabPanel value={value} index={tab.id} key={`content-${tab.id}`}>
+            {tab.renderTab()}
+          </TabPanel>
+        ))}
       </Paper>
-      {tabs.map((tab) => (
-        <TabPanel value={value} index={tab.id} key={`content-${tab.id}`}>
-          {tab.renderTab()}
-        </TabPanel>
-      ))}
     </CssGridContainer>
   );
 }

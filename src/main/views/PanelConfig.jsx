@@ -6,6 +6,7 @@ import { useContextStore } from '../../shared/hooks/useContextStore';
 import { setNeckModel } from '../store/mainActions';
 import InstrumentConfig from './InstrumentConfig';
 import { getNeckDesign } from '../../stringInstrument/stringInstrumentUtils';
+import ScalesTab from './ScalesTab';
 
 const PanelConfig = () => {
   const { dispatch, selectedNeckModel } = useContextStore();
@@ -26,6 +27,12 @@ const PanelConfig = () => {
             ),
           };
 
+        case 1:
+          return {
+            ...tab,
+            renderTab: () => <ScalesTab />,
+          };
+
         default:
           return {
             ...tab,
@@ -34,11 +41,7 @@ const PanelConfig = () => {
       }
     });
   };
-  return (
-    <Paper square elevation={2}>
-      <CustomTabs tabs={mapTabs()} />
-    </Paper>
-  );
+  return <CustomTabs tabs={mapTabs()} />;
 };
 
 export default PanelConfig;

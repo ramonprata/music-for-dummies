@@ -1,9 +1,4 @@
-import {
-  ascendingChromaticNotes,
-  scaleSteps,
-  descendingChromaticScale,
-  naturalNotes,
-} from './defaultValues';
+import { ascendingChromaticNotes, scaleSteps, naturalNotes } from './defaultValues';
 const { semiTone, tone } = scaleSteps;
 
 const getNoteIndex = (fromNote, notes) => {
@@ -12,7 +7,7 @@ const getNoteIndex = (fromNote, notes) => {
 };
 
 export const getNextNotes = (fromNote, notes) => {
-  const indexStartNote = getNoteIndex(fromNote, naturalNotes);
+  const indexStartNote = getNoteIndex(fromNote, notes);
   const beforeNotes = notes.slice(0, indexStartNote);
   const afterNotes = notes.slice(indexStartNote, notes.length);
   return [...afterNotes, ...beforeNotes];
@@ -49,25 +44,22 @@ const getScale = (fromNote, pattern, numberOfNotes = 7) => {
   return [fromNote, ...scale];
 };
 
-export const getAscendingChromaticScale = (fromNote = 'A', numberOfNotes = 0) => {
-  const pattern = [semiTone];
-  const scale = getScale(fromNote, pattern, numberOfNotes);
-  return scale;
-};
-
 const removeSharp = (note) => {
   return note.includes('#') ? note.replace('#', '') : note;
 };
 
 const applyAccidend = (note, diff) => {
-  const sharps = String('#').repeat(diff);
-  return `${note}${sharps}`;
+  const isNegative = diff < 0;
+  const accidentApply = isNegative ? 'b' : '#';
+  const absoluteDiff = Math.abs(diff);
+  const accidents = String(accidentApply).repeat(absoluteDiff);
+  return `${note}${accidents}`;
 };
 
 const applyEnharmonic = (scale, fromNote) => {
   const naturaNotesScale = getNextNotes(removeSharp(fromNote), naturalNotes);
   return scale.map((scaleNote, idx) => {
-    const chromaticScale = getNextNotes(naturaNotesScale[idx], ascendingChromaticNotes);
+    const chromaticScale = getNextNotes(naturalNotes[idx], ascendingChromaticNotes);
     const indexNaturalNote = getNoteIndex(naturaNotesScale[idx], chromaticScale);
     const indexScaleNote = getNoteIndex(scaleNote, chromaticScale);
     const diff = indexScaleNote - indexNaturalNote;
@@ -75,15 +67,17 @@ const applyEnharmonic = (scale, fromNote) => {
   });
 };
 
-export const getMajorScale = (fromNote = 'A', numberOfNotes = 0) => {
+export const getMajorScale = (fromNote = 'A', numberOfNotes = 6) => {
   const pattern = [tone, tone, semiTone, tone, tone, tone, semiTone];
   const scale = getScale(fromNote, pattern, numberOfNotes);
   const enharmonicScale = applyEnharmonic(scale, fromNote);
-  console.log('enharmonicScale :>> ', enharmonicScale);
+  return enharmonicScale;
 };
 
-export const getMinorScale = (fromNote = 'A', numberOfNotes = 0) => {
+export const getMinorScale = (fromNote = 'A', numberOfNotes = 6) => {
   const pattern = [tone, semiTone, tone, tone, semiTone, tone, tone];
   const scale = getScale(fromNote, pattern, numberOfNotes);
-  return scale;
+  const enharmonicScale = applyEnharmonic(scale, fromNote);
+  // console.log('enharmonicScale :>> ', enharmonicScale);
+  return enharmonicScale;
 };

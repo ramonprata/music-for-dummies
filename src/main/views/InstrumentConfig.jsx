@@ -12,6 +12,7 @@ import {
 import NeckSelect from './NeckSelect';
 import { toggleShowNotes, selectInstrument } from '../store';
 import { useContextStore } from '../../shared/hooks/useContextStore';
+import { CssGridContainer, CssGridItem } from '../../shared/components';
 
 const InstrumentConfig = (props) => {
   const { showNotesOnInstrument, instrument, dispatch } = useContextStore();
@@ -28,14 +29,8 @@ const InstrumentConfig = (props) => {
   };
 
   return (
-    <Grid
-      container
-      direction="column"
-      justify="space-evenly"
-      alignItems="flex-start"
-      className={contolsContainer}
-    >
-      <Grid item>
+    <CssGridContainer repeatCol={false} className={contolsContainer}>
+      <CssGridItem justify="start">
         <FormControl component="fieldset">
           <RadioGroup
             row
@@ -57,23 +52,23 @@ const InstrumentConfig = (props) => {
             />
           </RadioGroup>
         </FormControl>
-      </Grid>
-      <Grid item>
+      </CssGridItem>
+      <CssGridItem justify="start">
         <FormControlLabel
           label={<Typography color="primary">Show notes</Typography>}
           control={
             <Switch color="primary" checked={showNotesOnInstrument} onChange={onToggleShowNote} />
           }
         />
-      </Grid>
-      <Grid item>
+      </CssGridItem>
+      <CssGridItem justify="start">
         <NeckSelect
           selectedNeck={selectedNeck}
           onSelectNeck={onSelectNeck}
           woodNecksDesign={woodNecksDesign}
         />
-      </Grid>
-    </Grid>
+      </CssGridItem>
+    </CssGridContainer>
   );
 };
 
@@ -81,11 +76,7 @@ const useStyles = () =>
   makeStyles(() =>
     createStyles({
       contolsContainer: {
-        height: '100%',
         padding: 16,
-      },
-      title: {
-        color: '#fff',
       },
     })
   );
