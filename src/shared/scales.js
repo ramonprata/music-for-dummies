@@ -3,7 +3,7 @@ const { semiTone, tone } = scaleSteps;
 
 const getNoteIndex = (fromNote, notes) => {
   const noteIndex = notes.findIndex((note) => note === fromNote);
-  return noteIndex >= 0 ? noteIndex : 0;
+  return noteIndex;
 };
 
 export const getNextNotes = (fromNote, notes) => {
@@ -57,14 +57,23 @@ const applyAccidend = (note, diff) => {
 };
 
 const applyEnharmonic = (scale, fromNote) => {
-  const naturaNotesScale = getNextNotes(removeSharp(fromNote), naturalNotes);
+  const chromaticScaleFromNote = getChromaticScale(fromNote);
+  const naturalScaleNotes = getNextNotes(removeSharp(fromNote), naturalNotes);
   return scale.map((scaleNote, idx) => {
-    const chromaticScale = getNextNotes(naturalNotes[idx], ascendingChromaticNotes);
-    const indexNaturalNote = getNoteIndex(naturaNotesScale[idx], chromaticScale);
-    const indexScaleNote = getNoteIndex(scaleNote, chromaticScale);
-    const diff = indexScaleNote - indexNaturalNote;
-    return applyAccidend(naturaNotesScale[idx], diff);
+    if (idx > 0) {
+      const naturalScaleNote = naturalScaleNotes[idx];
+      const indexNaturalNote = getNoteIndex(naturalScaleNote, chromaticScaleFromNote);
+      const indexScaleNote = getNoteIndex(scaleNote, chromaticScaleFromNote);
+      const diff = indexScaleNote - indexNaturalNote;
+      const modifiedNote = applyAccidend(naturalScaleNote, diff);
+      return modifiedNote;
+    }
+    return scaleNote;
   });
+};
+
+export const getChromaticScale = (fromNote = 'A') => {
+  return getNextNotes(fromNote, ascendingChromaticNotes);
 };
 
 export const getMajorScale = (fromNote = 'A', numberOfNotes = 6) => {
@@ -78,6 +87,13 @@ export const getMinorScale = (fromNote = 'A', numberOfNotes = 6) => {
   const pattern = [tone, semiTone, tone, tone, semiTone, tone, tone];
   const scale = getScale(fromNote, pattern, numberOfNotes);
   const enharmonicScale = applyEnharmonic(scale, fromNote);
-  // console.log('enharmonicScale :>> ', enharmonicScale);
   return enharmonicScale;
+};
+
+export const getScales = (fromNote = 'A', numberOfNotes = 6) => {
+  return {
+    chromatic: getChromaticScale(fromNote),
+    major: getMajorScale(fromNote),
+    minor: getMinorScale(fromNote),
+  };
 };

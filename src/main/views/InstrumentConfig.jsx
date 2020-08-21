@@ -29,7 +29,12 @@ const InstrumentConfig = (props) => {
   };
 
   return (
-    <CssGridContainer repeatCol={false} className={contolsContainer}>
+    <CssGridContainer
+      repeatCol={false}
+      alignContent="start"
+      className={contolsContainer}
+      rowGap="24px"
+    >
       <CssGridItem justify="start">
         <FormControl component="fieldset">
           <RadioGroup
@@ -53,14 +58,14 @@ const InstrumentConfig = (props) => {
           </RadioGroup>
         </FormControl>
       </CssGridItem>
-      <CssGridItem justify="start">
+      {/* <CssGridItem justify="start">
         <FormControlLabel
           label={<Typography color="primary">Show notes</Typography>}
           control={
             <Switch color="primary" checked={showNotesOnInstrument} onChange={onToggleShowNote} />
           }
         />
-      </CssGridItem>
+      </CssGridItem> */}
       <CssGridItem justify="start">
         <NeckSelect
           selectedNeck={selectedNeck}
