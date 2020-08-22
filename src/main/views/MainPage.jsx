@@ -27,13 +27,16 @@ const MainPage = () => {
 
         <CssGridContainer
           repeatCol={false}
-          templateCol="5% 1fr"
+          templateCol="64px 1fr"
           alignContent="center"
           justifyContent="space-between"
-          // style={{ backgroundColor: 'orange' }}
         >
           <CssGridItem justify="end">
-            <CssGridContainer alignItems="center" repeatCol={false}>
+            <CssGridContainer
+              alignItems="center"
+              repeatCol={false}
+              style={{ backgroundColor: '#b4a576', padding: '0 2px' }}
+            >
               {instrumentStrings.map((cord, idx) => (
                 <Note
                   key={`${instrument}-${cord}-${idx}`}

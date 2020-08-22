@@ -4,7 +4,7 @@ import { INSTRUMENTS, getInstrumentStrings } from '../../shared';
 const [guitar, ukulele] = Object.keys(INSTRUMENTS);
 
 export const mainInitState = {
-  showNotesOnInstrument: true,
+  showNotesOnInstrument: false,
   instrument: guitar,
   instrumentStrings: getInstrumentStrings(guitar),
   selectedNeckModel: 'wood',
