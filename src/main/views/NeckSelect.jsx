@@ -8,8 +8,10 @@ const NeckSelect = (props) => {
 
   return (
     <Grid container>
-      <Box marginBottom={2}>
-        <Typography color="primary">Select your favorite neck model</Typography>
+      <Box marginBottom={1}>
+        <Typography align="left" color="primary">
+          Select you favorite neck model
+        </Typography>
       </Box>
 
       <Grid container direction="row" justify="space-between">

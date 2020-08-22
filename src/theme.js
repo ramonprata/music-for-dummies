@@ -242,5 +242,6 @@ export const theme = createMuiTheme({
   type: 'dark',
   palette: {
     primary: { light: '#f4ecf8', main: '#923cb5', dark: '#3a1848', contrastText: '#fff' },
+    secondary: { light: '#f4ecf8', main: '#f89427', dark: '#3a1848', contrastText: '#fff' },
   },
 });

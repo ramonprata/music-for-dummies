@@ -8,6 +8,7 @@ import {
   FormControl,
   Radio,
   FormControlLabel,
+  Box,
 } from '@material-ui/core/';
 import NeckSelect from './NeckSelect';
 import { toggleShowNotes, selectInstrument } from '../store';
@@ -33,9 +34,14 @@ const InstrumentConfig = (props) => {
       repeatCol={false}
       alignContent="start"
       className={contolsContainer}
-      rowGap="24px"
+      rowGap={48}
     >
       <CssGridItem justify="start">
+        <Box marginBottom={1}>
+          <Typography align="left" color="primary">
+            Choose your instrument
+          </Typography>
+        </Box>
         <FormControl component="fieldset">
           <RadioGroup
             row

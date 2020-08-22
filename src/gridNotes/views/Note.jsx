@@ -1,16 +1,22 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 const Note = (props) => {
-  const { showNotesOnInstrument } = props;
+  const { showNotesOnInstrument, stringNote } = props;
   const classes = useStyles(showNotesOnInstrument)();
   const { note } = classes;
 
   return (
     <div className={note}>
-      <span>#</span>
+      <span>{stringNote}</span>
     </div>
   );
+};
+
+Note.propTypes = {
+  showNotesOnInstrument: PropTypes.bool,
+  stringNote: PropTypes.string,
 };
 
 const useStyles = (showNotesOnInstrument) =>
@@ -38,4 +44,4 @@ const useStyles = (showNotesOnInstrument) =>
     })
   );
 
-export default React.memo(Note, (p, n) => p.showNotesOnInstrument === n.showNotesOnInstrument);
+export default Note;

@@ -8,7 +8,7 @@ const CssGridContainer = (props) => {
   const { container } = classes;
 
   return (
-    <div className={[className, container].join(' ')} style={{ ...style }}>
+    <div className={[container, className].join(' ')} style={{ ...style }}>
       {props.children}
     </div>
   );
@@ -19,6 +19,7 @@ CssGridContainer.propTypes = {
   templateCol: PropTypes.string,
   templateRow: PropTypes.string,
   repeatCol: PropTypes.bool,
+  repeatNumber: PropTypes.number,
   repeatRow: PropTypes.bool,
   colGap: PropTypes.number | PropTypes.string,
   rowGap: PropTypes.number | PropTypes.string,
@@ -77,16 +78,17 @@ const useStyles = (props) =>
       justifyContent,
       alignContent,
       children,
+      repeatNumber,
     } = props;
-    const repeatNumber = children.length;
+    const repeat = repeatNumber || children.length;
     return createStyles({
       container: {
         display: 'grid',
         height: '100%',
-        gridTemplateColumns: repeatCol ? `repeat(${repeatNumber},${templateCol})` : templateCol,
-        gridTemplateRows: repeatRow ? `repeat(${repeatNumber},${templateRow})` : templateRow,
-        columnGap: gap || colGap,
-        rowGap: gap || rowGap,
+        gridTemplateColumns: repeatCol ? `repeat(${repeat},${templateCol})` : templateCol,
+        gridTemplateRows: repeatRow ? `repeat(${repeat},${templateRow})` : templateRow,
+        columnGap: gap ? `${gap}px` : `${colGap}px`,
+        rowGap: gap ? `${gap}px` : `${rowGap}px`,
         justifyItems,
         alignItems,
         justifyContent,

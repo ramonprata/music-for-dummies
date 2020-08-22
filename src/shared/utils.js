@@ -1,4 +1,6 @@
-import { ROOMS, MAX_ROOM_WIDTH, INSTRUMENTS } from './defaultValues';
+import { ROOMS, MAX_ROOM_WIDTH, INSTRUMENTS, scaleSteps } from './defaultValues';
+import { getScale } from './scales';
+const { semiTone } = scaleSteps;
 
 const wood = require('../images/wood.jpg');
 const wood3 = require('../images/wood3.jpg');
@@ -22,6 +24,13 @@ export const calcGridNoteWidth = (idx = 0) => {
 
 export const getInstrumentStrings = (instrument) => {
   return INSTRUMENTS[instrument].strings;
+};
+
+export const getStringNotes = (fromNote = 'A') => {
+  const pattern = Array(ROOMS)
+    .fill(true)
+    .map((room) => semiTone);
+  return getScale(fromNote, pattern, ROOMS + 1);
 };
 
 export const woodNecksDesign = {

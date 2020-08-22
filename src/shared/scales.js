@@ -33,7 +33,7 @@ const getNextAscendingNote = (currentNote, scaleSteps) => {
   return ascendingChromaticNotes[indexJump];
 };
 
-const getScale = (fromNote, pattern, numberOfNotes = 7) => {
+export const getScale = (fromNote, pattern, numberOfNotes = 7) => {
   const intervals = mountIntervals(pattern, numberOfNotes);
   let currentNote = fromNote;
   const scale = intervals.map((interval) => {

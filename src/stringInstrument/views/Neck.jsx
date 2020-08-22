@@ -7,6 +7,8 @@ import GridNotesCol from '../../gridNotes/views/GridNotesCol';
 import NeckMarker from './NeckMarker';
 import NeckStrings from './NeckStrings';
 import { useContextStore } from '../../shared/hooks/useContextStore';
+import Note from '../../gridNotes/views/Note';
+import { CssGridContainer } from '../../shared/components';
 
 const Neck = () => {
   const { instrumentStrings, selectedNeckModel } = useContextStore();
@@ -16,13 +18,17 @@ const Neck = () => {
   return (
     <Grid container className={neckContainer}>
       <Grid container direction="row" wrap="nowrap" className={containerFrets}>
-        {Array(ROOMS)
+        {Array(ROOMS + 2)
           .fill(0)
-          .map((_, idx) => (
-            <GridNotesCol index={idx} showFrets={true} key={`marker-${idx}`}>
-              <NeckMarker room={idx + 1} />
-            </GridNotesCol>
-          ))}
+          .map((_, idx) => {
+            if (idx > 0) {
+              return (
+                <GridNotesCol index={idx} showFrets={true} key={`marker-${idx}`}>
+                  <NeckMarker room={idx} />
+                </GridNotesCol>
+              );
+            }
+          })}
       </Grid>
       <Grid container direction="column" className={containerStrings}>
         <NeckStrings />

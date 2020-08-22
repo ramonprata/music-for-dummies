@@ -2,8 +2,9 @@ import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core/';
 import { NECK_WIDTH, ROOMS } from '../../shared';
-import GridNotesLine from './GridNotesLine';
-import { useMemo } from 'react';
+
+import { CssGridContainer } from '../../shared/components';
+import Note from './Note';
 
 const GridNotes = (props) => {
   const { lines } = props;
@@ -11,7 +12,7 @@ const GridNotes = (props) => {
   const { gridContainer } = classes;
 
   return (
-    <Grid container direction="column" className={gridContainer}>
+    <Grid container direction="row" className={gridContainer}>
       {lines}
     </Grid>
   );
