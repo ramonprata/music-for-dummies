@@ -1,7 +1,7 @@
-import { ROOMS, MAX_ROOM_WIDTH, INSTRUMENTS, scaleSteps } from './defaultValues';
+import { FRETS_BOARD, MAX_ROOM_WIDTH, INSTRUMENTS, scaleSteps } from './defaultValues';
 import { getScale } from './scales';
-const { semiTone } = scaleSteps;
 
+const { semiTone } = scaleSteps;
 const wood = require('../images/wood.jpg');
 const wood3 = require('../images/wood3.jpg');
 const wood5 = require('../images/wood5.jpg');
@@ -11,7 +11,7 @@ const wood9 = require('../images/wood9.jpg');
 const wood10 = require('../images/wood10.jpg');
 
 export const NECK_WIDTH = (() => {
-  return Array(ROOMS)
+  return Array(FRETS_BOARD)
     .fill(0)
     .reduce((a, c, idx) => {
       return (a += Number(MAX_ROOM_WIDTH - idx * 4.5));
@@ -27,10 +27,10 @@ export const getInstrumentStrings = (instrument) => {
 };
 
 export const getStringNotes = (fromNote = 'A') => {
-  const pattern = Array(ROOMS)
+  const pattern = Array(FRETS_BOARD)
     .fill(true)
     .map((room) => semiTone);
-  return getScale(fromNote, pattern, ROOMS + 1);
+  return getScale(fromNote, pattern, FRETS_BOARD + 1);
 };
 
 export const woodNecksDesign = {

@@ -1,12 +1,12 @@
 import React from 'react';
-import { Paper, Typography } from '@material-ui/core/';
+import { Typography } from '@material-ui/core/';
 import CustomTabs from '../../shared/components/CustomTabs';
-import { tabs } from '../mainUtils';
+import { tabs } from '../../main/mainUtils';
 import { useContextStore } from '../../shared/hooks/useContextStore';
-import { setNeckModel } from '../store/mainActions';
-import InstrumentConfig from './InstrumentConfig';
-import { getNeckDesign } from '../../stringInstrument/stringInstrumentUtils';
-import ScalesTab from './ScalesTab';
+import { setNeckModel } from '../../main/store/mainActions';
+import InstrumentConfig from '../../main/views/InstrumentConfig';
+import { getNeckDesign } from '../../neck';
+import { ScalesTab } from '../../scales';
 
 const PanelConfig = () => {
   const { dispatch, selectedNeckModel } = useContextStore();

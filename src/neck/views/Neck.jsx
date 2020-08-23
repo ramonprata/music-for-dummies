@@ -1,24 +1,22 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
-import { NECK_WIDTH, ROOMS, GRID_NOTE_LINE_HEIGHT } from '../../shared/';
-import { getNeckDesign } from '../stringInstrumentUtils';
+import { NECK_WIDTH, FRETS_BOARD, GRID_NOTE_LINE_HEIGHT } from '../../shared';
+import { getNeckDesign } from '../necktUtils';
 import GridNotesCol from '../../gridNotes/views/GridNotesCol';
 import NeckMarker from './NeckMarker';
 import NeckStrings from './NeckStrings';
 import { useContextStore } from '../../shared/hooks/useContextStore';
-import Note from '../../gridNotes/views/Note';
-import { CssGridContainer } from '../../shared/components';
 
 const Neck = () => {
   const { instrumentStrings, selectedNeckModel } = useContextStore();
   const neckDesignApply = getNeckDesign(selectedNeckModel);
-  const classes = useStyles(neckDesignApply, instrumentStrings.length, GRID_NOTE_LINE_HEIGHT)();
+  const classes = useStyles(neckDesignApply, instrumentStrings.length)();
   const { neckContainer, containerFrets, containerStrings } = classes;
   return (
     <Grid container className={neckContainer}>
       <Grid container direction="row" wrap="nowrap" className={containerFrets}>
-        {Array(ROOMS + 2)
+        {Array(FRETS_BOARD + 2)
           .fill(0)
           .map((_, idx) => {
             if (idx > 0) {
@@ -37,13 +35,13 @@ const Neck = () => {
   );
 };
 
-const useStyles = (neckDesignApply, numberOfStrings, gridHeight) =>
+const useStyles = (neckDesignApply, numberOfStrings) =>
   makeStyles(() =>
     createStyles({
       containerFrets: {
         zIndex: 0,
         position: 'absolute',
-        height: numberOfStrings * gridHeight,
+        height: numberOfStrings * GRID_NOTE_LINE_HEIGHT,
         width: NECK_WIDTH,
       },
       containerStrings: {
@@ -52,7 +50,7 @@ const useStyles = (neckDesignApply, numberOfStrings, gridHeight) =>
         width: NECK_WIDTH,
       },
       neckContainer: {
-        height: numberOfStrings * gridHeight,
+        height: numberOfStrings * GRID_NOTE_LINE_HEIGHT,
         backgroundImage: `url(${neckDesignApply})`,
       },
     })

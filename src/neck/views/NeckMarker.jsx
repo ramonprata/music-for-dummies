@@ -1,12 +1,12 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { MARK_ROOMS } from '../../shared';
+import { MARK_FRETS_BOARD } from '../../shared';
 
 const NeckMarker = (props) => {
   const { room } = props;
   const classes = useStyles(props)();
   const { marker } = classes;
-  const showMarker = MARK_ROOMS.includes(room);
+  const showMarker = MARK_FRETS_BOARD.includes(room);
   return showMarker && <div className={marker} />;
 };
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
-import Neck from '../../stringInstrument/views/Neck';
-import { NECK_WIDTH, GRID_NOTE_LINE_HEIGHT, getMajorScale } from '../../shared/';
-import PanelConfig from './PanelConfig';
+import { Neck } from '../../neck';
+import { NECK_WIDTH } from '../../shared/';
+import PanelConfig from '../../panel/views/PanelConfig';
 import GridNotesContainer from '../../gridNotes/views/GridNotesContainer';
 import CssGridContainer from '../../shared/components/CssGridContainer';
 import CssGridItem from '../../shared/components/CssGridItem';
@@ -14,7 +14,6 @@ const MainPage = () => {
   const classes = useStyles()();
   const { pageContainer, gridNotesContainer } = classes;
   const { instrumentStrings, instrument } = useContextStore();
-  console.log('instrumentStrings :>> ', instrumentStrings);
   const numberOfCords = instrumentStrings.length;
   return (
     <Paper square className={pageContainer}>

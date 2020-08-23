@@ -2,10 +2,7 @@ import React from 'react';
 import { useContextStore } from '../../shared/hooks/useContextStore';
 import GridNotes from './GridNotes';
 import GridNotesLine from './GridNotesLine';
-import { ROOMS, getStringNotes } from '../../shared';
-import { Grid } from '@material-ui/core';
-import Note from './Note';
-import { CssGridContainer } from '../../shared/components';
+import { getStringNotes } from '../../shared';
 
 const GridNotesContainer = () => {
   const { instrumentStrings } = useContextStore();

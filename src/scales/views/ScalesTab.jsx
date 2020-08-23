@@ -2,16 +2,14 @@ import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import {
   RadioGroup,
-  FormControl,
   Radio,
   FormControlLabel,
   FormLabel,
   Box,
   Typography,
-  Grid,
 } from '@material-ui/core/';
 import { CssGridContainer, CssGridItem } from '../../shared/components';
-import { ascendingChromaticNotes, getMajorScale, getMinorScale, getScales } from '../../shared';
+import { ascendingChromaticNotes, getScales } from '../../shared';
 import { useState } from 'react';
 import Scale from './Scale';
 

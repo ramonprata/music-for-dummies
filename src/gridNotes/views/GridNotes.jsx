@@ -1,10 +1,7 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core/';
-import { NECK_WIDTH, ROOMS } from '../../shared';
-
-import { CssGridContainer } from '../../shared/components';
-import Note from './Note';
+import { NECK_WIDTH } from '../../shared';
 
 const GridNotes = (props) => {
   const { lines } = props;
