@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Grid, Typography, FormControlLabel, Switch, Paper, ListItem } from '@material-ui/core';
 import { CssGridContainer, CssGridItem } from '../../shared/components';
+import InlineTextWithSeparator from '../../shared/components/InlineTexWithSeparator';
 
 const Scale = (props) => {
   const { notes, scaleName } = props;
@@ -18,9 +19,7 @@ const Scale = (props) => {
           </Typography>
 
           {notes.map((noteScale, idx) => (
-            <Typography key={noteScale} component="span">{`${
-              idx != 0 ? ' - ' : ''
-            }${noteScale} `}</Typography>
+            <InlineTextWithSeparator text={noteScale} idx={idx} />
           ))}
         </CssGridItem>
       </CssGridContainer>

@@ -14,7 +14,7 @@ export const NECK_WIDTH = (() => {
   return Array(FRETS_BOARD)
     .fill(0)
     .reduce((a, c, idx) => {
-      return (a += Number(MAX_ROOM_WIDTH - idx * 4.5));
+      return (a += Number(MAX_ROOM_WIDTH - idx * 6));
     });
 })();
 
