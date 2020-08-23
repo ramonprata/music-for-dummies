@@ -15,17 +15,15 @@ const Neck = () => {
   const { neckContainer, containerFrets, containerStrings } = classes;
   return (
     <Grid container className={neckContainer}>
-      <Grid container direction="row" wrap="nowrap" className={containerFrets}>
-        {Array(FRETS_BOARD + 2)
+      <Grid container direction="row" wrap="nowrap" justify="center" className={containerFrets}>
+        {Array(FRETS_BOARD + 1)
           .fill(0)
           .map((_, idx) => {
-            if (idx > 0) {
-              return (
-                <GridNotesCol index={idx} showFrets={true} key={`marker-${idx}`}>
-                  <NeckMarker room={idx} />
-                </GridNotesCol>
-              );
-            }
+            return (
+              <GridNotesCol index={idx} showFrets={true} key={`marker-${idx}`}>
+                <NeckMarker room={idx} />
+              </GridNotesCol>
+            );
           })}
       </Grid>
       <Grid container direction="column" className={containerStrings}>
@@ -40,13 +38,13 @@ const useStyles = (neckDesignApply, numberOfStrings) =>
     createStyles({
       containerFrets: {
         zIndex: 0,
-        position: 'absolute',
+        position: 'fixed',
         height: numberOfStrings * GRID_NOTE_LINE_HEIGHT,
         width: NECK_WIDTH,
       },
       containerStrings: {
         zIndex: 1,
-        position: 'absolute',
+        position: 'fixed',
         width: NECK_WIDTH,
       },
       neckContainer: {

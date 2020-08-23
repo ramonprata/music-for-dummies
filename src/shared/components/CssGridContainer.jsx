@@ -80,7 +80,7 @@ const useStyles = (props) =>
       children,
       repeatNumber,
     } = props;
-    const repeat = repeatNumber || children.length;
+    const repeat = repeatNumber || children?.length;
     return createStyles({
       container: {
         display: 'grid',

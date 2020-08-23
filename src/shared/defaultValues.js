@@ -37,8 +37,8 @@ export const scaleSteps = {
 export const DEFAULT_INSTRUMENT = 'guitar';
 
 export const MARK_FRETS_BOARD = [3, 5, 7, 12];
-export const FRETS_BOARD = 13;
-export const MAX_ROOM_WIDTH = 132;
+export const MAX_ROOM_WIDTH = 1450 / 10;
+export const FRETS_BOARD = 11;
 export const GRID_NOTE_LINE_HEIGHT = 38;
 
 export const INSTRUMENTS = {
