@@ -80,20 +80,42 @@ export const getMajorScale = (fromNote = 'A', numberOfNotes = 6) => {
   const pattern = [tone, tone, semiTone, tone, tone, tone, semiTone];
   const scale = getScale(fromNote, pattern, numberOfNotes);
   const enharmonicScale = applyEnharmonic(scale, fromNote);
-  return enharmonicScale;
+  return {
+    scale,
+    enharmonicScale,
+  };
 };
 
 export const getMinorScale = (fromNote = 'A', numberOfNotes = 6) => {
   const pattern = [tone, semiTone, tone, tone, semiTone, tone, tone];
   const scale = getScale(fromNote, pattern, numberOfNotes);
   const enharmonicScale = applyEnharmonic(scale, fromNote);
-  return enharmonicScale;
+  return {
+    scale,
+    enharmonicScale,
+  };
+};
+
+export const getPentatonic = (fromNote = 'A', numberOfNotes = 4) => {
+  const pattern = [tone, tone, tone + semiTone, tone, tone, tone + semiTone];
+  const scale = getScale(fromNote, pattern, numberOfNotes);
+  return {
+    scale,
+    enharmonicScale: [],
+  };
 };
 
 export const getScales = (fromNote = 'A', numberOfNotes = 6) => {
   return {
-    chromatic: getChromaticScale(fromNote),
-    major: getMajorScale(fromNote),
-    minor: getMinorScale(fromNote),
+    chromatic: () => {
+      const chromaticScale = getChromaticScale(fromNote);
+      return {
+        scale: chromaticScale,
+        enharmonicScale: chromaticScale,
+      };
+    },
+    major: () => getMajorScale(fromNote),
+    minor: () => getMinorScale(fromNote),
+    majorPentatonic: () => getPentatonic(fromNote),
   };
 };

@@ -8,22 +8,28 @@ import { useContextStore } from '../../shared/hooks/useContextStore';
 import { useMemo } from 'react';
 
 const GridNotesLine = (props) => {
-  const { showNotesOnInstrument, instrument } = useContextStore();
+  const { showNotesOnInstrument, selectedScale } = useContextStore();
   const { stringNotes } = props;
   const classes = useStyles(props)();
   const { lineContainer } = classes;
 
   const colsMemo = useMemo(() => {
     return stringNotes.map((stringNote, idx) => {
+      const activeNote = selectedScale.naturalNotes.includes(stringNote);
       if (idx > 0) {
         return (
           <GridNotesCol key={`grid-note-col-${idx}`} index={idx}>
-            <Note showNotesOnInstrument={showNotesOnInstrument} stringNote={stringNote} />
+            <Note
+              activeNote={activeNote}
+              showNotesOnInstrument={showNotesOnInstrument}
+              stringNote={stringNote}
+            />
           </GridNotesCol>
         );
       }
+      return null;
     });
-  }, [showNotesOnInstrument, instrument]);
+  }, [showNotesOnInstrument, stringNotes]);
 
   return (
     <Grid container direction="row" className={lineContainer} wrap="nowrap">

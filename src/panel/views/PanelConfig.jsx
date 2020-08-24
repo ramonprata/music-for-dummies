@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core/';
 import CustomTabs from '../../shared/components/CustomTabs';
 import { tabs } from '../../main/mainUtils';
 import { useContextStore } from '../../shared/hooks/useContextStore';
-import { setNeckModel } from '../../main/store/mainActions';
+import { setNeckModel } from '../../panel/store';
 import InstrumentConfig from '../../main/views/InstrumentConfig';
 import { getNeckDesign } from '../../neck';
 import { ScalesTab } from '../../scales';
@@ -22,7 +22,9 @@ const PanelConfig = () => {
               <InstrumentConfig
                 selectedNeck={selectedNeckModel}
                 woodNecksDesign={woodNecksDesign}
-                onSelectNeck={(selectedModel) => setNeckModel(dispatch, selectedModel)}
+                onSelectNeck={(selectedModel) => {
+                  setNeckModel(dispatch, selectedModel);
+                }}
               />
             ),
           };

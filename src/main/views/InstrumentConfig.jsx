@@ -1,9 +1,7 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import {
-  Grid,
   Typography,
-  Switch,
   RadioGroup,
   FormControl,
   Radio,
@@ -11,12 +9,12 @@ import {
   Box,
 } from '@material-ui/core/';
 import NeckSelect from './NeckSelect';
-import { toggleShowNotes, selectInstrument } from '../store';
+import { selectInstrument } from '../../panel/store';
 import { useContextStore } from '../../shared/hooks/useContextStore';
 import { CssGridContainer, CssGridItem } from '../../shared/components';
 
 const InstrumentConfig = (props) => {
-  const { showNotesOnInstrument, instrument, dispatch } = useContextStore();
+  const { instrument, dispatch } = useContextStore();
   const { selectedNeck, woodNecksDesign, onSelectNeck } = props;
   const classes = useStyles(props)();
   const { contolsContainer } = classes;
@@ -25,9 +23,9 @@ const InstrumentConfig = (props) => {
     selectInstrument(dispatch, event.target.value);
   };
 
-  const onToggleShowNote = () => {
-    toggleShowNotes(dispatch);
-  };
+  // const onToggleShowNote = () => {
+  //   toggleShowNotes(dispatch);
+  // };
 
   return (
     <CssGridContainer
@@ -92,4 +90,8 @@ const useStyles = () =>
     })
   );
 
-export default InstrumentConfig;
+export default React.memo(InstrumentConfig, (p, n) => {
+  const sameNeck = p.selectedNeck === n.selectedNeck;
+  const sameWood = p.woodNecksDesign === n.woodNecksDesign;
+  return sameNeck && sameWood;
+});

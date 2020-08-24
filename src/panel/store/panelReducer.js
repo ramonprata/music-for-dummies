@@ -1,16 +1,16 @@
-import { TOGGLE_SHOW_NOTES_INSTRUMENT, SELECT_INSTRUMENT, SELECT_NECK_MODEL } from './mainActions';
+import { TOGGLE_SHOW_NOTES_INSTRUMENT, SELECT_INSTRUMENT, SELECT_NECK_MODEL } from './panelActions';
 import { INSTRUMENTS, getInstrumentStrings } from '../../shared';
 
-const [guitar, ukulele] = Object.keys(INSTRUMENTS);
+const [guitar] = Object.keys(INSTRUMENTS);
 
-export const mainInitState = {
-  showNotesOnInstrument: true,
+export const panelInitialState = {
+  showNotesOnInstrument: false,
   instrument: guitar,
   instrumentStrings: getInstrumentStrings(guitar),
   selectedNeckModel: 'wood',
 };
 
-export const mainReducer = (state, action) => {
+export const panelReducer = (state, action) => {
   switch (action.type) {
     case TOGGLE_SHOW_NOTES_INSTRUMENT:
       return {

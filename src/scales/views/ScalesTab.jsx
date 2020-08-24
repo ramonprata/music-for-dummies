@@ -1,29 +1,23 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import {
-  RadioGroup,
-  Radio,
-  FormControlLabel,
-  FormLabel,
-  Box,
-  Typography,
-} from '@material-ui/core/';
+import { RadioGroup, Radio, FormControlLabel, Box, Typography } from '@material-ui/core/';
 import { CssGridContainer, CssGridItem } from '../../shared/components';
 import { ascendingChromaticNotes, getScales } from '../../shared';
-import { useState } from 'react';
 import Scale from './Scale';
+import { setScale } from '../store';
+import { useContextStore } from '../../shared/hooks';
+import { setSelectedNote } from '../store';
 
 const ScalesTab = (props) => {
-  const [selectedNote, setSelectedNote] = useState(ascendingChromaticNotes[0]);
-  const {} = props;
   const classes = useStyles(props)();
   const { scaleContainer } = classes;
+  const { selectedNote, dispatch } = useContextStore();
 
   const handleChange = (e) => {
-    setSelectedNote(e.target.value);
+    setSelectedNote(dispatch, e.target.value);
   };
 
-  const { chromatic, major, minor } = getScales(selectedNote);
+  const { chromatic, major, minor, majorPentatonic } = getScales(selectedNote);
 
   return (
     <CssGridContainer
@@ -58,17 +52,38 @@ const ScalesTab = (props) => {
 
       <CssGridContainer
         alignItems="center"
-        // templateCol="0.5fr 0.5fr"
-        templateCol="0.5fr"
+        templateCol="0.5fr 0.5fr"
+        // templateCol="0.5fr"
         templateRow={52}
         repeatRow={true}
         repeatCol={false}
         gap={16}
-        style={{ height: 220, overflowY: 'auto' }}
+        style={{ height: 225, overflowY: 'auto' }}
       >
-        <Scale notes={chromatic} scaleName="Chromatic Scale" />
-        <Scale notes={major} scaleName="Major Scale" />
-        <Scale notes={minor} scaleName="Minor Scale" />
+        <Scale
+          scaleKey="chromatic"
+          scaleLabel="Chromatic"
+          scaleOption={chromatic()}
+          onSelectScale={() => setScale(dispatch, 'chromatic')}
+        />
+        <Scale
+          scaleKey="major"
+          scaleLabel="Major"
+          scaleOption={major()}
+          onSelectScale={() => setScale(dispatch, 'major')}
+        />
+        <Scale
+          scaleKey="minor"
+          scaleLabel="Minor"
+          scaleOption={minor()}
+          onSelectScale={() => setScale(dispatch, 'minor')}
+        />
+        <Scale
+          scaleKey="majorPentatonic"
+          scaleLabel="Major Pentatonic"
+          scaleOption={majorPentatonic()}
+          onSelectScale={() => setScale(dispatch, 'majorPentatonic')}
+        />
       </CssGridContainer>
     </CssGridContainer>
   );

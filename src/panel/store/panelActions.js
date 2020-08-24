@@ -1,6 +1,6 @@
-export const TOGGLE_SHOW_NOTES_INSTRUMENT = 'mainFeature/TOGGLE_SHOW_NOTES_INSTRUMENT';
-export const SELECT_INSTRUMENT = 'mainFeature/SELECT_INSTRUMENT';
-export const SELECT_NECK_MODEL = 'mainFeature/SELECT_NECK_MODEL';
+export const TOGGLE_SHOW_NOTES_INSTRUMENT = 'panelFeature/TOGGLE_SHOW_NOTES_INSTRUMENT';
+export const SELECT_INSTRUMENT = 'panelFeature/SELECT_INSTRUMENT';
+export const SELECT_NECK_MODEL = 'panelFeature/SELECT_NECK_MODEL';
 
 export const toggleShowNotes = (dispatch) => {
   dispatch({

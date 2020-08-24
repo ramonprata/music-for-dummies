@@ -1,8 +1,13 @@
-import { mainReducer, mainInitState } from '../../main/store';
+import { panelReducer, panelInitialState } from '../../panel/store';
+import { scalesReducer, scalesInitialState } from '../../scales/store';
 
 export const reducers = {
-  mainFeature: {
-    reducer: mainReducer,
-    initialState: mainInitState,
+  panelFeature: {
+    reducer: panelReducer,
+    initialState: panelInitialState,
+  },
+  scalesFeature: {
+    reducer: scalesReducer,
+    initialState: scalesInitialState,
   },
 };

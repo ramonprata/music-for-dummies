@@ -20,7 +20,12 @@ const Neck = () => {
           .fill(0)
           .map((_, idx) => {
             return (
-              <GridNotesCol index={idx} showFrets={true} key={`marker-${idx}`}>
+              <GridNotesCol
+                index={idx}
+                showFrets={true}
+                key={`marker-${idx}`}
+                neckDesignApply={neckDesignApply}
+              >
                 <NeckMarker room={idx} />
               </GridNotesCol>
             );
@@ -49,7 +54,6 @@ const useStyles = (neckDesignApply, numberOfStrings) =>
       },
       neckContainer: {
         height: numberOfStrings * GRID_NOTE_LINE_HEIGHT,
-        backgroundImage: `url(${neckDesignApply})`,
       },
     })
   );
