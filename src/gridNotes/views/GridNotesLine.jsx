@@ -47,4 +47,4 @@ const useStyles = () =>
     })
   );
 
-export default GridNotesLine;
+export default React.memo(GridNotesLine, (p, n) => p.stringNotes === n.stringNotes);

@@ -2,17 +2,27 @@ import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Note from '../../gridNotes/views/Note';
 import { CssGridContainer } from '../../shared/components';
+import { useContextStore } from '../../shared/hooks/useContextStore';
 
 const NeckNut = (props) => {
   const { instrumentStrings, instrument } = props;
+  const { selectedScale } = useContextStore();
   const classes = useStyles(props)();
   const { containerNut } = classes;
 
   return (
     <CssGridContainer alignItems="center" repeatCol={false} className={containerNut}>
-      {instrumentStrings.map((cord, idx) => (
-        <Note key={`${instrument}-${cord}-${idx}`} showNotesOnInstrument={true} stringNote={cord} />
-      ))}
+      {instrumentStrings.map((cord, idx) => {
+        const activeNote = selectedScale.naturalNotes.includes(cord);
+        return (
+          <Note
+            key={`${instrument}-${cord}-${idx}`}
+            showNotesOnInstrument={true}
+            stringNote={cord}
+            activeNote={activeNote}
+          />
+        );
+      })}
     </CssGridContainer>
   );
 };

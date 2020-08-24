@@ -6,7 +6,6 @@ import { getStringNotes } from '../../shared';
 
 const GridNotesContainer = () => {
   const { instrumentStrings } = useContextStore();
-
   const mapLines = instrumentStrings.map((firstNoteString, idx) => {
     const notes = getStringNotes(firstNoteString);
     return <GridNotesLine key={`grid-note-line-${idx}`} stringNotes={notes} />;

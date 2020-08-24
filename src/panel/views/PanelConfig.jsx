@@ -11,7 +11,6 @@ import { ScalesTab } from '../../scales';
 const PanelConfig = () => {
   const { dispatch, selectedNeckModel } = useContextStore();
   const woodNecksDesign = getNeckDesign(selectedNeckModel);
-
   const mapTabs = () => {
     return tabs.map((tab) => {
       switch (tab.id) {

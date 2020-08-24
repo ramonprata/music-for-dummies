@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import { useContextStore } from '../../shared/hooks';
 
 const Note = (props) => {
   const { showNotesOnInstrument, stringNote, activeNote } = props;
@@ -44,8 +43,4 @@ const useStyles = (showNotesOnInstrument, activeNote) =>
     });
   });
 
-export default React.memo(Note, (p, n) => {
-  const sameStringNote = p.stringNote !== n.stringNote;
-  const sameActiveNote = p.activeNote !== n.activeNote;
-  return sameStringNote && sameActiveNote;
-});
+export default Note;
