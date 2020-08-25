@@ -39,6 +39,7 @@ const useStyles = (active) =>
     createStyles({
       scaleContainer: {
         minHeight: 62,
+        borderRadius: 4,
         border: `solid 1px ${theme.palette.grey['300']}`,
         borderWidth: active ? 3 : 1,
         borderColor: active ? theme.palette.primary.main : theme.palette.grey['300'],
