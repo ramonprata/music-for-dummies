@@ -21,9 +21,9 @@ CssGridContainer.propTypes = {
   repeatCol: PropTypes.bool,
   repeatNumber: PropTypes.number,
   repeatRow: PropTypes.bool,
-  colGap: PropTypes.number | PropTypes.string,
-  rowGap: PropTypes.number | PropTypes.string,
-  gap: PropTypes.number | PropTypes.string,
+  colGap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  rowGap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  gap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   justifyItems: PropTypes.oneOf(['start', 'end', 'center', 'stretch']),
   alignItems: PropTypes.oneOf(['start', 'end', 'center', 'stretch']),
   justifyContent: PropTypes.oneOf([
@@ -44,7 +44,7 @@ CssGridContainer.propTypes = {
     'space-between',
     'space-evenly',
   ]),
-  style: PropTypes.instanceOf(CSSProperties),
+  style: PropTypes.any,
 };
 
 CssGridContainer.defaultProps = {

@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
@@ -22,7 +22,7 @@ CssGridItem.propTypes = {
   justify: PropTypes.oneOf(['start', 'end', 'center', 'stretch']),
   align: PropTypes.oneOf(['start', 'end', 'center', 'stretch']),
   placeSelf: PropTypes.string,
-  style: PropTypes.instanceOf(CSSProperties),
+  style: PropTypes.any,
 };
 
 CssGridItem.defaultProps = {

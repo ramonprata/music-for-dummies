@@ -34,7 +34,7 @@ const useStyles = (showNotesOnInstrument, activeNote) =>
         cursor: 'pointer',
         backgroundColor: !activeNote ? '#323130' : theme.palette.primary.main,
         '&:hover': {
-          backgroundColor: 'orange',
+          backgroundColor: theme.palette.secondary.main,
         },
         '& *': {
           color: '#fff',

@@ -15,7 +15,7 @@ const NeckNut = (props) => {
   return (
     <CssGridContainer alignItems="center" repeatCol={false} className={containerNut}>
       {instrumentStrings.map((cord, idx) => {
-        const activeNote = scaleName && scaleRender.scale.includes(cord);
+        const activeNote = Boolean(scaleName && scaleRender.scale.includes(cord));
         return (
           <Note
             key={`${selectedInstrument}-${cord}-${idx}`}
