@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
-import { NECK_WIDTH, FRETS_BOARD, GRID_NOTE_LINE_HEIGHT } from '../../shared';
+import { NECK_WIDTH, FRETS_BOARD, GRID_NOTE_LINE_HEIGHT, getInstrumentStrings } from '../../shared';
 import { getNeckDesign } from '../necktUtils';
 import GridNotesCol from '../../gridNotes/views/GridNotesCol';
 import NeckMarker from './NeckMarker';
@@ -9,8 +9,9 @@ import NeckStrings from './NeckStrings';
 import { useContextStore } from '../../shared/hooks/useContextStore';
 
 const Neck = () => {
-  const { instrumentStrings, selectedNeckModel } = useContextStore();
+  const { selectedNeckModel, instrument } = useContextStore();
   const neckDesignApply = getNeckDesign(selectedNeckModel);
+  const instrumentStrings = getInstrumentStrings(instrument);
   const classes = useStyles(neckDesignApply, instrumentStrings.length)();
   const { neckContainer, containerFrets, containerStrings } = classes;
   return (

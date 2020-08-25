@@ -1,13 +1,14 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core/';
-import { GRID_NOTE_LINE_HEIGHT } from '../../shared';
+import { GRID_NOTE_LINE_HEIGHT, getInstrumentStrings } from '../../shared';
 import { useContextStore } from '../../shared/hooks/useContextStore';
 
 const NeckStrings = () => {
   const classes = useStyles()();
   const { string } = classes;
-  const { instrumentStrings } = useContextStore();
+  const { instrument } = useContextStore();
+  const instrumentStrings = getInstrumentStrings(instrument);
 
   return instrumentStrings.map((cord, idx) => (
     <Grid container style={{ height: GRID_NOTE_LINE_HEIGHT }} key={`${cord}-${idx}`}>
