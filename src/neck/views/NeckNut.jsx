@@ -6,19 +6,19 @@ import { useContextStore } from '../../shared/hooks/useContextStore';
 import { getScales, getInstrumentStrings } from '../../shared';
 
 const NeckNut = (props) => {
-  const { instrument } = props;
+  const { selectedInstrument } = props;
   const { scaleName, selectedNote } = useContextStore();
   const classes = useStyles(props)();
   const { containerNut } = classes;
   const scaleRender = scaleName && getScales(selectedNote)[scaleName]();
-  const instrumentStrings = getInstrumentStrings(instrument);
+  const instrumentStrings = getInstrumentStrings(selectedInstrument);
   return (
     <CssGridContainer alignItems="center" repeatCol={false} className={containerNut}>
       {instrumentStrings.map((cord, idx) => {
         const activeNote = scaleName && scaleRender.scale.includes(cord);
         return (
           <Note
-            key={`${instrument}-${cord}-${idx}`}
+            key={`${selectedInstrument}-${cord}-${idx}`}
             showNotesOnInstrument={true}
             stringNote={cord}
             activeNote={activeNote}

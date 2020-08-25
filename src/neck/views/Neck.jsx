@@ -9,9 +9,9 @@ import NeckStrings from './NeckStrings';
 import { useContextStore } from '../../shared/hooks/useContextStore';
 
 const Neck = () => {
-  const { selectedNeckModel, instrument } = useContextStore();
+  const { selectedNeckModel, selectedInstrument } = useContextStore();
   const neckDesignApply = getNeckDesign(selectedNeckModel);
-  const instrumentStrings = getInstrumentStrings(instrument);
+  const instrumentStrings = getInstrumentStrings(selectedInstrument);
   const classes = useStyles(neckDesignApply, instrumentStrings.length)();
   const { neckContainer, containerFrets, containerStrings } = classes;
   return (

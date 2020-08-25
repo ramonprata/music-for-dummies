@@ -14,7 +14,7 @@ import { useContextStore } from '../../shared/hooks/useContextStore';
 import { CssGridContainer, CssGridItem } from '../../shared/components';
 
 const InstrumentConfig = (props) => {
-  const { instrument, dispatch } = useContextStore();
+  const { selectedInstrument, dispatch } = useContextStore();
   const { selectedNeck, woodNecksDesign, onSelectNeck } = props;
   const classes = useStyles(props)();
   const { contolsContainer } = classes;
@@ -45,7 +45,7 @@ const InstrumentConfig = (props) => {
             row
             aria-label="instrument"
             name="instrument"
-            value={instrument}
+            value={selectedInstrument}
             onChange={onSelectInstrument}
           >
             <FormControlLabel

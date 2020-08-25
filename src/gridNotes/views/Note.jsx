@@ -15,6 +15,7 @@ const Note = (props) => {
 
 Note.propTypes = {
   showNotesOnInstrument: PropTypes.bool,
+  activeNote: PropTypes.bool,
   stringNote: PropTypes.string,
 };
 
@@ -43,4 +44,8 @@ const useStyles = (showNotesOnInstrument, activeNote) =>
     });
   });
 
-export default Note;
+export default React.memo(Note, (p, n) => {
+  const stillActive = p.activeNote === n.activeNote;
+  const sameNote = p.stringNote === n.stringNote;
+  return stillActive && sameNote;
+});

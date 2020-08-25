@@ -5,7 +5,7 @@ const [guitar] = Object.keys(INSTRUMENTS);
 
 export const panelInitialState = {
   showNotesOnInstrument: false,
-  instrument: guitar,
+  selectedInstrument: guitar,
   selectedNeckModel: 'wood',
 };
 
@@ -19,7 +19,7 @@ export const panelReducer = (state, action) => {
     case SELECT_INSTRUMENT:
       return {
         ...state,
-        instrument: action.payload,
+        selectedInstrument: action.payload,
       };
     case SELECT_NECK_MODEL:
       return {

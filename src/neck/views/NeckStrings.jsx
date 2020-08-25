@@ -7,8 +7,8 @@ import { useContextStore } from '../../shared/hooks/useContextStore';
 const NeckStrings = () => {
   const classes = useStyles()();
   const { string } = classes;
-  const { instrument } = useContextStore();
-  const instrumentStrings = getInstrumentStrings(instrument);
+  const { selectedInstrument } = useContextStore();
+  const instrumentStrings = getInstrumentStrings(selectedInstrument);
 
   return instrumentStrings.map((cord, idx) => (
     <Grid container style={{ height: GRID_NOTE_LINE_HEIGHT }} key={`${cord}-${idx}`}>
