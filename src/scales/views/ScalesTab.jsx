@@ -4,7 +4,7 @@ import { RadioGroup, Radio, FormControlLabel, Box, Typography } from '@material-
 import { CssGridContainer, CssGridItem } from '../../shared/components';
 import { ascendingChromaticNotes, getScales } from '../../shared';
 import Scale from './Scale';
-import { setScale } from '../store';
+import { setSelectedScale } from '../store';
 import { useContextStore } from '../../shared/hooks';
 import { setSelectedNote } from '../store';
 
@@ -64,25 +64,25 @@ const ScalesTab = (props) => {
           scaleKey="chromatic"
           scaleLabel="Chromatic"
           scaleOption={chromatic()}
-          onSelectScale={() => setScale(dispatch, 'chromatic')}
+          onSelectScale={() => setSelectedScale(dispatch, 'chromatic')}
         />
         <Scale
           scaleKey="major"
           scaleLabel="Major"
           scaleOption={major()}
-          onSelectScale={() => setScale(dispatch, 'major')}
+          onSelectScale={() => setSelectedScale(dispatch, 'major')}
         />
         <Scale
           scaleKey="minor"
           scaleLabel="Minor"
           scaleOption={minor()}
-          onSelectScale={() => setScale(dispatch, 'minor')}
+          onSelectScale={() => setSelectedScale(dispatch, 'minor')}
         />
         <Scale
           scaleKey="majorPentatonic"
           scaleLabel="Major Pentatonic"
           scaleOption={majorPentatonic()}
-          onSelectScale={() => setScale(dispatch, 'majorPentatonic')}
+          onSelectScale={() => setSelectedScale(dispatch, 'majorPentatonic')}
         />
       </CssGridContainer>
     </CssGridContainer>

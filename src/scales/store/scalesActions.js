@@ -1,9 +1,9 @@
-export const SET_SCALE = 'scalesFeature/SET_SCALE';
+export const SET_SELECTED_SCALE = 'scalesFeature/SET_SELECTED_SCALE';
 export const SET_SELECTED_NOTE = 'scalesFeature/SET_SELECTED_NOTE';
 
-export const setScale = (dispatch, scaleName) => {
+export const setSelectedScale = (dispatch, scaleName) => {
   dispatch({
-    type: SET_SCALE,
+    type: SET_SELECTED_SCALE,
     payload: scaleName,
   });
 };

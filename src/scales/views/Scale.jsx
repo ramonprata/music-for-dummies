@@ -7,8 +7,8 @@ import { useContextStore } from '../../shared/hooks';
 
 const Scale = (props) => {
   const { scaleOption, scaleLabel, scaleKey, onSelectScale } = props;
-  const { selectedScale } = useContextStore();
-  const active = scaleKey === selectedScale.scaleName;
+  const { scaleName } = useContextStore();
+  const active = scaleKey === scaleName;
   const classes = useStyles(active)();
   const { scaleContainer } = classes;
   const showEharmonic = Boolean(scaleOption.enharmonicScale.length);
