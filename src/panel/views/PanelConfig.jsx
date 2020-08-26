@@ -4,7 +4,7 @@ import CustomTabs from '../../shared/components/CustomTabs';
 import { tabs } from '../../main/mainUtils';
 import { useContextStore } from '../../shared/hooks/useContextStore';
 import { setNeckModel } from '../../panel/store';
-import InstrumentConfig from '../../main/views/InstrumentConfig';
+import InstrumentTab from './InstrumentTab';
 import { getNeckDesign } from '../../neck';
 import { ScalesTab } from '../../scales';
 
@@ -18,7 +18,7 @@ const PanelConfig = () => {
           return {
             ...tab,
             renderTab: () => (
-              <InstrumentConfig
+              <InstrumentTab
                 selectedNeck={selectedNeckModel}
                 woodNecksDesign={woodNecksDesign}
                 onSelectNeck={(selectedModel) => {

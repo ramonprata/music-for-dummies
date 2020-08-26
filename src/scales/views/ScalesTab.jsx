@@ -17,7 +17,14 @@ const ScalesTab = (props) => {
     setSelectedNote(dispatch, e.target.value);
   };
 
-  const { chromatic, major, minor, majorPentatonic } = getScales(selectedNote);
+  const {
+    chromatic,
+    major,
+    minor,
+    majorPentatonic,
+    minorPentatonic,
+    majorPentatonicBlues,
+  } = getScales(selectedNote);
 
   return (
     <CssGridContainer
@@ -83,6 +90,18 @@ const ScalesTab = (props) => {
           scaleLabel="Major Pentatonic"
           scaleOption={majorPentatonic()}
           onSelectScale={() => setSelectedScale(dispatch, 'majorPentatonic')}
+        />
+        <Scale
+          scaleKey="minorPentatonic"
+          scaleLabel="Minor Pentatonic"
+          scaleOption={minorPentatonic()}
+          onSelectScale={() => setSelectedScale(dispatch, 'minorPentatonic')}
+        />
+        <Scale
+          scaleKey="majorPentatonicBlues"
+          scaleLabel="Blues scale(minor)"
+          scaleOption={majorPentatonicBlues()}
+          onSelectScale={() => setSelectedScale(dispatch, 'majorPentatonicBlues')}
         />
       </CssGridContainer>
     </CssGridContainer>

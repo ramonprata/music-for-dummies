@@ -8,8 +8,8 @@ import {
   FormControlLabel,
   Box,
 } from '@material-ui/core/';
-import NeckSelect from './NeckSelect';
-import { selectInstrument } from '../../panel/store';
+import NeckSelect from '../../main/views/NeckSelect';
+import { selectInstrument } from '../store';
 import { useContextStore } from '../../shared/hooks/useContextStore';
 import { CssGridContainer, CssGridItem } from '../../shared/components';
 

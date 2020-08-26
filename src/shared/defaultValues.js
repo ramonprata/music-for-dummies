@@ -39,7 +39,7 @@ export const DEFAULT_INSTRUMENT = 'guitar';
 export const MARK_FRETS_BOARD = [2, 4, 6, 11];
 export const MAX_ROOM_WIDTH = 1450 / 10;
 export const FRETS_BOARD = 11;
-export const GRID_NOTE_LINE_HEIGHT = 38;
+export const GRID_NOTE_LINE_HEIGHT = 36;
 
 export const INSTRUMENTS = {
   guitar: {

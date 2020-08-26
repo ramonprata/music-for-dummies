@@ -15,7 +15,7 @@ const MainPage = () => {
   const { selectedInstrument } = useContextStore();
   return (
     <Paper square className={pageContainer}>
-      <CssGridContainer repeatCol={false} templateRow={`1fr 238px`}>
+      <CssGridContainer repeatCol={false} templateRow={`1fr 224px`}>
         <CssGridItem justify="center" className={neckContainer}>
           <PanelConfig />
         </CssGridItem>
