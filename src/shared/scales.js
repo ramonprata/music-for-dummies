@@ -123,6 +123,15 @@ export const getMajorPentaBlues = (fromNote = 'A', numberOfNotes = 5) => {
   };
 };
 
+export const getMinorPentaBlues = (fromNote = 'A', numberOfNotes = 5) => {
+  const pattern = [tone + semiTone, tone, semiTone, semiTone, tone + semiTone];
+  const scale = getScale(fromNote, pattern, numberOfNotes);
+  return {
+    scale,
+    enharmonicScale: [],
+  };
+};
+
 export const getScales = (fromNote = 'A', numberOfNotes = 6) => {
   return {
     chromatic: () => {
@@ -136,6 +145,7 @@ export const getScales = (fromNote = 'A', numberOfNotes = 6) => {
     minor: () => getMinorScale(fromNote),
     majorPentatonic: () => getMajorPentatonic(fromNote),
     minorPentatonic: () => getMinorPentatonic(fromNote),
-    majorPentatonicBlues: () => getMajorPentaBlues(fromNote),
+    majorPentaBlues: () => getMajorPentaBlues(fromNote),
+    minorPentaBlues: () => getMinorPentaBlues(fromNote),
   };
 };
