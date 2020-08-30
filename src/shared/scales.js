@@ -1,4 +1,9 @@
-import { ascendingChromaticNotes, scaleSteps, naturalNotes } from './defaultValues';
+import {
+  ascendingChromaticNotes,
+  scaleSteps,
+  naturalNotes,
+  defaultIntervals,
+} from './defaultValues';
 const { semiTone, tone } = scaleSteps;
 
 const getNoteIndex = (fromNote, notes) => {
@@ -8,7 +13,6 @@ const getNoteIndex = (fromNote, notes) => {
 
 export const getNextNotes = (fromNote, notes) => {
   const indexStartNote = getNoteIndex(fromNote, notes);
-  debugger;
   const beforeNotes = notes.slice(0, indexStartNote);
   const afterNotes = notes.slice(indexStartNote, notes.length);
   const result = [...afterNotes, ...beforeNotes];
@@ -58,12 +62,26 @@ const applyAccidend = (note, diff) => {
   return `${note}${accidents}`;
 };
 
-const applyEnharmonic = (scale, fromNote) => {
+const getSortedNotes = () => {
+  return naturalNotes.sort((a, b) => {
+    if (a.id > b.id) return 1;
+    if (a.id === b.id) return 0;
+    if (a.id < b.id) return -1;
+  });
+};
+
+const getNotesFromIntervals = (notes = [], intervals = []) => {
+  return notes.filter((_, idx) => intervals.includes(idx + 1));
+};
+
+const applyEnharmonic = (scale, fromNote, intervals = defaultIntervals) => {
   const chromaticScaleFromNote = getChromaticScale(fromNote);
-  const naturalScaleNotes = getNextNotes(removeSharp(fromNote), naturalNotes);
+  const mappedNaturalNotes = getSortedNotes().map((item) => item.note);
+  const naturalScaleNotes = getNextNotes(removeSharp(fromNote), mappedNaturalNotes);
+  const notesFromIntervals = getNotesFromIntervals(naturalScaleNotes, intervals);
   return scale.map((scaleNote, idx) => {
     if (idx > 0) {
-      const naturalScaleNote = naturalScaleNotes[idx];
+      const naturalScaleNote = notesFromIntervals[idx];
       const indexNaturalNote = getNoteIndex(naturalScaleNote, chromaticScaleFromNote);
       const indexScaleNote = getNoteIndex(scaleNote, chromaticScaleFromNote);
       const diff = indexScaleNote - indexNaturalNote;
@@ -101,19 +119,22 @@ export const getMinorScale = (fromNote = 'A', numberOfNotes = 6) => {
 export const getMajorPentatonic = (fromNote = 'A', numberOfNotes = 4) => {
   const pattern = [tone, tone, tone + semiTone, tone, tone, tone + semiTone];
   const scale = getScale(fromNote, pattern, numberOfNotes);
-  const enharmonicScale = applyEnharmonic(scale, fromNote);
+  const intervals = [1, 2, 3, 5, 6];
+  const enharmonicScale = applyEnharmonic(scale, fromNote, intervals);
   return {
     scale,
-    enharmonicScale: [],
+    enharmonicScale: enharmonicScale,
   };
 };
 
 export const getMinorPentatonic = (fromNote = 'A', numberOfNotes = 4) => {
   const pattern = [tone + semiTone, tone, tone, tone + semiTone, tone];
   const scale = getScale(fromNote, pattern, numberOfNotes);
+  const intervals = [1, 3, 4, 5, 7];
+  const enharmonicScale = applyEnharmonic(scale, fromNote, intervals);
   return {
     scale,
-    enharmonicScale: [],
+    enharmonicScale: enharmonicScale,
   };
 };
 

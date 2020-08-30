@@ -27,7 +27,37 @@ export const descendingChromaticScale = [
   'C',
 ];
 
-export const naturalNotes = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+export const defaultIntervals = [1, 2, 3, 4, 5, 6, 7];
+export const naturalNotes = [
+  {
+    id: 1,
+    note: 'C',
+  },
+  {
+    id: 2,
+    note: 'D',
+  },
+  {
+    id: 3,
+    note: 'E',
+  },
+  {
+    id: 4,
+    note: 'F',
+  },
+  {
+    id: 5,
+    note: 'G',
+  },
+  {
+    id: 6,
+    note: 'A',
+  },
+  {
+    id: 7,
+    note: 'B',
+  },
+];
 
 export const scaleSteps = {
   semiTone: 0.5,
