@@ -6,10 +6,9 @@ import { getNeckDesign } from '../necktUtils';
 import GridNotesCol from '../../gridNotes/views/GridNotesCol';
 import NeckMarker from './NeckMarker';
 import NeckStrings from './NeckStrings';
-import { useContextStore } from '../../shared/hooks/useContextStore';
 
-const Neck = () => {
-  const { selectedNeckModel, selectedInstrument } = useContextStore();
+const Neck = (props) => {
+  const { selectedNeckModel, selectedInstrument } = props;
   const neckDesignApply = getNeckDesign(selectedNeckModel);
   const instrumentStrings = getInstrumentStrings(selectedInstrument);
   const classes = useStyles(neckDesignApply, instrumentStrings.length)();
@@ -59,4 +58,8 @@ const useStyles = (neckDesignApply, numberOfStrings) =>
     })
   );
 
-export default Neck;
+export default React.memo(Neck, (p, n) => {
+  const sameNeckModel = p.selectedNeckModel === n.selectedNeckModel;
+  const sameInstrument = p.selectedInstrument === n.selectedInstrument;
+  return sameNeckModel && sameInstrument;
+});

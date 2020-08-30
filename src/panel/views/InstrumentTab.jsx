@@ -23,10 +23,6 @@ const InstrumentConfig = (props) => {
     selectInstrument(dispatch, event.target.value);
   };
 
-  // const onToggleShowNote = () => {
-  //   toggleShowNotes(dispatch);
-  // };
-
   return (
     <CssGridContainer
       repeatCol={false}

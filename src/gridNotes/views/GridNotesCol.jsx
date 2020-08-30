@@ -6,7 +6,6 @@ import { calcGridNoteWidth } from '../../shared';
 const GridNotesCol = (props) => {
   const classes = useStyles(props)();
   const { colContainer } = classes;
-
   return (
     <Grid
       item

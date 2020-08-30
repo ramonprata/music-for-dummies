@@ -8,8 +8,10 @@ const getNoteIndex = (fromNote, notes) => {
 
 export const getNextNotes = (fromNote, notes) => {
   const indexStartNote = getNoteIndex(fromNote, notes);
+  debugger;
   const beforeNotes = notes.slice(0, indexStartNote);
   const afterNotes = notes.slice(indexStartNote, notes.length);
+  const result = [...afterNotes, ...beforeNotes];
   return [...afterNotes, ...beforeNotes];
 };
 
@@ -99,6 +101,7 @@ export const getMinorScale = (fromNote = 'A', numberOfNotes = 6) => {
 export const getMajorPentatonic = (fromNote = 'A', numberOfNotes = 4) => {
   const pattern = [tone, tone, tone + semiTone, tone, tone, tone + semiTone];
   const scale = getScale(fromNote, pattern, numberOfNotes);
+  const enharmonicScale = applyEnharmonic(scale, fromNote);
   return {
     scale,
     enharmonicScale: [],

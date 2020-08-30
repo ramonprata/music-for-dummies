@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
 import { Neck, NeckNut } from '../../neck';
-import { NECK_WIDTH, getInstrumentStrings } from '../../shared/';
+import { NECK_WIDTH } from '../../shared/';
 import PanelConfig from '../../panel/views/PanelConfig';
 import GridNotesContainer from '../../gridNotes/views/GridNotesContainer';
 import CssGridContainer from '../../shared/components/CssGridContainer';
@@ -12,7 +12,7 @@ import { useContextStore } from '../../shared/hooks/useContextStore';
 const MainPage = () => {
   const classes = useStyles()();
   const { pageContainer, neckContainer } = classes;
-  const { selectedInstrument } = useContextStore();
+  const { selectedInstrument, selectedNeckModel } = useContextStore();
   return (
     <Paper square className={pageContainer}>
       <CssGridContainer repeatCol={false} templateRow={`1fr 224px`}>
@@ -26,7 +26,7 @@ const MainPage = () => {
             </CssGridItem>
             <CssGridItem justify="center" className={neckContainer}>
               <GridNotesContainer />
-              <Neck />
+              <Neck selectedNeckModel={selectedNeckModel} selectedInstrument={selectedInstrument} />
             </CssGridItem>
           </CssGridContainer>
         </CssGridItem>

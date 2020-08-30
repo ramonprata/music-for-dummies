@@ -3,20 +3,16 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { getScales } from '../../shared';
 import { useContextStore } from '../../shared/hooks/useContextStore';
-import { useMemo } from 'react';
 
 const Note = (props) => {
   const { scaleName, selectedNote } = useContextStore();
   const { showNotesOnInstrument, stringNote } = props;
   const scaleRender = scaleName && getScales(selectedNote)[scaleName]();
-  const activeNote = useMemo(() => Boolean(scaleRender?.scale?.includes(stringNote)), [
-    selectedNote,
-    scaleName,
-    stringNote,
-  ]);
+  const activeNote = Boolean(scaleRender?.scale?.includes(stringNote));
 
   const classes = useStyles(showNotesOnInstrument, activeNote)();
   const { note } = classes;
+
   return (
     <div className={note}>
       <span>{stringNote}</span>
@@ -57,6 +53,5 @@ const useStyles = (showNotesOnInstrument, activeNote) =>
 
 export default React.memo(Note, (p, n) => {
   const sameNote = p.stringNote === n.stringNote;
-  // const sameScale = p.scaleName === n.scaleName;
   return sameNote;
 });

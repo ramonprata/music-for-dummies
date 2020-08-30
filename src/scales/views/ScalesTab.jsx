@@ -10,8 +10,8 @@ import { setSelectedNote } from '../store';
 
 const ScalesTab = (props) => {
   const classes = useStyles(props)();
-  const { scaleContainer } = classes;
-  const { selectedNote, dispatch } = useContextStore();
+  const { scaleContainer, intrumentText } = classes;
+  const { selectedNote, dispatch, selectedInstrument } = useContextStore();
 
   const handleChange = (e) => {
     setSelectedNote(dispatch, e.target.value);
@@ -37,10 +37,20 @@ const ScalesTab = (props) => {
     >
       <CssGridItem align="start">
         <Box marginBottom={1}>
-          <Typography align="left" color="primary">
-            Choose a key note
-          </Typography>
+          <CssGridContainer>
+            <CssGridItem>
+              <Typography align="left" color="primary">
+                Choose a key note
+              </Typography>
+            </CssGridItem>
+            <CssGridItem justify="end">
+              <Typography align="left" color="primary" className={intrumentText}>
+                {selectedInstrument}
+              </Typography>
+            </CssGridItem>
+          </CssGridContainer>
         </Box>
+
         <RadioGroup
           row
           aria-label="gender"
@@ -120,6 +130,9 @@ const useStyles = () =>
     createStyles({
       scaleContainer: {
         padding: 16,
+      },
+      intrumentText: {
+        textTransform: 'capitalize',
       },
     })
   );

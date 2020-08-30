@@ -1,7 +1,4 @@
 export const ascendingChromaticNotes = [
-  'A',
-  'A#',
-  'B',
   'C',
   'C#',
   'D',
@@ -11,6 +8,9 @@ export const ascendingChromaticNotes = [
   'F#',
   'G',
   'G#',
+  'A',
+  'A#',
+  'B',
 ];
 export const descendingChromaticScale = [
   'C',

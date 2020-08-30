@@ -1,5 +1,4 @@
 import { SET_SELECTED_SCALE, SET_SELECTED_NOTE } from './scalesActions';
-import { getScales } from '../../shared/scales';
 
 export const scalesInitialState = {
   selectedNote: 'A',
@@ -17,9 +16,6 @@ export const scalesReducer = (state, action) => {
       return {
         ...state,
         selectedNote: action.payload,
-        selectedScale: {
-          ...scalesInitialState.selectedScale,
-        },
       };
 
     default:
