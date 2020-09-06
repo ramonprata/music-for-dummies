@@ -37,7 +37,7 @@ const useStyles = (showNotesOnInstrument, activeNote) =>
         display: showNotesOnInstrument || activeNote ? 'block' : 'none',
         height: 22,
         width: 22,
-        padding: 2,
+        padding: 1,
         cursor: 'pointer',
         backgroundColor: !activeNote ? '#323130' : theme.palette.primary.main,
         '&:hover': {

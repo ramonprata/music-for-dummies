@@ -66,10 +66,11 @@ export const scaleSteps = {
 
 export const DEFAULT_INSTRUMENT = 'guitar';
 
-export const MARK_FRETS_BOARD = [2, 4, 6, 11];
-export const MAX_ROOM_WIDTH = 1450 / 10;
+export const MARK_FRETS_BOARD_GUITAR = [2, 4, 6, 11];
+export const MARK_FRETS_BOARD_UKE = [2, 4, 6, 9, 11];
 export const FRETS_BOARD = 11;
-export const GRID_NOTE_LINE_HEIGHT = 36;
+export const MAX_ROOM_WIDTH = 1500 / FRETS_BOARD;
+export const GRID_NOTE_LINE_HEIGHT = 34;
 
 export const INSTRUMENTS = {
   guitar: {
@@ -78,4 +79,30 @@ export const INSTRUMENTS = {
   ukulele: {
     strings: ['G', 'C', 'E', 'A'],
   },
+};
+
+const { tone, semiTone } = scaleSteps;
+export const degrees = {
+  '2dim': [],
+  '2m': [semiTone],
+  '2M': [tone],
+  '2+': [tone, semiTone],
+  '3dim': [tone],
+  '3m': [tone, semiTone],
+  '3M': [tone, tone],
+  '3+': [tone, tone, semiTone],
+  '4dim': [tone, tone],
+  4: [tone, tone, semiTone],
+  '4+': [tone, tone, tone],
+  '5dim': [tone, tone, tone],
+  5: [tone, tone, tone, semiTone],
+  '5+': [tone, tone, tone, tone],
+  '6dim': [tone, tone, tone, semiTone],
+  '6m': [tone, tone, tone, tone],
+  '6M': [tone, tone, tone, tone, semiTone],
+  '6+': [tone, tone, tone, tone, tone],
+  '7dim': [tone, tone, tone, tone, semiTone],
+  '7m': [tone, tone, tone, tone, tone],
+  '7M': [tone, tone, tone, tone, tone, semiTone],
+  '7+': [tone, tone, tone, tone, tone, tone],
 };

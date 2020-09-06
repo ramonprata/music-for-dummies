@@ -26,7 +26,7 @@ const Neck = (props) => {
                 key={`marker-${idx}`}
                 neckDesignApply={neckDesignApply}
               >
-                <NeckMarker room={idx} />
+                <NeckMarker room={idx} selectedInstrument={selectedInstrument} />
               </GridNotesCol>
             );
           })}

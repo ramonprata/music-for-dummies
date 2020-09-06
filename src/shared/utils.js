@@ -1,4 +1,11 @@
-import { FRETS_BOARD, MAX_ROOM_WIDTH, INSTRUMENTS, scaleSteps } from './defaultValues';
+import {
+  FRETS_BOARD,
+  MAX_ROOM_WIDTH,
+  INSTRUMENTS,
+  MARK_FRETS_BOARD_UKE,
+  MARK_FRETS_BOARD_GUITAR,
+  scaleSteps,
+} from './defaultValues';
 import { getScale } from './scales';
 
 const { semiTone } = scaleSteps;
@@ -46,3 +53,7 @@ export const woodNecksDesign = {
 };
 
 export const woodNames = ['wood', 'wood4', 'wood3', 'wood5', 'wood7', 'wood8', 'wood9', 'wood10'];
+
+export const getMarkers = (instrument = 'guitar') => {
+  return instrument === 'guitar' ? MARK_FRETS_BOARD_GUITAR : MARK_FRETS_BOARD_UKE;
+};
