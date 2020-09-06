@@ -1,7 +1,7 @@
 import { SET_SELECTED_SCALE, SET_SELECTED_NOTE } from './scalesActions';
 
 export const scalesInitialState = {
-  selectedNote: 'A',
+  selectedNote: 'C',
   scaleName: '',
 };
 

@@ -1,11 +1,9 @@
 import { TOGGLE_SHOW_NOTES_INSTRUMENT, SELECT_INSTRUMENT, SELECT_NECK_MODEL } from './panelActions';
-import { INSTRUMENTS } from '../../shared';
-
-const [guitar] = Object.keys(INSTRUMENTS);
+import { DEFAULT_INSTRUMENT } from '../../shared';
 
 export const panelInitialState = {
   showNotesOnInstrument: false,
-  selectedInstrument: guitar,
+  selectedInstrument: DEFAULT_INSTRUMENT,
   selectedNeckModel: 'wood8',
 };
 

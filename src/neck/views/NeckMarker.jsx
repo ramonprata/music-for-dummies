@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { MARK_FRETS_BOARD_GUITAR, MARK_FRETS_BOARD_UKE, getMarkers } from '../../shared';
+import { getMarkers } from '../../shared';
 
 const NeckMarker = (props) => {
   const { room, selectedInstrument } = props;

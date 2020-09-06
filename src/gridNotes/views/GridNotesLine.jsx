@@ -7,7 +7,7 @@ import Note from './Note';
 import { useContextStore } from '../../shared/hooks/useContextStore';
 
 const GridNotesLine = (props) => {
-  const { showNotesOnInstrument, scaleName, selectedInstrument } = useContextStore();
+  const { showNotesOnInstrument, scaleName } = useContextStore();
   const { stringNotes } = props;
   const classes = useStyles(props)();
   const { lineContainer } = classes;
@@ -29,7 +29,7 @@ const GridNotesLine = (props) => {
         return null;
       });
     }
-  }, [scaleName, selectedInstrument, showNotesOnInstrument]);
+  }, [scaleName, showNotesOnInstrument, stringNotes]);
 
   return (
     <Grid container direction="row" className={lineContainer} wrap="nowrap">

@@ -15,7 +15,6 @@ export const getNextNotes = (fromNote, notes) => {
   const indexStartNote = getNoteIndex(fromNote, notes);
   const beforeNotes = notes.slice(0, indexStartNote);
   const afterNotes = notes.slice(indexStartNote, notes.length);
-  const result = [...afterNotes, ...beforeNotes];
   return [...afterNotes, ...beforeNotes];
 };
 
@@ -66,7 +65,7 @@ const getSortedNotes = () => {
   return naturalNotes.sort((a, b) => {
     if (a.id > b.id) return 1;
     if (a.id === b.id) return 0;
-    if (a.id < b.id) return -1;
+    return -1;
   });
 };
 

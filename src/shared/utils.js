@@ -5,6 +5,7 @@ import {
   MARK_FRETS_BOARD_UKE,
   MARK_FRETS_BOARD_GUITAR,
   scaleSteps,
+  DEFAULT_INSTRUMENT,
 } from './defaultValues';
 import { getScale } from './scales';
 
@@ -54,6 +55,6 @@ export const woodNecksDesign = {
 
 export const woodNames = ['wood', 'wood4', 'wood3', 'wood5', 'wood7', 'wood8', 'wood9', 'wood10'];
 
-export const getMarkers = (instrument = 'guitar') => {
-  return instrument === 'guitar' ? MARK_FRETS_BOARD_GUITAR : MARK_FRETS_BOARD_UKE;
+export const getMarkers = (instrument = DEFAULT_INSTRUMENT) => {
+  return instrument === DEFAULT_INSTRUMENT ? MARK_FRETS_BOARD_GUITAR : MARK_FRETS_BOARD_UKE;
 };
