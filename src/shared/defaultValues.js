@@ -1,3 +1,23 @@
+export const DEFAULT_INSTRUMENT = 'guitar';
+export const MARK_FRETS_BOARD_GUITAR = [2, 4, 6, 11];
+export const MARK_FRETS_BOARD_UKE = [2, 4, 6, 9, 11];
+export const FRETS_BOARD = 11;
+export const MAX_ROOM_WIDTH = 1500 / FRETS_BOARD;
+export const GRID_NOTE_LINE_HEIGHT = 34;
+export const INSTRUMENTS = {
+  guitar: {
+    get strings() {
+      return ['E', 'A', 'D', 'G', 'B', 'E'];
+    },
+  },
+  ukulele: {
+    get strings() {
+      return ['G', 'C', 'E', 'A'];
+    },
+  },
+};
+export const DEFAULT_INTERVALS = [1, 2, 3, 4, 5, 6, 7];
+
 export const ascendingChromaticNotes = [
   'C',
   'C#',
@@ -27,57 +47,71 @@ export const descendingChromaticScale = [
   'C',
 ];
 
-export const defaultIntervals = [1, 2, 3, 4, 5, 6, 7];
 export const naturalNotes = [
   {
-    id: 1,
-    note: 'C',
+    get id() {
+      return 1;
+    },
+    get note() {
+      return 'C';
+    },
   },
   {
-    id: 2,
-    note: 'D',
+    get id() {
+      return 2;
+    },
+    get note() {
+      return 'D';
+    },
   },
   {
-    id: 3,
-    note: 'E',
+    get id() {
+      return 3;
+    },
+    get note() {
+      return 'E';
+    },
   },
   {
-    id: 4,
-    note: 'F',
+    get id() {
+      return 4;
+    },
+    get note() {
+      return 'F';
+    },
   },
   {
-    id: 5,
-    note: 'G',
+    get id() {
+      return 5;
+    },
+    get note() {
+      return 'G';
+    },
   },
   {
-    id: 6,
-    note: 'A',
+    get id() {
+      return 6;
+    },
+    get note() {
+      return 'A';
+    },
   },
   {
-    id: 7,
-    note: 'B',
+    get id() {
+      return 7;
+    },
+    get note() {
+      return 'B';
+    },
   },
 ];
 
 export const scaleSteps = {
-  semiTone: 0.5,
-  tone: 1,
-};
-
-export const DEFAULT_INSTRUMENT = 'guitar';
-
-export const MARK_FRETS_BOARD_GUITAR = [2, 4, 6, 11];
-export const MARK_FRETS_BOARD_UKE = [2, 4, 6, 9, 11];
-export const FRETS_BOARD = 11;
-export const MAX_ROOM_WIDTH = 1500 / FRETS_BOARD;
-export const GRID_NOTE_LINE_HEIGHT = 34;
-
-export const INSTRUMENTS = {
-  guitar: {
-    strings: ['E', 'A', 'D', 'G', 'B', 'E'],
+  get semiTone() {
+    return 0.5;
   },
-  ukulele: {
-    strings: ['G', 'C', 'E', 'A'],
+  get tone() {
+    return 1;
   },
 };
 

@@ -1,7 +1,6 @@
-import { SET_SELECTED_SCALE, SET_SELECTED_NOTE } from './scalesActions';
+import { SET_SELECTED_SCALE } from './scalesActions';
 
 export const scalesInitialState = {
-  selectedNote: 'C',
   scaleName: '',
 };
 
@@ -11,11 +10,6 @@ export const scalesReducer = (state, action) => {
       return {
         ...state,
         scaleName: action.payload,
-      };
-    case SET_SELECTED_NOTE:
-      return {
-        ...state,
-        selectedNote: action.payload,
       };
 
     default:

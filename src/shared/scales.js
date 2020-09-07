@@ -2,7 +2,7 @@ import {
   ascendingChromaticNotes,
   scaleSteps,
   naturalNotes,
-  defaultIntervals,
+  DEFAULT_INTERVALS,
 } from './defaultValues';
 const { semiTone, tone } = scaleSteps;
 
@@ -73,7 +73,7 @@ const getNotesFromIntervals = (notes = [], intervals = []) => {
   return notes.filter((_, idx) => intervals.includes(idx + 1));
 };
 
-const applyEnharmonic = (scale, fromNote, intervals = defaultIntervals) => {
+const applyEnharmonic = (scale, fromNote, intervals = DEFAULT_INTERVALS) => {
   const chromaticScaleFromNote = getChromaticScale(fromNote);
   const mappedNaturalNotes = getSortedNotes().map((item) => item.note);
   const naturalScaleNotes = getNextNotes(removeSharp(fromNote), mappedNaturalNotes);

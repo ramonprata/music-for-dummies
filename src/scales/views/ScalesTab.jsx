@@ -1,21 +1,18 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { RadioGroup, Radio, FormControlLabel, Box, Typography } from '@material-ui/core/';
-import { CssGridContainer, CssGridItem } from '../../shared/components';
-import { ascendingChromaticNotes, getScales } from '../../shared';
+import { CssGridContainer } from '../../shared/components';
+import { getScales } from '../../shared';
 import Scale from './Scale';
 import { setSelectedScale } from '../store';
+import KeyNoteSelect from '../../shared/components/KeyNoteSelect';
 import { useContextStore } from '../../shared/hooks';
-import { setSelectedNote } from '../store';
 
 const ScalesTab = (props) => {
-  const classes = useStyles(props)();
-  const { scaleContainer, intrumentText } = classes;
-  const { selectedNote, dispatch, selectedInstrument } = useContextStore();
+  const { onSelectNote, selectedNote } = props;
+  const { dispatch } = useContextStore();
 
-  const handleChange = (e) => {
-    setSelectedNote(dispatch, e.target.value);
-  };
+  const classes = useStyles(props)();
+  const { scaleContainer } = classes;
 
   const {
     chromatic,
@@ -35,38 +32,7 @@ const ScalesTab = (props) => {
       rowGap={16}
       justifyContent="center"
     >
-      <CssGridItem align="start">
-        <Box marginBottom={1}>
-          <CssGridContainer>
-            <CssGridItem>
-              <Typography align="left" color="primary">
-                Choose a key note
-              </Typography>
-            </CssGridItem>
-            <CssGridItem justify="end">
-              <Typography align="left" color="primary" className={intrumentText}>
-                {selectedInstrument}
-              </Typography>
-            </CssGridItem>
-          </CssGridContainer>
-        </Box>
-
-        <RadioGroup
-          row
-          aria-label="gender"
-          name="gender1"
-          value={selectedNote}
-          onChange={handleChange}
-        >
-          {ascendingChromaticNotes.map((note) => (
-            <FormControlLabel
-              value={note}
-              control={<Radio color="primary" />}
-              label={<Typography color="primary">{note}</Typography>}
-            />
-          ))}
-        </RadioGroup>
-      </CssGridItem>
+      <KeyNoteSelect onSelectNote={onSelectNote} selectedNote={selectedNote} />
 
       <CssGridContainer
         alignItems="center"
@@ -130,9 +96,6 @@ const useStyles = () =>
     createStyles({
       scaleContainer: {
         padding: 16,
-      },
-      intrumentText: {
-        textTransform: 'capitalize',
       },
     })
   );

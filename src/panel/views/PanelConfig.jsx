@@ -7,9 +7,15 @@ import { setNeckModel } from '../../panel/store';
 import InstrumentTab from './InstrumentTab';
 import { getNeckDesign } from '../../neck';
 import { ScalesTab } from '../../scales';
+import { setSelectedNote } from '../store';
 
 const PanelConfig = () => {
-  const { dispatch, selectedNeckModel } = useContextStore();
+  const { dispatch, selectedNeckModel, selectedNote } = useContextStore();
+
+  const onChangeNote = (e) => {
+    setSelectedNote(dispatch, e.target.value);
+  };
+
   const woodNecksDesign = getNeckDesign(selectedNeckModel);
   const mapTabs = () => {
     return tabs.map((tab) => {
@@ -31,7 +37,7 @@ const PanelConfig = () => {
         case 1:
           return {
             ...tab,
-            renderTab: () => <ScalesTab />,
+            renderTab: () => <ScalesTab onSelectNote={onChangeNote} selectedNote={selectedNote} />,
           };
 
         default:
