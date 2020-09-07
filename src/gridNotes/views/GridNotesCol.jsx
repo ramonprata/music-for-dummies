@@ -24,7 +24,6 @@ const useStyles = ({ index, showFrets, neckDesignApply }) =>
   makeStyles(() =>
     createStyles({
       colContainer: {
-        borderLeft: showFrets && 'solid 3px #b4a576',
         width: calcGridNoteWidth(index),
         overflow: 'hidden',
         height: '100%',

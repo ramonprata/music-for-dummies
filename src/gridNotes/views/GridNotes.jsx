@@ -36,8 +36,3 @@ const useStyles = () =>
   );
 
 export default GridNotes;
-// export default React.memo(GridNotes, (p, n) => {
-//   const sameInstrument = p.selectedInstrument === n.selectedInstrument;
-//   console.log('sameInstrument :>> ', sameInstrument);
-//   return sameInstrument;
-// });

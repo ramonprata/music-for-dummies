@@ -12,7 +12,14 @@ const Neck = (props) => {
   const neckDesignApply = getNeckDesign(selectedNeckModel);
   const instrumentStrings = getInstrumentStrings(selectedInstrument);
   const classes = useStyles(neckDesignApply, instrumentStrings.length)();
-  const { neckContainer, containerFrets, containerStrings } = classes;
+  const { neckContainer, containerFrets, containerStrings, fret } = classes;
+
+  const renderFret = () => (
+    <React.Fragment>
+      <div className={fret} />
+    </React.Fragment>
+  );
+
   return (
     <Grid container className={neckContainer}>
       <Grid container direction="row" wrap="nowrap" justify="center" className={containerFrets}>
@@ -20,14 +27,17 @@ const Neck = (props) => {
           .fill(0)
           .map((_, idx) => {
             return (
-              <GridNotesCol
-                index={idx}
-                showFrets={true}
-                key={`marker-${idx}`}
-                neckDesignApply={neckDesignApply}
-              >
-                <NeckMarker room={idx} selectedInstrument={selectedInstrument} />
-              </GridNotesCol>
+              <React.Fragment>
+                {renderFret()}
+                <GridNotesCol
+                  index={idx}
+                  showFrets={true}
+                  key={`marker-${idx}`}
+                  neckDesignApply={neckDesignApply}
+                >
+                  <NeckMarker room={idx} selectedInstrument={selectedInstrument} />
+                </GridNotesCol>
+              </React.Fragment>
             );
           })}
       </Grid>
@@ -54,6 +64,9 @@ const useStyles = (neckDesignApply, numberOfStrings) =>
       },
       neckContainer: {
         height: numberOfStrings * GRID_NOTE_LINE_HEIGHT,
+      },
+      fret: {
+        borderLeft: 'solid 3px #b4a576',
       },
     })
   );
