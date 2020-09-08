@@ -14,7 +14,7 @@ const Neck = (props) => {
   const classes = useStyles(neckDesignApply, instrumentStrings.length)();
   const { neckContainer, containerFrets, containerStrings, fret } = classes;
 
-  const renderFret = () => (
+  const renderFret = (idx) => (
     <React.Fragment>
       <div className={fret} />
     </React.Fragment>
@@ -28,7 +28,7 @@ const Neck = (props) => {
           .map((_, idx) => {
             return (
               <React.Fragment>
-                {renderFret()}
+                {renderFret(idx)}
                 <GridNotesCol
                   index={idx}
                   showFrets={true}
