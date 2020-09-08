@@ -14,9 +14,9 @@ const Neck = (props) => {
   const classes = useStyles(neckDesignApply, instrumentStrings.length)();
   const { neckContainer, containerFrets, containerStrings, fret } = classes;
 
-  const renderFret = (idx) => (
+  const renderFret = (idx = 0) => (
     <React.Fragment>
-      <div className={fret} />
+      <div className={idx === 0 ? '' : fret} />
     </React.Fragment>
   );
 

@@ -20,7 +20,7 @@ const MainPage = () => {
           <PanelConfig />
         </CssGridItem>
         <CssGridItem justify="center">
-          <CssGridContainer alignContent="center" templateCol="40px auto">
+          <CssGridContainer alignContent="center" templateCol="30px auto">
             <CssGridItem justify="center">
               <NeckNut selectedInstrument={selectedInstrument} />
             </CssGridItem>

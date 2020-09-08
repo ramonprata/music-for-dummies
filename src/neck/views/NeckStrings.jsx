@@ -34,7 +34,7 @@ const useStyles = () =>
       string: {
         margin: '20px 0',
         backgroundColor: '#5b6467',
-        width: `calc(100% - 3px)`,
+        width: `calc(100% - 0px)`,
         boxShadow: '0 6px 6px 1px black',
       },
     })
