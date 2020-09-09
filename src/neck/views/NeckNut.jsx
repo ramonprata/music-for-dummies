@@ -3,7 +3,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Note from '../../gridNotes/views/Note';
 import { CssGridContainer } from '../../shared/components';
 import { useContextStore } from '../../shared/hooks/useContextStore';
-import { getScales, getInstrumentStrings, GRID_NOTE_LINE_HEIGHT } from '../../shared';
+import { getScales, getInstrumentStrings } from '../../shared';
 
 const NeckNut = (props) => {
   const { selectedInstrument } = props;

@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { MainPage } from './main/';
 import { ThemeProvider } from '@material-ui/core';
-import { AppContextProvider } from './shared/store';
+import { AppContextProvider } from './shared/components/';
 import { theme } from './theme';
 
 function App() {

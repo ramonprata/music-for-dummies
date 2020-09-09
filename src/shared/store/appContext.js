@@ -1,4 +1,4 @@
-import React, { useReducer, createContext } from 'react';
+import { createContext } from 'react';
 import { reducers } from './reducers';
 
 export const AppContext = createContext();
@@ -18,15 +18,9 @@ const getReducer = (actionType = '') => {
   return reducers[actionFeature].reducer;
 };
 
-const appReducer = (state, action) => {
+export const appReducer = (state, action) => {
   const reducerRun = getReducer(action.type);
   return reducerRun(state, action);
 };
 
-const initialState = comibineInitialStates();
-
-export const AppContextProvider = (props) => {
-  const [state, dispatch] = useReducer(appReducer, initialState);
-
-  return <AppContext.Provider value={[state, dispatch]}>{props.children}</AppContext.Provider>;
-};
+export const initialState = comibineInitialStates();

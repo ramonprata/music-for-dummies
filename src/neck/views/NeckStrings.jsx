@@ -13,7 +13,7 @@ const NeckStrings = () => {
   return instrumentStrings
     .map((cord, idx) => {
       const isGuitar = isGuitarSelected(selectedInstrument);
-      const dynamicStringThickness = isGuitar ? 0.8 + (idx * 1.2) / 5 : 1.2;
+      const dynamicStringThickness = isGuitar ? 0.8 + (idx * 1.2) / 5 : 1.5;
       return (
         <Grid
           container
