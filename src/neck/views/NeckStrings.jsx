@@ -1,19 +1,18 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core/';
-import { GRID_NOTE_LINE_HEIGHT, getInstrumentStrings, isGuitarSelected } from '../../shared';
+import { GRID_NOTE_LINE_HEIGHT, getInstrumentStrings } from '../../shared';
 import { useContextStore } from '../../shared/hooks/useContextStore';
+import { getStringsColor } from '../../shared/stringColors';
 
 const NeckStrings = () => {
-  const classes = useStyles()();
-  const { string } = classes;
-  const { selectedInstrument } = useContextStore();
+  const { selectedInstrument, selectedStringsColor } = useContextStore();
   const instrumentStrings = getInstrumentStrings(selectedInstrument);
-
+  const stringsColorConfig = getStringsColor(selectedStringsColor);
+  const classes = useStyles(stringsColorConfig)();
+  const { string } = classes;
   return instrumentStrings
     .map((cord, idx) => {
-      const isGuitar = isGuitarSelected(selectedInstrument);
-      const dynamicStringThickness = isGuitar ? 0.8 + (idx * 1.2) / 5 : 1.5;
       return (
         <Grid
           container
@@ -21,21 +20,22 @@ const NeckStrings = () => {
           style={{ height: GRID_NOTE_LINE_HEIGHT }}
           key={`${cord}-${idx}`}
         >
-          <div className={string} style={{ height: dynamicStringThickness }} />
+          <div className={string} />
         </Grid>
       );
     })
     .reverse();
 };
 
-const useStyles = () =>
+const useStyles = (stringsColorConfig) =>
   makeStyles(() =>
     createStyles({
       string: {
         margin: '20px 0',
-        backgroundColor: '#5b6467',
+        height: '1.5px',
         width: `calc(100% - 0px)`,
         boxShadow: '0 6px 6px 1px black',
+        ...stringsColorConfig,
       },
     })
   );

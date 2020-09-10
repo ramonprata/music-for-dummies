@@ -16,7 +16,10 @@ const Neck = (props) => {
 
   const renderFret = (idx = 0) => (
     <React.Fragment>
-      <div className={idx === 0 ? '' : fret} />
+      <div
+        // id="fret"
+        className={idx === 0 ? '' : fret}
+      />
     </React.Fragment>
   );
 
@@ -27,7 +30,7 @@ const Neck = (props) => {
           .fill(0)
           .map((_, idx) => {
             return (
-              <React.Fragment>
+              <React.Fragment key={idx}>
                 {renderFret(idx)}
                 <GridNotesCol
                   index={idx}
@@ -66,7 +69,13 @@ const useStyles = (neckDesignApply, numberOfStrings) =>
         height: numberOfStrings * GRID_NOTE_LINE_HEIGHT,
       },
       fret: {
-        borderLeft: 'solid 3px #b4a576',
+        width: 6,
+        backgroundColor: '#786e4f',
+        borderRadius: 2,
+        zIndex: 4,
+        '-webkit-box-shadow': '4px 0px 3px -1px #000, -4px 0px 3px -1px #000',
+        '-moz-box-shadow': '4px 0px 3px -1px #000, -4px 0px 3px -1px #000',
+        'box-shadow': '4px 0px 3px -1px #000, -4px 0px 3px -1px #000',
       },
     })
   );

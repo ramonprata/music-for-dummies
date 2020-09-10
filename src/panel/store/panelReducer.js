@@ -3,6 +3,7 @@ import {
   SELECT_INSTRUMENT,
   SELECT_NECK_MODEL,
   SET_SELECTED_NOTE,
+  SET_SELECTED_STRINGS_COLOR,
 } from './panelActions';
 import { DEFAULT_INSTRUMENT } from '../../shared';
 
@@ -11,6 +12,7 @@ export const panelInitialState = {
   showNotesOnInstrument: false,
   selectedInstrument: DEFAULT_INSTRUMENT,
   selectedNeckModel: 'wood8',
+  selectedStringsColor: 'color1',
 };
 
 export const panelReducer = (state, action) => {
@@ -37,6 +39,12 @@ export const panelReducer = (state, action) => {
       return {
         ...state,
         selectedNote: action.payload,
+      };
+
+    case SET_SELECTED_STRINGS_COLOR:
+      return {
+        ...state,
+        selectedStringsColor: action.payload,
       };
     default:
       return state;

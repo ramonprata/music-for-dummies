@@ -10,7 +10,7 @@ const NeckSelect = (props) => {
     <Grid container>
       <Box marginBottom={1}>
         <Typography align="left" color="primary">
-          Select you favorite neck model
+          Select your favorite neck model
         </Typography>
       </Box>
 

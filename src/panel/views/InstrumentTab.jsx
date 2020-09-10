@@ -12,6 +12,7 @@ import NeckSelect from '../../main/views/NeckSelect';
 import { selectInstrument } from '../store';
 import { useContextStore } from '../../shared/hooks/useContextStore';
 import { CssGridContainer, CssGridItem } from '../../shared/components';
+import StringsColorSelect from './StringsColorSelect';
 
 const InstrumentConfig = (props) => {
   const { selectedInstrument, dispatch } = useContextStore();
@@ -28,7 +29,7 @@ const InstrumentConfig = (props) => {
       repeatCol={false}
       alignContent="start"
       className={contolsContainer}
-      rowGap={48}
+      rowGap={24}
     >
       <CssGridItem justify="start">
         <Box marginBottom={1}>
@@ -58,20 +59,15 @@ const InstrumentConfig = (props) => {
           </RadioGroup>
         </FormControl>
       </CssGridItem>
-      {/* <CssGridItem justify="start">
-        <FormControlLabel
-          label={<Typography color="primary">Show notes</Typography>}
-          control={
-            <Switch color="primary" checked={showNotesOnInstrument} onChange={onToggleShowNote} />
-          }
-        />
-      </CssGridItem> */}
       <CssGridItem justify="start">
         <NeckSelect
           selectedNeck={selectedNeck}
           onSelectNeck={onSelectNeck}
           woodNecksDesign={woodNecksDesign}
         />
+      </CssGridItem>
+      <CssGridItem justify="start">
+        <StringsColorSelect />
       </CssGridItem>
     </CssGridContainer>
   );

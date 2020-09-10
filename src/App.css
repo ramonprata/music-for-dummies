@@ -57,3 +57,31 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.4);
 }
+
+#fret {
+  position: relative;
+  width: 3;
+
+  background: #b4a576;
+  /* border-left: 'solid 3px #b4a576'; */
+}
+#fret::before,
+#fret::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+}
+#fret::before {
+  top: 15%;
+  left: 0;
+  width: 10%;
+  height: 70%;
+}
+#fret::after {
+  top: 15%;
+  right: 0;
+  width: 10%;
+  height: 70%;
+}

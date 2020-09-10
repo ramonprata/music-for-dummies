@@ -1,62 +1,28 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { Checkbox, Grid, Paper } from '@material-ui/core';
 import { woodNecksDesign } from '../../shared/utils';
+import BoxSelectOption from '../../shared/components/BoxSelectOption';
 
 const WoodItem = (props) => {
   const { onSelectNeck, woodName, selectedNeck } = props;
-  const classes = useStyles(props)();
-  const { woodPictureContainer, woodPictureSelect, activeWood } = classes;
+  const bkgStyle = {
+    backgroundImage: `url(${woodNecksDesign[woodName]})`,
+  };
 
   return (
-    <Paper
-      className={woodPictureContainer}
+    <div
       style={{
-        backgroundImage: `url(${woodNecksDesign[woodName]})`,
+        width: 54,
+        height: 54,
       }}
     >
-      <Grid
-        container
-        direction="row"
-        justify="flex-end"
-        className={[woodPictureSelect, woodName === selectedNeck ? activeWood : ''].join(' ')}
-        onClick={() => onSelectNeck(woodName)}
-      >
-        <Checkbox
-          color="default"
-          checked={Boolean(woodName === selectedNeck)}
-          onChange={() => onSelectNeck(woodName)}
-          style={{ padding: 0, height: '50%', color: '#fff' }}
-        />
-      </Grid>
-    </Paper>
+      <BoxSelectOption
+        onSelect={onSelectNeck}
+        value={woodName}
+        selectedOption={selectedNeck}
+        bkgStyle={bkgStyle}
+      />
+    </div>
   );
 };
-
-const useStyles = () =>
-  makeStyles(() =>
-    createStyles({
-      woodPictureContainer: {
-        cursor: 'pointer',
-        width: 60,
-        height: 60,
-      },
-      woodPictureSelect: {
-        width: 60,
-        height: 60,
-        backgroundColor: '#ccc',
-        opacity: '0.2',
-        borderRadius: 4,
-        '&:hover': {
-          opacity: 1,
-          backgroundColor: 'transparent',
-        },
-      },
-      activeWood: {
-        opacity: 1,
-        backgroundColor: 'transparent',
-      },
-    })
-  );
 
 export default WoodItem;

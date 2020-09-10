@@ -13,7 +13,6 @@ const { semiTone } = scaleSteps;
 const wood = require('../images/wood.jpg');
 const wood4 = require('../images/wood4.jpg');
 const wood3 = require('../images/wood3.jpg');
-const wood5 = require('../images/wood5.jpg');
 const wood7 = require('../images/wood7.jpg');
 const wood8 = require('../images/wood8.jpg');
 const wood9 = require('../images/wood9.jpg');
@@ -46,14 +45,13 @@ export const woodNecksDesign = {
   wood: wood,
   wood3: wood3,
   wood4: wood4,
-  wood5: wood5,
   wood7: wood7,
   wood8: wood8,
   wood9: wood9,
   wood10: wood10,
 };
 
-export const woodNames = ['wood', 'wood4', 'wood3', 'wood5', 'wood7', 'wood8', 'wood9', 'wood10'];
+export const woodNames = ['wood', 'wood4', 'wood3', 'wood7', 'wood8', 'wood9', 'wood10'];
 
 export const getMarkers = (instrument = DEFAULT_INSTRUMENT) => {
   return instrument === DEFAULT_INSTRUMENT ? MARK_FRETS_BOARD_GUITAR : MARK_FRETS_BOARD_UKE;

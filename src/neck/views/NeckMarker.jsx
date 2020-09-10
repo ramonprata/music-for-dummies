@@ -1,25 +1,26 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { getMarkers } from '../../shared';
+import { getMarkers, isGuitarSelected } from '../../shared';
 
 const NeckMarker = (props) => {
   const { room, selectedInstrument } = props;
-  const classes = useStyles(props)();
+  const isGuitar = isGuitarSelected(selectedInstrument);
+  const classes = useStyles(isGuitar)();
   const { marker } = classes;
   const markes = getMarkers(selectedInstrument);
   const showMarker = markes.includes(room);
   return showMarker && <div className={marker} />;
 };
 
-const useStyles = () =>
+const useStyles = (isGuitar) =>
   makeStyles(() =>
     createStyles({
       marker: {
-        height: 24,
-        width: 24,
+        height: isGuitar ? 24 : 20,
+        width: isGuitar ? 24 : 20,
         borderRadius: '50%',
-        backgroundColor: '#2f4353',
-        backgroundImage: 'linear-gradient(315deg, #2f4353 0%, #d2ccc4 74%)',
+        backgroundColor: '#d3d3d3',
+        backgroundImage: 'linear-gradient(315deg, #d3d3d3 0%,#7f8c8d 100%)',
       },
     })
   );
