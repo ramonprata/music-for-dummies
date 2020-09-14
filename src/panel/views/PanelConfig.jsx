@@ -8,6 +8,8 @@ import InstrumentTab from './InstrumentTab';
 import { getNeckDesign } from '../../neck';
 import { ScalesTab } from '../../scales';
 import { setSelectedNote } from '../store';
+import { ChordsTab } from '../../chords/views';
+import DefaultTab from './DefaultTab';
 
 const PanelConfig = () => {
   const { dispatch, selectedNeckModel, selectedNote } = useContextStore();
@@ -37,13 +39,21 @@ const PanelConfig = () => {
         case 1:
           return {
             ...tab,
-            renderTab: () => <ScalesTab onSelectNote={onChangeNote} selectedNote={selectedNote} />,
+            renderTab: () => (
+              <DefaultTab onSelectNote={onChangeNote} selectedNote={selectedNote}>
+                <ScalesTab selectedNote={selectedNote} />
+              </DefaultTab>
+            ),
           };
 
         default:
           return {
             ...tab,
-            renderTab: () => <Typography>{tab.label}</Typography>,
+            renderTab: () => (
+              <DefaultTab onSelectNote={onChangeNote} selectedNote={selectedNote}>
+                <ChordsTab />,
+              </DefaultTab>
+            ),
           };
       }
     });

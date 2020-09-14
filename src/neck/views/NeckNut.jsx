@@ -1,9 +1,9 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import Note from '../../gridNotes/views/Note';
+import { NoteDescription } from '../../shared/components';
 import { CssGridContainer } from '../../shared/components';
 import { useContextStore } from '../../shared/hooks/useContextStore';
-import { getScales, getInstrumentStrings } from '../../shared';
+import { getScales, getInstrumentStrings, getNextAvailableColor } from '../../shared';
 
 const NeckNut = (props) => {
   const { selectedInstrument } = props;
@@ -16,12 +16,14 @@ const NeckNut = (props) => {
     <CssGridContainer alignItems="center" repeatCol={false} className={containerNut}>
       {instrumentStrings.map((cord, idx) => {
         const activeNote = Boolean(scaleName && scaleRender.scale.includes(cord));
+        const noteColor = getNextAvailableColor(0);
         return (
-          <Note
+          <NoteDescription
             key={`${selectedInstrument}-${cord}-${idx}`}
-            showNotesOnInstrument={true}
-            stringNote={cord}
+            showNote={true}
+            note={cord}
             activeNote={activeNote}
+            noteColor={noteColor}
           />
         );
       })}

@@ -1,3 +1,4 @@
+import { defaultTheme } from '../theme';
 import {
   FRETS_BOARD,
   MAX_ROOM_WIDTH,
@@ -63,4 +64,9 @@ export const isGuitarSelected = (selectedInstrument) => {
 
 export const isUkeSelected = (selectedInstrument) => {
   return selectedInstrument === 'ukulele';
+};
+
+export const getNextAvailableColor = (idx = 0) => {
+  const color = defaultTheme.activeNotesColors[idx];
+  return color || defaultTheme.activeNotesColors[0];
 };

@@ -26,8 +26,9 @@ const KeyNoteSelect = (props) => {
         value={selectedNote}
         onChange={onSelectNote}
       >
-        {ascendingChromaticNotes.map((note) => (
+        {ascendingChromaticNotes.map((note, idx) => (
           <FormControlLabel
+            key={`${note}-${idx}`}
             value={note}
             control={<Radio color="primary" />}
             label={<Typography color="primary">{note}</Typography>}

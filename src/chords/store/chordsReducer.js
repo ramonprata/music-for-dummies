@@ -1,16 +1,16 @@
-import { SET_SELECTED_SCALE } from './scalesActions';
+import { SET_SELECTED_CHORD } from './chordsActions';
 
 export const scalesInitialState = {
-  scaleName: '',
+  chord: '',
 };
 
 export const scalesReducer = (state, action) => {
   switch (action.type) {
-    case SET_SELECTED_SCALE:
+    case SET_SELECTED_CHORD:
       return {
         ...state,
         showNotesOnInstrument: true,
-        scaleName: action.payload,
+        chord: action.payload,
       };
 
     default:
