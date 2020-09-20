@@ -18,7 +18,6 @@ const NeckNut = (props) => {
     <CssGridContainer alignItems="center" repeatCol={false} className={containerNut}>
       {instrumentStrings.map((cord, idx) => {
         const activeNote = notesRender.find((noteRender) => noteRender.note === cord);
-        // const noteColor = getNextAvailableColor(0);
         return (
           <NoteDescription
             key={`${selectedInstrument}-${cord}-${idx}`}

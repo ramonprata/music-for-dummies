@@ -5,14 +5,12 @@ import GridNotesCol from './GridNotesCol';
 import { GRID_NOTE_LINE_HEIGHT } from '../../shared';
 import { NoteDescription } from '../../shared/components';
 import { useContextStore } from '../../shared/hooks/useContextStore';
-import { useNotesRender } from '../../shared/hooks';
 
 const GridNotesLine = (props) => {
   const { showNotesOnInstrument } = useContextStore();
-  const { stringNotes } = props;
+  const { stringNotes, notesRender } = props;
   const classes = useStyles(props)();
   const { lineContainer } = classes;
-  const notesRender = useNotesRender();
 
   const getCols = () => {
     if (notesRender) {

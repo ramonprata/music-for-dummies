@@ -1,17 +1,10 @@
 import React from 'react';
 import ChordOption from './ChordOption';
 import { getChords } from '../../shared/chords';
-import { setSelectedChord } from '../store';
-import { useContextStore } from '../../shared/hooks';
+import { useMemo } from 'react';
 
 const ChordsTab = (props) => {
   const { selectedNote } = props;
-  const { dispatch } = useContextStore();
-
-  const onSelectChord = (value) => {
-    setSelectedChord(dispatch, value);
-  };
-
   const {
     major,
     minor,
@@ -20,59 +13,36 @@ const ChordsTab = (props) => {
     majorWithMajorSeventh,
     diminishedTriad,
     diminishedSeventh,
-  } = getChords(selectedNote);
-
-  const majorChord = major();
-  const minorChord = minor();
-  const majorWithMinorSeventhChord = majorWithMinorSeventh();
-  const minorWithMinorSeventhChord = minorWithMinorSeventh();
-  const majorWithMajorSeventhChord = majorWithMajorSeventh();
-  const diminishedTriadChord = diminishedTriad();
-  const diminishedSeventhChord = diminishedSeventh();
+  } = useMemo(() => getChords(selectedNote), [selectedNote]);
 
   return (
     <React.Fragment>
+      <ChordOption chordOption={major} chordNotation={major.notation} chordKey="major" />
+      <ChordOption chordOption={minor} chordNotation={minor.notation} chordKey="minor" />
       <ChordOption
-        chordOption={majorChord}
-        chordNotation={majorChord.notation}
-        chordKey="major"
-        onSelectChord={() => onSelectChord('major')}
-      />
-      <ChordOption
-        chordOption={minorChord}
-        chordNotation={minorChord.notation}
-        chordKey="minor"
-        onSelectChord={() => onSelectChord('minor')}
-      />
-      <ChordOption
-        chordOption={diminishedTriadChord}
-        chordNotation={diminishedTriadChord.notation}
+        chordOption={diminishedTriad}
+        chordNotation={diminishedTriad.notation}
         chordKey="diminishedTriad"
-        onSelectChord={() => onSelectChord('diminishedTriad')}
       />
       <ChordOption
-        chordOption={majorWithMinorSeventhChord}
-        chordNotation={majorWithMinorSeventhChord.notation}
+        chordOption={majorWithMinorSeventh}
+        chordNotation={majorWithMinorSeventh.notation}
         chordKey="majorWithMinorSeventh"
-        onSelectChord={() => onSelectChord('majorWithMinorSeventh')}
       />
       <ChordOption
-        chordOption={minorWithMinorSeventhChord}
-        chordNotation={minorWithMinorSeventhChord.notation}
+        chordOption={minorWithMinorSeventh}
+        chordNotation={minorWithMinorSeventh.notation}
         chordKey="minorWithMinorSeventh"
-        onSelectChord={() => onSelectChord('minorWithMinorSeventh')}
       />
       <ChordOption
-        chordOption={majorWithMajorSeventhChord}
-        chordNotation={majorWithMajorSeventhChord.notation}
+        chordOption={majorWithMajorSeventh}
+        chordNotation={majorWithMajorSeventh.notation}
         chordKey="majorWithMajorSeventh"
-        onSelectChord={() => onSelectChord('majorWithMajorSeventh')}
       />
       <ChordOption
-        chordOption={diminishedSeventhChord}
-        chordNotation={diminishedSeventhChord.notation}
+        chordOption={diminishedSeventh}
+        chordNotation={diminishedSeventh.notation}
         chordKey="diminishedSeventh"
-        onSelectChord={() => onSelectChord('diminishedSeventh')}
       />
     </React.Fragment>
   );

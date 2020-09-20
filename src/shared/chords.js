@@ -96,12 +96,12 @@ export const getDiminishedSeventh = (note = 'C') => {
 
 export const getChords = (note) => {
   return {
-    major: () => getMajorChord(note),
-    minor: () => getMinorChord(note),
-    majorWithMinorSeventh: () => getMajorWithMinorSeventh(note),
-    minorWithMinorSeventh: () => getMinorWithMinorSeventh(note),
-    majorWithMajorSeventh: () => getMajorWithMajorSeventh(note),
-    diminishedTriad: () => getDiminishedTriad(note),
-    diminishedSeventh: () => getDiminishedSeventh(note),
+    major: getMajorChord(note),
+    minor: getMinorChord(note),
+    majorWithMinorSeventh: getMajorWithMinorSeventh(note),
+    minorWithMinorSeventh: getMinorWithMinorSeventh(note),
+    majorWithMajorSeventh: getMajorWithMajorSeventh(note),
+    diminishedTriad: getDiminishedTriad(note),
+    diminishedSeventh: getDiminishedSeventh(note),
   };
 };
