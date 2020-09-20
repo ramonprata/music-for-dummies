@@ -235,7 +235,7 @@ export const defaultTheme = {
     menuClosed: 64,
     menuOpened: 240,
   },
-  activeNotesColors: ['#923cb5', '#ec7272', '#74c576', '#f89427'],
+  activeNotesColors: ['#923cb5', '#f44336', '#4caf50', '#ff9800', '#3f51b5', '#e91e63', '#607d8b'],
   inactiveNoteColor: '#323130',
 };
 

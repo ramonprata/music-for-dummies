@@ -24,12 +24,7 @@ function a11yProps(index) {
 }
 
 export default function CustomTabs(props) {
-  const { tabs } = props;
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const { tabs, selected, handleSelectTab } = props;
 
   return (
     <CssGridContainer repeatCol={false}>
@@ -37,8 +32,8 @@ export default function CustomTabs(props) {
         <Tabs
           indicatorColor="primary"
           textColor="primary"
-          value={value}
-          onChange={handleChange}
+          value={selected}
+          onChange={(event, newValue) => handleSelectTab(newValue)}
           aria-label="simple tabs example"
         >
           {tabs.map((tab) => (
@@ -50,7 +45,7 @@ export default function CustomTabs(props) {
           ))}
         </Tabs>
         {tabs.map((tab) => (
-          <TabPanel value={value} index={tab.id} key={`content-${tab.id}`}>
+          <TabPanel value={selected} index={tab.id} key={`content-${tab.id}`}>
             {tab.renderTab()}
           </TabPanel>
         ))}

@@ -4,26 +4,28 @@ import { NoteDescription } from '../../shared/components';
 import { CssGridContainer } from '../../shared/components';
 import { useContextStore } from '../../shared/hooks/useContextStore';
 import { getScales, getInstrumentStrings, getNextAvailableColor } from '../../shared';
+import { useNotesRender } from '../../shared/hooks';
 
 const NeckNut = (props) => {
   const { selectedInstrument } = props;
-  const { scaleName, selectedNote } = useContextStore();
+  const { showNotesOnInstrument } = useContextStore();
   const classes = useStyles(props)();
   const { containerNut } = classes;
-  const scaleRender = scaleName && getScales(selectedNote)[scaleName]();
+  const notesRender = useNotesRender();
   const instrumentStrings = getInstrumentStrings(selectedInstrument);
+
   return (
     <CssGridContainer alignItems="center" repeatCol={false} className={containerNut}>
       {instrumentStrings.map((cord, idx) => {
-        const activeNote = Boolean(scaleName && scaleRender.scale.includes(cord));
-        const noteColor = getNextAvailableColor(0);
+        const activeNote = notesRender.find((noteRender) => noteRender.note === cord);
+        // const noteColor = getNextAvailableColor(0);
         return (
           <NoteDescription
             key={`${selectedInstrument}-${cord}-${idx}`}
             showNote={true}
             note={cord}
-            activeNote={activeNote}
-            noteColor={noteColor}
+            activeNote={Boolean(activeNote)}
+            noteColor={activeNote && showNotesOnInstrument && activeNote.noteColor}
           />
         );
       })}

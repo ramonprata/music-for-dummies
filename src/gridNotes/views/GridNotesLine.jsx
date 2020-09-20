@@ -5,28 +5,29 @@ import GridNotesCol from './GridNotesCol';
 import { GRID_NOTE_LINE_HEIGHT, getScales, getNextAvailableColor } from '../../shared';
 import { NoteDescription } from '../../shared/components';
 import { useContextStore } from '../../shared/hooks/useContextStore';
+import { getMajorChord } from '../../shared/chords';
+import { useNotesRender } from '../../shared/hooks';
 
 const GridNotesLine = (props) => {
-  const { showNotesOnInstrument, scaleName, selectedNote } = useContextStore();
+  const { showNotesOnInstrument, scaleName, selectedNote, selectedTab } = useContextStore();
   const { stringNotes } = props;
   const classes = useStyles(props)();
   const { lineContainer } = classes;
-  const scaleRender = scaleName && getScales(selectedNote)[scaleName]();
+  const notesRender = useNotesRender();
 
-  const getCols = useMemo(() => {
-    if (scaleName) {
+  const getCols = () => {
+    if (notesRender) {
       return stringNotes.map((stringNote, idx) => {
         if (idx > 0) {
-          const activeNote = Boolean(scaleRender?.scale?.includes(stringNote));
+          const activeNote = notesRender.find((noteRender) => noteRender.note === stringNote);
           return (
             <GridNotesCol key={`grid-note-col-${idx}`} index={idx}>
               <NoteDescription
                 idx={idx}
-                stringNote={stringNote}
-                showNote={showNotesOnInstrument && activeNote}
+                showNote={showNotesOnInstrument && Boolean(activeNote)}
                 note={stringNote}
-                noteColor={getNextAvailableColor(0)}
-                activeNote={activeNote}
+                noteColor={activeNote && activeNote.noteColor}
+                activeNote={Boolean(activeNote)}
               />
             </GridNotesCol>
           );
@@ -34,11 +35,11 @@ const GridNotesLine = (props) => {
         return null;
       });
     }
-  }, [scaleName, showNotesOnInstrument, stringNotes, selectedNote]);
+  };
 
   return (
     <Grid container direction="row" className={lineContainer} wrap="nowrap">
-      {scaleName && getCols}
+      {notesRender && getCols()}
     </Grid>
   );
 };

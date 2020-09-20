@@ -1,7 +1,7 @@
 import { SET_SELECTED_SCALE } from './scalesActions';
 
 export const scalesInitialState = {
-  scaleName: '',
+  scaleName: 'note',
 };
 
 export const scalesReducer = (state, action) => {

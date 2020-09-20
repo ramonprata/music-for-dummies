@@ -70,7 +70,7 @@ const useStyles = (neckDesignApply, numberOfStrings) =>
       },
       fret: {
         width: 6,
-        backgroundColor: '#786e4f',
+        backgroundColor: 'rgba(139, 141, 141, 1)',
         borderRadius: 2,
         zIndex: 4,
         '-webkit-box-shadow': '4px 0px 3px -1px #000, -4px 0px 3px -1px #000',

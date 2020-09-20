@@ -1,8 +1,8 @@
 export const SET_SELECTED_CHORD = 'chordsFeature/SET_SELECTED_CHORD';
 
-export const setSelectedChord = (dispatch, chord) => {
+export const setSelectedChord = (dispatch, selectedChord) => {
   dispatch({
     type: SET_SELECTED_CHORD,
-    chord,
+    payload: selectedChord,
   });
 };

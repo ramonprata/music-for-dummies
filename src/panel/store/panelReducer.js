@@ -1,4 +1,5 @@
 import {
+  SET_SELECTED_TAB,
   TOGGLE_SHOW_NOTES_INSTRUMENT,
   SELECT_INSTRUMENT,
   SELECT_NECK_MODEL,
@@ -6,8 +7,10 @@ import {
   SET_SELECTED_STRINGS_COLOR,
 } from './panelActions';
 import { DEFAULT_INSTRUMENT } from '../../shared';
+import { act } from 'react-dom/test-utils';
 
 export const panelInitialState = {
+  selectedTab: 0,
   selectedNote: 'C',
   showNotesOnInstrument: false,
   selectedInstrument: DEFAULT_INSTRUMENT,
@@ -17,6 +20,13 @@ export const panelInitialState = {
 
 export const panelReducer = (state, action) => {
   switch (action.type) {
+    case SET_SELECTED_TAB:
+      return {
+        ...state,
+        showNotesOnInstrument: action.payload !== 0,
+        selectedTab: action.payload,
+      };
+
     case TOGGLE_SHOW_NOTES_INSTRUMENT:
       return {
         ...state,
@@ -38,6 +48,7 @@ export const panelReducer = (state, action) => {
     case SET_SELECTED_NOTE:
       return {
         ...state,
+        scaleName: 'note',
         selectedNote: action.payload,
       };
 

@@ -70,3 +70,20 @@ export const getNextAvailableColor = (idx = 0) => {
   const color = defaultTheme.activeNotesColors[idx];
   return color || defaultTheme.activeNotesColors[0];
 };
+
+export const mapNotesColors = (notes, isScale = false) => {
+  return notes.map((note, idx) => {
+    let indexColor = isScale ? 0 : idx;
+    return {
+      note,
+      noteColor: getNextAvailableColor(indexColor),
+    };
+  });
+};
+
+export const showEnharmonicNotes = (notes = [], enharmonicNotes) => {
+  return (
+    enharmonicNotes &&
+    notes.map((n) => n.note).join(' ') !== enharmonicNotes.map((e) => e.note).join(' ')
+  );
+};

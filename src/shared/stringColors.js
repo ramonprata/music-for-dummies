@@ -1,12 +1,10 @@
 export const stringsColors = {
   color1: {
-    backgroundColor: '#8a8361',
-  },
-  color2: {
-    backgroundColor: '#8f192a',
+    backgroundColor: 'rgba(109,73,23,1)',
   },
   color3: {
-    backgroundColor: '#9fa1a1',
+    backgroundColor: 'rgba(89, 56, 56, 1)',
+    // backgroundColor: 'rgba(184, 115, 51, 1)',
   },
 };
 

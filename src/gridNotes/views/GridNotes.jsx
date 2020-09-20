@@ -9,17 +9,17 @@ const GridNotes = (props) => {
   const classes = useStyles(props)();
   const { gridContainer } = classes;
 
-  const mappedStringNotes = useMemo(() => {
+  const mappedStringNotes = () => {
     const instrumentStrings = getInstrumentStrings(selectedInstrument);
     return instrumentStrings.map((firstNoteString, idx) => {
       const notes = getStringNotes(firstNoteString);
       return <GridNotesLine key={`grid-note-line-${idx}`} stringNotes={notes} idx={idx} />;
     });
-  }, [selectedInstrument]);
+  };
 
   return (
     <Grid container direction="row" className={gridContainer}>
-      {mappedStringNotes}
+      {mappedStringNotes()}
     </Grid>
   );
 };

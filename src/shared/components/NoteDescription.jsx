@@ -16,6 +16,7 @@ const NoteDescription = (props) => {
       </Typography>
     );
   };
+
   return (
     <React.Fragment>
       {showOnlyDescription ? (
@@ -48,7 +49,7 @@ const useStyles = (showNote, activeNote, noteColor, showOnlyDescription) =>
         width: 22,
         padding: 1,
         cursor: 'pointer',
-        backgroundColor: activeNote ? noteColor : theme.inactiveNoteColor,
+        backgroundColor: activeNote && noteColor ? noteColor : theme.inactiveNoteColor,
         '& *': {
           color: '#fff',
         },

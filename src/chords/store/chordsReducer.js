@@ -1,16 +1,16 @@
 import { SET_SELECTED_CHORD } from './chordsActions';
 
-export const scalesInitialState = {
-  chord: '',
+export const chordsInitialState = {
+  selectedChord: 'major',
 };
 
-export const scalesReducer = (state, action) => {
+export const chordReducer = (state, action) => {
   switch (action.type) {
     case SET_SELECTED_CHORD:
       return {
         ...state,
         showNotesOnInstrument: true,
-        chord: action.payload,
+        selectedChord: action.payload,
       };
 
     default:

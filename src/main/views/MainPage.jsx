@@ -8,14 +8,16 @@ import GridNotesContainer from '../../gridNotes/views/GridNotesContainer';
 import CssGridContainer from '../../shared/components/CssGridContainer';
 import CssGridItem from '../../shared/components/CssGridItem';
 import { useContextStore } from '../../shared/hooks/useContextStore';
+import { getMajorChord } from '../../shared/chords';
 
+getMajorChord('D');
 const MainPage = () => {
   const classes = useStyles()();
   const { pageContainer, neckContainer } = classes;
   const { selectedInstrument, selectedNeckModel } = useContextStore();
   return (
     <Paper square className={pageContainer}>
-      <CssGridContainer repeatCol={false} templateRow={`1fr 224px`}>
+      <CssGridContainer repeatCol={false} templateRow={`1fr 222px`}>
         <CssGridItem justify="center" className={neckContainer}>
           <PanelConfig />
         </CssGridItem>

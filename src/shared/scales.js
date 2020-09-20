@@ -28,7 +28,7 @@ const mountIntervals = (pattern, numberOfNotes) => {
   return mountedPattern.slice(0, numberOfNotes);
 };
 
-const getNextAscendingNote = (currentNote, scaleSteps) => {
+export const getNextAscendingNote = (currentNote, scaleSteps) => {
   const currentNoteIndex = getNoteIndex(currentNote, ascendingChromaticNotes);
   const indexJump = currentNoteIndex + Number(scaleSteps / semiTone);
   if (indexJump >= ascendingChromaticNotes.length) {
@@ -73,7 +73,7 @@ const getNotesFromIntervals = (notes = [], intervals = []) => {
   return notes.filter((_, idx) => intervals.includes(idx + 1));
 };
 
-const applyEnharmonic = (scale, fromNote, intervals = DEFAULT_INTERVALS) => {
+export const applyEnharmonic = (scale, fromNote, intervals = DEFAULT_INTERVALS) => {
   const chromaticScaleFromNote = getChromaticScale(fromNote);
   const mappedNaturalNotes = getSortedNotes().map((item) => item.note);
   const naturalScaleNotes = getNextNotes(removeSharp(fromNote), mappedNaturalNotes);
@@ -157,6 +157,7 @@ export const getMinorPentaBlues = (fromNote = 'A', numberOfNotes = 5) => {
 
 export const getScales = (fromNote = 'A', numberOfNotes = 6) => {
   return {
+    note: () => ({ scale: [fromNote] }),
     chromatic: () => {
       const chromaticScale = getChromaticScale(fromNote);
       return {

@@ -1,21 +1,24 @@
 import React from 'react';
-import { Typography } from '@material-ui/core/';
 import CustomTabs from '../../shared/components/CustomTabs';
-import { tabs } from '../../main/mainUtils';
+import { tabs } from '../panelUtils';
 import { useContextStore } from '../../shared/hooks/useContextStore';
 import { setNeckModel } from '../../panel/store';
 import InstrumentTab from './InstrumentTab';
 import { getNeckDesign } from '../../neck';
 import { ScalesTab } from '../../scales';
-import { setSelectedNote } from '../store';
+import { setSelectedNote, setSelectedTab } from '../store';
 import { ChordsTab } from '../../chords/views';
 import DefaultTab from './DefaultTab';
 
 const PanelConfig = () => {
-  const { dispatch, selectedNeckModel, selectedNote } = useContextStore();
+  const { dispatch, selectedNeckModel, selectedNote, selectedTab } = useContextStore();
 
   const onChangeNote = (e) => {
     setSelectedNote(dispatch, e.target.value);
+  };
+
+  const handleSelectTab = (value) => {
+    setSelectedTab(dispatch, value);
   };
 
   const woodNecksDesign = getNeckDesign(selectedNeckModel);
@@ -51,14 +54,14 @@ const PanelConfig = () => {
             ...tab,
             renderTab: () => (
               <DefaultTab onSelectNote={onChangeNote} selectedNote={selectedNote}>
-                <ChordsTab />,
+                <ChordsTab selectedNote={selectedNote} />,
               </DefaultTab>
             ),
           };
       }
     });
   };
-  return <CustomTabs tabs={mapTabs()} />;
+  return <CustomTabs tabs={mapTabs()} selected={selectedTab} handleSelectTab={handleSelectTab} />;
 };
 
 export default PanelConfig;
