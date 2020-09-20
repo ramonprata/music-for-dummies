@@ -3,7 +3,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { NoteDescription } from '../../shared/components';
 import { CssGridContainer } from '../../shared/components';
 import { useContextStore } from '../../shared/hooks/useContextStore';
-import { getScales, getInstrumentStrings, getNextAvailableColor } from '../../shared';
+import { getInstrumentStrings } from '../../shared';
 import { useNotesRender } from '../../shared/hooks';
 
 const NeckNut = (props) => {

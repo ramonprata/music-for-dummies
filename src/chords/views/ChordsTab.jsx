@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
 import ChordOption from './ChordOption';
 import { getChords } from '../../shared/chords';
 import { setSelectedChord } from '../store';
@@ -78,7 +77,5 @@ const ChordsTab = (props) => {
     </React.Fragment>
   );
 };
-
-const useStyles = () => makeStyles(() => createStyles({}));
 
 export default ChordsTab;

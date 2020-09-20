@@ -7,7 +7,6 @@ import {
   SET_SELECTED_STRINGS_COLOR,
 } from './panelActions';
 import { DEFAULT_INSTRUMENT } from '../../shared';
-import { act } from 'react-dom/test-utils';
 
 export const panelInitialState = {
   selectedTab: 0,

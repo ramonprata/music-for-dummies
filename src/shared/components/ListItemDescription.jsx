@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { Grid, Icon, ListItem, Typography } from '@material-ui/core/';
+import { ListItem, Typography } from '@material-ui/core/';
 import { CssGridContainer, CssGridItem, NoteDescription } from '../../shared/components';
 import { showEnharmonicNotes } from '../utils';
 
@@ -97,7 +97,6 @@ ListItemDescription.propTypes = {
   onSelectItem: PropTypes.func.isRequired,
   active: PropTypes.bool,
   type: PropTypes.oneOf(['chord', 'scale']),
-  enharmonicNotes: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default ListItemDescription;

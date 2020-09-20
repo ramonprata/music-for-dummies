@@ -1,15 +1,14 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core/';
 import GridNotesCol from './GridNotesCol';
-import { GRID_NOTE_LINE_HEIGHT, getScales, getNextAvailableColor } from '../../shared';
+import { GRID_NOTE_LINE_HEIGHT } from '../../shared';
 import { NoteDescription } from '../../shared/components';
 import { useContextStore } from '../../shared/hooks/useContextStore';
-import { getMajorChord } from '../../shared/chords';
 import { useNotesRender } from '../../shared/hooks';
 
 const GridNotesLine = (props) => {
-  const { showNotesOnInstrument, scaleName, selectedNote, selectedTab } = useContextStore();
+  const { showNotesOnInstrument } = useContextStore();
   const { stringNotes } = props;
   const classes = useStyles(props)();
   const { lineContainer } = classes;

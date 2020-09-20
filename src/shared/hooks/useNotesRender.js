@@ -1,6 +1,6 @@
 import { getChords } from '../chords';
 import { getScales } from '../scales';
-import { getNextAvailableColor, mapNotesColors } from '../utils';
+import { mapNotesColors } from '../utils';
 import { useContextStore } from './useContextStore';
 
 export const useNotesRender = () => {
