@@ -6,43 +6,49 @@ import { getNeckDesign } from '../necktUtils';
 import GridNotesCol from '../../gridNotes/views/GridNotesCol';
 import NeckMarker from './NeckMarker';
 import NeckStrings from './NeckStrings';
+import { useContextStore } from '../../shared/hooks';
+import { useMemo } from 'react';
+import { useEffect } from 'react';
 
-const Neck = (props) => {
-  const { selectedNeckModel, selectedInstrument } = props;
-  const neckDesignApply = getNeckDesign(selectedNeckModel);
-  const instrumentStrings = getInstrumentStrings(selectedInstrument);
-  const classes = useStyles(neckDesignApply, instrumentStrings.length)();
+const Neck = () => {
+  const { selectedNeckModel, selectedInstrument } = useContextStore();
+  const neckDesignApply = useMemo(() => getNeckDesign(selectedNeckModel), [selectedNeckModel]);
+  const instrumentStrings = useMemo(() => getInstrumentStrings(selectedInstrument), [
+    selectedInstrument,
+  ]);
+  const useStyles = useMemo(() => getStyles(instrumentStrings.length), [instrumentStrings.length]);
+  const classes = useStyles();
+
   const { neckContainer, containerFrets, containerStrings, fret } = classes;
 
-  const renderFret = (idx = 0) => (
-    <React.Fragment>
-      <div
-        // id="fret"
-        className={idx === 0 ? '' : fret}
-      />
-    </React.Fragment>
-  );
-
+  const mappedFrets = useMemo(() => {
+    const renderFret = (idx = 0) => (
+      <React.Fragment>
+        <div className={idx === 0 ? '' : fret} />
+      </React.Fragment>
+    );
+    return Array(FRETS_BOARD + 1)
+      .fill(0)
+      .map((_, idx) => {
+        return (
+          <React.Fragment key={idx}>
+            {renderFret(idx)}
+            <GridNotesCol
+              index={idx}
+              showFrets={true}
+              key={`marker-${idx}`}
+              neckDesignApply={neckDesignApply}
+            >
+              <NeckMarker room={idx} selectedInstrument={selectedInstrument} />
+            </GridNotesCol>
+          </React.Fragment>
+        );
+      });
+  }, [neckDesignApply, selectedInstrument, fret]);
   return (
     <Grid container className={neckContainer}>
       <Grid container direction="row" wrap="nowrap" justify="center" className={containerFrets}>
-        {Array(FRETS_BOARD + 1)
-          .fill(0)
-          .map((_, idx) => {
-            return (
-              <React.Fragment key={idx}>
-                {renderFret(idx)}
-                <GridNotesCol
-                  index={idx}
-                  showFrets={true}
-                  key={`marker-${idx}`}
-                  neckDesignApply={neckDesignApply}
-                >
-                  <NeckMarker room={idx} selectedInstrument={selectedInstrument} />
-                </GridNotesCol>
-              </React.Fragment>
-            );
-          })}
+        {mappedFrets}
       </Grid>
       <Grid container direction="column" className={containerStrings}>
         <NeckStrings />
@@ -51,7 +57,7 @@ const Neck = (props) => {
   );
 };
 
-const useStyles = (neckDesignApply, numberOfStrings) =>
+const getStyles = (numberOfStrings) =>
   makeStyles(() =>
     createStyles({
       containerFrets: {
@@ -80,8 +86,4 @@ const useStyles = (neckDesignApply, numberOfStrings) =>
     })
   );
 
-export default React.memo(Neck, (p, n) => {
-  const sameNeckModel = p.selectedNeckModel === n.selectedNeckModel;
-  const sameInstrument = p.selectedInstrument === n.selectedInstrument;
-  return sameNeckModel && sameInstrument;
-});
+export default React.memo(Neck, () => true);

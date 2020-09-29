@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
 import { Neck, NeckNut } from '../../neck';
@@ -7,14 +7,12 @@ import PanelConfig from '../../panel/views/PanelConfig';
 import GridNotesContainer from '../../gridNotes/views/GridNotesContainer';
 import CssGridContainer from '../../shared/components/CssGridContainer';
 import CssGridItem from '../../shared/components/CssGridItem';
-import { useContextStore } from '../../shared/hooks/useContextStore';
-import { getMajorChord } from '../../shared/chords';
 
-getMajorChord('D');
 const MainPage = () => {
-  const classes = useStyles()();
+  const useStyles = useMemo(() => getStyles(), []);
+  const classes = useStyles();
+
   const { pageContainer, neckContainer } = classes;
-  const { selectedInstrument, selectedNeckModel } = useContextStore();
   return (
     <Paper square className={pageContainer}>
       <CssGridContainer repeatCol={false} templateRow={`1fr 222px`}>
@@ -24,11 +22,11 @@ const MainPage = () => {
         <CssGridItem justify="center">
           <CssGridContainer alignContent="center" templateCol="34px auto">
             <CssGridItem justify="center">
-              <NeckNut selectedInstrument={selectedInstrument} />
+              <NeckNut />
             </CssGridItem>
             <CssGridItem justify="center" className={neckContainer}>
               <GridNotesContainer />
-              <Neck selectedNeckModel={selectedNeckModel} selectedInstrument={selectedInstrument} />
+              <Neck />
             </CssGridItem>
           </CssGridContainer>
         </CssGridItem>
@@ -37,7 +35,7 @@ const MainPage = () => {
   );
 };
 
-const useStyles = () =>
+const getStyles = () =>
   makeStyles((theme) =>
     createStyles({
       pageContainer: {

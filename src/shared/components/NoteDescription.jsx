@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { Typography, Grid } from '@material-ui/core';
@@ -6,7 +6,13 @@ import { Typography, Grid } from '@material-ui/core';
 const NoteDescription = (props) => {
   const { showNote, note, showOnlyDescription, noteColor, activeNote, ...styleProps } = props;
 
-  const classes = useStyles(showNote, activeNote, noteColor, showOnlyDescription)();
+  const useStyles = useMemo(() => getStyles(showNote, activeNote, noteColor, showOnlyDescription), [
+    showNote,
+    activeNote,
+    noteColor,
+    showOnlyDescription,
+  ]);
+  const classes = useStyles();
   const { noteContainer, noteDesc } = classes;
 
   const renderDescription = () => {
@@ -23,6 +29,7 @@ const NoteDescription = (props) => {
         renderDescription()
       ) : (
         <Grid
+          container
           className={noteContainer}
           alignItems="center"
           justify="center"
@@ -43,7 +50,7 @@ NoteDescription.propTypes = {
   noteColor: PropTypes.string,
 };
 
-const useStyles = (showNote, activeNote, noteColor, showOnlyDescription) =>
+const getStyles = (showNote, activeNote, noteColor, showOnlyDescription) =>
   makeStyles((theme) => {
     return createStyles({
       noteContainer: {
@@ -67,4 +74,4 @@ const useStyles = (showNote, activeNote, noteColor, showOnlyDescription) =>
     });
   });
 
-export default NoteDescription;
+export default React.memo(NoteDescription);

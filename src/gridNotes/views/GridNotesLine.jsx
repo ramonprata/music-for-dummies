@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core/';
 import GridNotesCol from './GridNotesCol';
@@ -9,7 +9,9 @@ import { useContextStore } from '../../shared/hooks/useContextStore';
 const GridNotesLine = (props) => {
   const { showNotesOnInstrument } = useContextStore();
   const { stringNotes, notesRender } = props;
-  const classes = useStyles(props)();
+  const useStyles = useMemo(() => getStyles(), []);
+  const classes = useStyles();
+
   const { lineContainer } = classes;
 
   const getCols = () => {
@@ -42,7 +44,7 @@ const GridNotesLine = (props) => {
   );
 };
 
-const useStyles = () =>
+const getStyles = () =>
   makeStyles(() =>
     createStyles({
       lineContainer: {
@@ -51,5 +53,4 @@ const useStyles = () =>
     })
   );
 
-// export default React.memo(GridNotesLine, (p, n) => p.stringNotes === n.stringNotes);
 export default GridNotesLine;

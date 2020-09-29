@@ -1,23 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useContextStore } from '../../shared/hooks';
 import { ListItemDescription } from '../../shared/components/';
 import { getNextAvailableColor, mapNotesColors } from '../../shared';
 import { Typography } from '@material-ui/core';
-import { setSelectedChord } from '../store';
-import { useCallback } from 'react';
 
 const ChordOption = (props) => {
-  const { chordOption, chordNotation, chordKey } = props;
-  const { selectedChord, dispatch } = useContextStore();
+  const { chordOption, chordNotation, chordKey, onSelectChord, selectedChord } = props;
   const active = chordKey === selectedChord;
   const mappedNotesColor = mapNotesColors(chordOption.chordNotes);
   let enharmonicNotes;
-
-  const onSelectChord = useCallback(() => setSelectedChord(dispatch, chordKey), [
-    dispatch,
-    chordKey,
-  ]);
 
   if (chordOption.enharmonicChord) {
     enharmonicNotes = mapNotesColors(chordOption.enharmonicChord);

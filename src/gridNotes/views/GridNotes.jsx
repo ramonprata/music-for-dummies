@@ -4,10 +4,13 @@ import { Grid } from '@material-ui/core/';
 import { NECK_WIDTH, getInstrumentStrings, getStringNotes } from '../../shared';
 import GridNotesLine from './GridNotesLine';
 import { useNotesRender } from '../../shared/hooks';
+import { useMemo } from 'react';
 
 const GridNotes = (props) => {
   const { selectedInstrument } = props;
-  const classes = useStyles(props)();
+  const useStyles = useMemo(() => getStyles(), []);
+  const classes = useStyles();
+
   const { gridContainer } = classes;
   const notesRender = useNotesRender();
 
@@ -33,7 +36,7 @@ const GridNotes = (props) => {
   );
 };
 
-const useStyles = () =>
+const getStyles = () =>
   makeStyles(() =>
     createStyles({
       gridContainer: {
@@ -44,4 +47,4 @@ const useStyles = () =>
     })
   );
 
-export default GridNotes;
+export default React.memo(GridNotes, (p, n) => p.selectedInstrument === n.selectedInstrument);

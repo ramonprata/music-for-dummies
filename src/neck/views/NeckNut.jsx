@@ -7,8 +7,7 @@ import { getInstrumentStrings } from '../../shared';
 import { useNotesRender } from '../../shared/hooks';
 
 const NeckNut = (props) => {
-  const { selectedInstrument } = props;
-  const { showNotesOnInstrument } = useContextStore();
+  const { showNotesOnInstrument, selectedInstrument } = useContextStore();
   const classes = useStyles(props)();
   const { containerNut, containerNote } = classes;
   const notesRender = useNotesRender();
@@ -19,7 +18,7 @@ const NeckNut = (props) => {
       {instrumentStrings.map((cord, idx) => {
         const activeNote = notesRender.find((noteRender) => noteRender.note === cord);
         return (
-          <div className={containerNote}>
+          <div className={containerNote} key={`${cord}${idx}`}>
             <NoteDescription
               key={`${selectedInstrument}-${cord}-${idx}`}
               showNote={true}
