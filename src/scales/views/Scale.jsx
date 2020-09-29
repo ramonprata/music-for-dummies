@@ -3,12 +3,19 @@ import PropTypes from 'prop-types';
 import { useContextStore } from '../../shared/hooks';
 import { ListItemDescription } from '../../shared/components/';
 import { mapNotesColors } from '../../shared';
+import { setSelectedScale } from '../store';
+import { useCallback } from 'react';
 
 const Scale = (props) => {
-  const { scaleOption, scaleLabel, scaleKey, onSelectScale } = props;
-  const { scaleName } = useContextStore();
+  const { scaleOption, scaleLabel, scaleKey } = props;
+  const { scaleName, dispatch } = useContextStore();
   const active = scaleKey === scaleName;
   const mappedNotesColors = mapNotesColors(scaleOption.scale, true);
+
+  const onSelectScale = useCallback(() => setSelectedScale(dispatch, scaleKey), [
+    dispatch,
+    scaleKey,
+  ]);
 
   return (
     <ListItemDescription

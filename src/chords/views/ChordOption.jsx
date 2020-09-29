@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useContextStore } from '../../shared/hooks';
 import { ListItemDescription } from '../../shared/components/';
 import { getNextAvailableColor, mapNotesColors } from '../../shared';
 import { Typography } from '@material-ui/core';
 
 const ChordOption = (props) => {
-  const { chordOption, chordNotation, chordKey, onSelectChord } = props;
-  const { selectedChord } = useContextStore();
+  const { chordOption, chordNotation, chordKey, onSelectChord, selectedChord } = props;
   const active = chordKey === selectedChord;
   const mappedNotesColor = mapNotesColors(chordOption.chordNotes);
   let enharmonicNotes;
+
   if (chordOption.enharmonicChord) {
     enharmonicNotes = mapNotesColors(chordOption.enharmonicChord);
   }

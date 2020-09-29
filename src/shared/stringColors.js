@@ -4,7 +4,6 @@ export const stringsColors = {
   },
   color3: {
     backgroundColor: 'rgba(89, 56, 56, 1)',
-    // backgroundColor: 'rgba(184, 115, 51, 1)',
   },
 };
 

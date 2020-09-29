@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import CustomTabs from '../../shared/components/CustomTabs';
 import { tabs } from '../panelUtils';
 import { useContextStore } from '../../shared/hooks/useContextStore';
@@ -13,13 +13,19 @@ import DefaultTab from './DefaultTab';
 const PanelConfig = () => {
   const { dispatch, selectedNeckModel, selectedNote, selectedTab } = useContextStore();
 
-  const onChangeNote = (e) => {
-    setSelectedNote(dispatch, e.target.value);
-  };
+  const onChangeNote = useCallback(
+    (e) => {
+      setSelectedNote(dispatch, e.target.value);
+    },
+    [dispatch]
+  );
 
-  const handleSelectTab = (value) => {
-    setSelectedTab(dispatch, value);
-  };
+  const handleSelectTab = useCallback(
+    (value) => {
+      setSelectedTab(dispatch, value);
+    },
+    [dispatch]
+  );
 
   const woodNecksDesign = getNeckDesign(selectedNeckModel);
   const mapTabs = () => {

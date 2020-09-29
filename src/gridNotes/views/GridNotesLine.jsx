@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core/';
 import GridNotesCol from './GridNotesCol';
 import { GRID_NOTE_LINE_HEIGHT } from '../../shared';
 import { NoteDescription } from '../../shared/components';
 import { useContextStore } from '../../shared/hooks/useContextStore';
-import { useNotesRender } from '../../shared/hooks';
 
 const GridNotesLine = (props) => {
   const { showNotesOnInstrument } = useContextStore();
-  const { stringNotes } = props;
-  const classes = useStyles(props)();
+  const { stringNotes, notesRender } = props;
+  const useStyles = useMemo(() => getStyles(), []);
+  const classes = useStyles();
+
   const { lineContainer } = classes;
-  const notesRender = useNotesRender();
 
   const getCols = () => {
     if (notesRender) {
@@ -27,6 +27,7 @@ const GridNotesLine = (props) => {
                 note={stringNote}
                 noteColor={activeNote && activeNote.noteColor}
                 activeNote={Boolean(activeNote)}
+                borderRadius="50%"
               />
             </GridNotesCol>
           );
@@ -43,7 +44,7 @@ const GridNotesLine = (props) => {
   );
 };
 
-const useStyles = () =>
+const getStyles = () =>
   makeStyles(() =>
     createStyles({
       lineContainer: {
@@ -52,5 +53,4 @@ const useStyles = () =>
     })
   );
 
-// export default React.memo(GridNotesLine, (p, n) => p.stringNotes === n.stringNotes);
 export default GridNotesLine;

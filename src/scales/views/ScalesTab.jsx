@@ -1,13 +1,10 @@
 import React from 'react';
 import { getScales } from '../../shared';
 import Scale from './Scale';
-import { setSelectedScale } from '../store';
-import { useContextStore } from '../../shared/hooks';
+import { useMemo } from 'react';
 
 const ScalesTab = (props) => {
   const { selectedNote } = props;
-  const { dispatch } = useContextStore();
-
   const {
     chromatic,
     major,
@@ -16,51 +13,32 @@ const ScalesTab = (props) => {
     minorPentatonic,
     majorPentaBlues,
     minorPentaBlues,
-  } = getScales(selectedNote);
+  } = useMemo(() => getScales(selectedNote), [selectedNote]);
 
   return (
     <React.Fragment>
-      <Scale
-        scaleKey="chromatic"
-        scaleLabel="Chromatic"
-        scaleOption={chromatic()}
-        onSelectScale={() => setSelectedScale(dispatch, 'chromatic')}
-      />
-      <Scale
-        scaleKey="major"
-        scaleLabel="Major"
-        scaleOption={major()}
-        onSelectScale={() => setSelectedScale(dispatch, 'major')}
-      />
-      <Scale
-        scaleKey="minor"
-        scaleLabel="Minor"
-        scaleOption={minor()}
-        onSelectScale={() => setSelectedScale(dispatch, 'minor')}
-      />
+      <Scale scaleKey="chromatic" scaleLabel="Chromatic" scaleOption={chromatic} />
+      <Scale scaleKey="major" scaleLabel="Major" scaleOption={major} />
+      <Scale scaleKey="minor" scaleLabel="Minor" scaleOption={minor} />
       <Scale
         scaleKey="majorPentatonic"
         scaleLabel="Major Pentatonic"
-        scaleOption={majorPentatonic()}
-        onSelectScale={() => setSelectedScale(dispatch, 'majorPentatonic')}
+        scaleOption={majorPentatonic}
       />
       <Scale
         scaleKey="minorPentatonic"
         scaleLabel="Minor Pentatonic"
-        scaleOption={minorPentatonic()}
-        onSelectScale={() => setSelectedScale(dispatch, 'minorPentatonic')}
+        scaleOption={minorPentatonic}
       />
       <Scale
         scaleKey="majorPentaBlues"
         scaleLabel="Major Pentatonic Blues"
-        scaleOption={majorPentaBlues()}
-        onSelectScale={() => setSelectedScale(dispatch, 'majorPentaBlues')}
+        scaleOption={majorPentaBlues}
       />
       <Scale
         scaleKey="minorPentaBlues"
         scaleLabel="Minor Pentatonic Blues"
-        scaleOption={minorPentaBlues()}
-        onSelectScale={() => setSelectedScale(dispatch, 'minorPentaBlues')}
+        scaleOption={minorPentaBlues}
       />
     </React.Fragment>
   );
