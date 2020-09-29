@@ -10,7 +10,7 @@ const NeckNut = (props) => {
   const { selectedInstrument } = props;
   const { showNotesOnInstrument } = useContextStore();
   const classes = useStyles(props)();
-  const { containerNut } = classes;
+  const { containerNut, containerNote } = classes;
   const notesRender = useNotesRender();
   const instrumentStrings = getInstrumentStrings(selectedInstrument);
 
@@ -19,13 +19,15 @@ const NeckNut = (props) => {
       {instrumentStrings.map((cord, idx) => {
         const activeNote = notesRender.find((noteRender) => noteRender.note === cord);
         return (
-          <NoteDescription
-            key={`${selectedInstrument}-${cord}-${idx}`}
-            showNote={true}
-            note={cord}
-            activeNote={Boolean(activeNote)}
-            noteColor={activeNote && showNotesOnInstrument && activeNote.noteColor}
-          />
+          <div className={containerNote}>
+            <NoteDescription
+              key={`${selectedInstrument}-${cord}-${idx}`}
+              showNote={true}
+              note={cord}
+              activeNote={Boolean(activeNote)}
+              noteColor={activeNote && showNotesOnInstrument && activeNote.noteColor}
+            />
+          </div>
         );
       })}
     </CssGridContainer>
@@ -38,6 +40,9 @@ const useStyles = () =>
       containerNut: {
         backgroundColor: '#b4a576',
         padding: '0 2px 0px 2px',
+      },
+      containerNote: {
+        marginTop: 4,
       },
     })
   );

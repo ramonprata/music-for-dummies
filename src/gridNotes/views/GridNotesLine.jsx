@@ -25,6 +25,7 @@ const GridNotesLine = (props) => {
                 note={stringNote}
                 noteColor={activeNote && activeNote.noteColor}
                 activeNote={Boolean(activeNote)}
+                borderRadius="50%"
               />
             </GridNotesCol>
           );
