@@ -8,7 +8,6 @@ import NeckMarker from './NeckMarker';
 import NeckStrings from './NeckStrings';
 import { useContextStore } from '../../shared/hooks';
 import { useMemo } from 'react';
-import { useEffect } from 'react';
 
 const Neck = () => {
   const { selectedNeckModel, selectedInstrument } = useContextStore();
@@ -60,18 +59,21 @@ const Neck = () => {
 const getStyles = (numberOfStrings) =>
   makeStyles(() =>
     createStyles({
+      neckContainer: {
+        height: numberOfStrings * GRID_NOTE_LINE_HEIGHT,
+      },
+
       containerFrets: {
         zIndex: 0,
         height: numberOfStrings * GRID_NOTE_LINE_HEIGHT,
       },
+
       containerStrings: {
         zIndex: 1,
-        position: 'fixed',
+        position: 'absolute',
         width: NECK_WIDTH,
       },
-      neckContainer: {
-        height: numberOfStrings * GRID_NOTE_LINE_HEIGHT,
-      },
+
       fret: {
         width: 6,
         backgroundColor: 'rgba(139, 141, 141, 1)',

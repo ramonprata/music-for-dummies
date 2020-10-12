@@ -11,7 +11,7 @@ const GridNotes = (props) => {
 
   useEffect(() => {
     if (gridNotesRef && gridNotesRef.current) {
-      console.log('gridNotesRef :>> ', gridNotesRef.current.getBoundingClientRect());
+      // console.log('gridNotesRef :>> ', gridNotesRef.current.getBoundingClientRect());
     }
   }, []);
 

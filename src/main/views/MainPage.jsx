@@ -15,7 +15,7 @@ const MainPage = () => {
   const { pageContainer, neckContainer } = classes;
   return (
     <Paper square className={pageContainer}>
-      <CssGridContainer repeatCol={false} templateRow={`1fr 222px`}>
+      <CssGridContainer repeatCol={false} templateRow={`1fr 228px`}>
         <CssGridItem justify="center" className={neckContainer}>
           <PanelConfig />
         </CssGridItem>
@@ -42,10 +42,11 @@ const getStyles = () =>
         width: window.innerWidth,
         height: window.innerHeight,
         backgroundColor: theme.palette.primary.dark,
-        overflow: 'hidden',
+        overflowX: 'auto',
       },
       neckContainer: {
         width: NECK_WIDTH,
+        position: 'relative',
       },
     })
   );
