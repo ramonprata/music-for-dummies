@@ -56,11 +56,12 @@ const getStyles = (showNote, activeNote, noteColor, showOnlyDescription) =>
       noteContainer: {
         border: `1px solid ${theme.inactiveNoteColor}`,
         borderRadius: 4,
+        padding: 2,
         '-webkit-box-shadow': '5px 5px 15px rgba(0,0,0,0.4)',
         '-moz-box-shadow': '5px 5px 15px rgba(0,0,0,0.4)',
         display: showNote ? 'flex' : 'none',
-        height: 28,
-        width: 28,
+        height: 30,
+        width: 30,
         cursor: 'pointer',
         backgroundColor: activeNote && noteColor ? noteColor : theme.inactiveNoteColor,
         '& *': {

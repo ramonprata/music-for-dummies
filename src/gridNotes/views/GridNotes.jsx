@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core/';
 import { NECK_WIDTH, getInstrumentStrings, getStringNotes } from '../../shared';
@@ -7,6 +7,14 @@ import { useNotesRender } from '../../shared/hooks';
 import { useMemo } from 'react';
 
 const GridNotes = (props) => {
+  const gridNotesRef = useRef(null);
+
+  useEffect(() => {
+    if (gridNotesRef && gridNotesRef.current) {
+      // console.log('gridNotesRef :>> ', gridNotesRef.current.getBoundingClientRect());
+    }
+  }, []);
+
   const { selectedInstrument } = props;
   const useStyles = useMemo(() => getStyles(), []);
   const classes = useStyles();
@@ -30,7 +38,7 @@ const GridNotes = (props) => {
   };
 
   return (
-    <Grid container direction="row" className={gridContainer}>
+    <Grid ref={gridNotesRef} container direction="row" className={gridContainer}>
       {mappedStringNotes()}
     </Grid>
   );
