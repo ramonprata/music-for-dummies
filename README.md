@@ -8,4 +8,4 @@ Basic music theory app to improve your hobby on guitar and/or ukulele.
 
 ![Chords](https://github.com/ramonprata/music-for-dummies/blob/master/public/images/chords.gif)
 
-## [See demo](https://github.com/facebook/create-react-app)
+## [See demo](https://musicforlazies.herokuapp.com/)
