@@ -1,6 +1,6 @@
 ## Music for dummies.. oops! I mean, for lazies
 
-Basic music theory app to improve your hobby on guitar and/or ukulele.
+Basic music theory app to improve your skills on guitar and/or ukulele.
 
 ![Instrument](https://github.com/ramonprata/music-for-dummies/blob/master/public/images/instrument.gif)
 
