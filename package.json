@@ -1,7 +1,15 @@
 {
   "name": "music-for-dummies",
-  "version": "0.1.0",
+  "author": {
+    "name": "Ramon Prata",
+    "email": "sis.ramon.prata@gmail.com"
+  },
+  "version": "1.0.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ramonprata/music-for-dummies"
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@testing-library/jest-dom": "^4.2.4",
