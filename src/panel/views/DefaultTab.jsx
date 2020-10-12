@@ -25,7 +25,7 @@ const DefaultTab = (props) => {
         repeatRow={true}
         repeatCol={false}
         gap={16}
-        style={{ height: 230, overflowY: 'auto', padding: '8px 4px' }}
+        style={{ height: 240, overflowY: 'auto', padding: '8px 4px' }}
       >
         {props.children}
       </CssGridContainer>
