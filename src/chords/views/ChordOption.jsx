@@ -21,6 +21,7 @@ const ChordOption = (props) => {
       enharmonicNotes={enharmonicNotes}
       subDescription={chordOption.intervals.map((interval, idx, intervals) => (
         <Typography
+          key={`subDescriptionChord-${idx}`}
           component="span"
           variant="body2"
           style={{

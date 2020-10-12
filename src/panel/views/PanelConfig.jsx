@@ -20,12 +20,11 @@ const PanelConfig = () => {
     [dispatch]
   );
 
-  const handleSelectTab = useCallback(
-    (value) => {
+  const handleSelectTab = (value) => {
+    if (selectedTab !== value) {
       setSelectedTab(dispatch, value);
-    },
-    [dispatch]
-  );
+    }
+  };
 
   const woodNecksDesign = getNeckDesign(selectedNeckModel);
   const mapTabs = () => {

@@ -21,12 +21,11 @@ const DefaultTab = (props) => {
       <CssGridContainer
         alignItems="center"
         templateCol="0.5fr 0.5fr"
-        // templateCol="0.5fr"
-        templateRow={52}
+        templateRow={'58px'}
         repeatRow={true}
         repeatCol={false}
         gap={16}
-        style={{ height: 230, overflowY: 'auto', paddingTop: 4 }}
+        style={{ height: 230, overflowY: 'auto', padding: '8px 4px' }}
       >
         {props.children}
       </CssGridContainer>

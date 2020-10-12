@@ -36,10 +36,7 @@ export const getInstrumentStrings = (instrument) => {
 };
 
 export const getStringNotes = (fromNote = 'A') => {
-  const pattern = Array(FRETS_BOARD)
-    .fill(true)
-    .map((room) => semiTone);
-  return getScale(fromNote, pattern, FRETS_BOARD + 1);
+  return getScale(fromNote, [semiTone], FRETS_BOARD + 1);
 };
 
 export const woodNecksDesign = {

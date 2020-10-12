@@ -4,7 +4,7 @@ import GridNotes from './GridNotes';
 
 const GridNotesContainer = () => {
   const { selectedInstrument } = useContextStore();
-  return <GridNotes selectedInstrument={selectedInstrument} />;
+  return selectedInstrument && <GridNotes selectedInstrument={selectedInstrument} />;
 };
 
 export default GridNotesContainer;

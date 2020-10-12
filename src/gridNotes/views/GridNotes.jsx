@@ -8,7 +8,6 @@ import { useMemo } from 'react';
 
 const GridNotes = (props) => {
   const gridNotesRef = useRef(null);
-
   useEffect(() => {
     if (gridNotesRef && gridNotesRef.current) {
       // console.log('gridNotesRef :>> ', gridNotesRef.current.getBoundingClientRect());
@@ -55,4 +54,4 @@ const getStyles = () =>
     })
   );
 
-export default React.memo(GridNotes, (p, n) => p.selectedInstrument === n.selectedInstrument);
+export default React.memo(GridNotes);
