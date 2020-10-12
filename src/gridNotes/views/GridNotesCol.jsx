@@ -25,7 +25,6 @@ const useStyles = ({ index, showFrets, neckDesignApply }) =>
     createStyles({
       colContainer: {
         width: calcGridNoteWidth(index),
-        overflow: 'hidden',
         height: '100%',
         backgroundImage: `url(${neckDesignApply})`,
         backgroundRepeat: 'repeat',

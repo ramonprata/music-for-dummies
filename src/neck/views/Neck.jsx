@@ -62,9 +62,7 @@ const getStyles = (numberOfStrings) =>
     createStyles({
       containerFrets: {
         zIndex: 0,
-        position: 'fixed',
         height: numberOfStrings * GRID_NOTE_LINE_HEIGHT,
-        width: NECK_WIDTH,
       },
       containerStrings: {
         zIndex: 1,

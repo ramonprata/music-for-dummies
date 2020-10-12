@@ -16,11 +16,12 @@ const GridNotesLine = (props) => {
 
   const getCols = () => {
     if (notesRender) {
+
       return stringNotes.map((stringNote, idx) => {
         if (idx > 0) {
           const activeNote = notesRender.find((noteRender) => noteRender.note === stringNote);
           return (
-            <GridNotesCol key={`grid-note-col-${idx}`} index={idx}>
+            <GridNotesCol key={`grid-note-col-${idx}`} index={idx - 1}>
               <NoteDescription
                 idx={idx}
                 showNote={showNotesOnInstrument && Boolean(activeNote)}
