@@ -5,9 +5,12 @@ import { NECK_WIDTH, getInstrumentStrings, getStringNotes } from '../../shared';
 import GridNotesLine from './GridNotesLine';
 import { useNotesRender } from '../../shared/hooks';
 import { useMemo } from 'react';
+import { useState } from 'react';
 
 const GridNotes = (props) => {
+  const [showNotes, setShowNotes] = useState(false);
   const gridNotesRef = useRef(null);
+
   useEffect(() => {
     if (gridNotesRef && gridNotesRef.current) {
       // console.log('gridNotesRef :>> ', gridNotesRef.current.getBoundingClientRect());

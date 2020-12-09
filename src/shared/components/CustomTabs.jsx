@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { Paper, Typography } from '@material-ui/core';
+import { Paper, Typography, Box } from '@material-ui/core';
 import CssGridContainer from './CssGridContainer';
 
 function TabPanel(props) {
@@ -24,7 +24,7 @@ function a11yProps(index) {
 }
 
 export default function CustomTabs(props) {
-  const { tabs, selected, handleSelectTab } = props;
+  const { tabs, selected, handleSelectTab, lazyLoading } = props;
 
   return (
     <CssGridContainer repeatCol={false}>
@@ -46,7 +46,19 @@ export default function CustomTabs(props) {
         </Tabs>
         {tabs.map((tab) => (
           <TabPanel value={selected} index={tab.id} key={`content-${tab.id}`}>
-            {tab.renderTab()}
+            {lazyLoading ? (
+              <Suspense
+                fallback={
+                  <Box padding={16}>
+                    <Typography variant="subtitle1">Loading...</Typography>
+                  </Box>
+                }
+              >
+                {tab.renderTab()}
+              </Suspense>
+            ) : (
+              tab.renderTab()
+            )}
           </TabPanel>
         ))}
       </Paper>

@@ -3,14 +3,28 @@ import CustomTabs from '../../shared/components/CustomTabs';
 import { tabs } from '../panelUtils';
 import { useContextStore } from '../../shared/hooks/useContextStore';
 import { setNeckModel } from '../../panel/store';
-import InstrumentTab from './InstrumentTab';
 import { getNeckDesign } from '../../neck';
-import { ScalesTab } from '../../scales';
 import { setSelectedNote, setSelectedTab } from '../store';
-import { ChordsTab } from '../../chords/views';
 import DefaultTab from './DefaultTab';
 
+// import InstrumentTab from './InstrumentTab';
+// import { ScalesTab } from '../../scales';
+// import { ChordsTab } from '../../chords';
+
+const InstrumentTab = React.lazy(() => import('./InstrumentTab'));
+const ScalesTab = React.lazy(() => import('../../scales/views/ScalesTab'));
+
+const userLogged = localStorage.getItem('userLogged');
+const ChordsTab = React.lazy(() => {
+  if (userLogged) {
+    return import('../../chords/views/ChordsTab');
+  } else {
+    return import('./FeedbackComponent');
+  }
+});
+
 const PanelConfig = () => {
+  // const ChordsTab = React.lazy(() => import('../../chords/views/ChordsTab'));
   const { dispatch, selectedNeckModel, selectedNote, selectedTab } = useContextStore();
 
   const onChangeNote = useCallback(
@@ -26,6 +40,34 @@ const PanelConfig = () => {
     }
   };
 
+  const renderInstrumentTab = () => {
+    return (
+      <InstrumentTab
+        selectedNeck={selectedNeckModel}
+        woodNecksDesign={woodNecksDesign}
+        onSelectNeck={(selectedModel) => {
+          setNeckModel(dispatch, selectedModel);
+        }}
+      />
+    );
+  };
+
+  const renderScalesTab = () => {
+    return (
+      <DefaultTab onSelectNote={onChangeNote} selectedNote={selectedNote}>
+        <ScalesTab selectedNote={selectedNote} />
+      </DefaultTab>
+    );
+  };
+
+  const renderChordsTab = () => {
+    return (
+      <DefaultTab onSelectNote={onChangeNote} selectedNote={selectedNote}>
+        <ChordsTab selectedNote={selectedNote} />,
+      </DefaultTab>
+    );
+  };
+
   const woodNecksDesign = getNeckDesign(selectedNeckModel);
   const mapTabs = () => {
     return tabs.map((tab) => {
@@ -33,40 +75,31 @@ const PanelConfig = () => {
         case 0:
           return {
             ...tab,
-            renderTab: () => (
-              <InstrumentTab
-                selectedNeck={selectedNeckModel}
-                woodNecksDesign={woodNecksDesign}
-                onSelectNeck={(selectedModel) => {
-                  setNeckModel(dispatch, selectedModel);
-                }}
-              />
-            ),
+            renderTab: () => renderInstrumentTab(),
           };
 
         case 1:
           return {
             ...tab,
-            renderTab: () => (
-              <DefaultTab onSelectNote={onChangeNote} selectedNote={selectedNote}>
-                <ScalesTab selectedNote={selectedNote} />
-              </DefaultTab>
-            ),
+            renderTab: () => renderScalesTab(),
           };
 
         default:
           return {
             ...tab,
-            renderTab: () => (
-              <DefaultTab onSelectNote={onChangeNote} selectedNote={selectedNote}>
-                <ChordsTab selectedNote={selectedNote} />,
-              </DefaultTab>
-            ),
+            renderTab: () => renderChordsTab(),
           };
       }
     });
   };
-  return <CustomTabs tabs={mapTabs()} selected={selectedTab} handleSelectTab={handleSelectTab} />;
+  return (
+    <CustomTabs
+      tabs={mapTabs()}
+      selected={selectedTab}
+      handleSelectTab={handleSelectTab}
+      lazyLoading
+    />
+  );
 };
 
 export default PanelConfig;
