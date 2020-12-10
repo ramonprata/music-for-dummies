@@ -50,6 +50,8 @@ const PanelConfig = () => {
             renderTab: () => (
               <DefaultTab onSelectNote={onChangeNote} selectedNote={selectedNote}>
                 <ScalesTab selectedNote={selectedNote} />
+                <ScalesTab selectedNote={selectedNote} />
+                <ScalesTab selectedNote={selectedNote} />
               </DefaultTab>
             ),
           };

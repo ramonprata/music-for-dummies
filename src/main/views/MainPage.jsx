@@ -14,23 +14,22 @@ const MainPage = () => {
 
   const { pageContainer, neckContainer } = classes;
   return (
-    <Paper square className={pageContainer}>
-      <CssGridContainer repeatCol={false} templateRow={`1fr 228px`}>
-        <CssGridItem justify="center" className={neckContainer}>
+    <Paper square>
+      <div className={pageContainer}>
+        <div className={classes.panelContainer}>
           <PanelConfig />
-        </CssGridItem>
-        <CssGridItem justify="center">
-          <CssGridContainer alignContent="center" templateCol="34px auto">
-            <CssGridItem justify="center">
-              <NeckNut />
-            </CssGridItem>
-            <CssGridItem justify="center" className={neckContainer}>
-              <GridNotesContainer />
-              <Neck />
-            </CssGridItem>
-          </CssGridContainer>
-        </CssGridItem>
-      </CssGridContainer>
+        </div>
+
+        <CssGridContainer alignContent="center" templateCol="34px auto">
+          <CssGridItem justify="center">
+            <NeckNut />
+          </CssGridItem>
+          <CssGridItem justify="center" className={neckContainer}>
+            <GridNotesContainer />
+            <Neck />
+          </CssGridItem>
+        </CssGridContainer>
+      </div>
     </Paper>
   );
 };
@@ -43,10 +42,17 @@ const getStyles = () =>
         height: window.innerHeight,
         backgroundColor: theme.palette.primary.dark,
         overflowX: 'auto',
+        display: 'grid',
+        gridTemplateRows: '65vh 35vh',
+        justifyItems: 'center',
+        // gap: 16,
+      },
+      panelContainer: {
+        width: '70%',
+        position: 'relative',
       },
       neckContainer: {
         width: NECK_WIDTH,
-        position: 'relative',
       },
     })
   );
