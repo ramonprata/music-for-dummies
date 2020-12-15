@@ -13,18 +13,18 @@ import DefaultTab from './DefaultTab';
 
 const InstrumentTab = React.lazy(() => import('./InstrumentTab'));
 const ScalesTab = React.lazy(() => import('../../scales/views/ScalesTab'));
+const ChordsTab = React.lazy(() => import('../../chords/views/ChordsTab'));
 
-const userLogged = localStorage.getItem('userLogged');
-const ChordsTab = React.lazy(() => {
-  if (userLogged) {
-    return import('../../chords/views/ChordsTab');
-  } else {
-    return import('./FeedbackComponent');
-  }
-});
+// const userLogged = localStorage.getItem('userLogged');
+// const ChordsTab = React.lazy(() => {
+//   if (userLogged) {
+//     return import('../../chords/views/ChordsTab');
+//   } else {
+//     return import('./FeedbackComponent');
+//   }
+// });
 
 const PanelConfig = () => {
-  // const ChordsTab = React.lazy(() => import('../../chords/views/ChordsTab'));
   const { dispatch, selectedNeckModel, selectedNote, selectedTab } = useContextStore();
 
   const onChangeNote = useCallback(

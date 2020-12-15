@@ -9,27 +9,17 @@ const DefaultTab = (props) => {
   const { container } = classes;
 
   return (
-    <CssGridContainer
-      repeatCol={false}
-      alignContent="start"
-      className={container}
-      rowGap={16}
-      justifyContent="center"
-    >
+    <div className={classes.container}>
       <KeyNoteSelect onSelectNote={onSelectNote} selectedNote={selectedNote} />
 
-      <CssGridContainer
-        alignItems="center"
-        templateCol="0.5fr 0.5fr"
-        templateRow={'58px'}
-        repeatRow={true}
-        repeatCol={false}
-        gap={16}
-        style={{ height: 240, overflowY: 'auto', padding: '8px 4px' }}
-      >
-        {props.children}
-      </CssGridContainer>
-    </CssGridContainer>
+      <div className={classes.content}>{props.children}</div>
+      <div
+        style={{
+          width: '100%',
+          height: 16,
+        }}
+      ></div>
+    </div>
   );
 };
 
@@ -37,7 +27,18 @@ const useStyles = () =>
   makeStyles(() =>
     createStyles({
       container: {
-        padding: 16,
+        padding: '16px 16px 0 16px',
+      },
+
+      content: {
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gridTemplateRows: '58px',
+        gap: '16px',
+        maxHeight: 'calc(20vw - 16px)',
+        overflowY: 'auto',
+        padding: '8px 4px',
+        alignItems: 'center',
       },
     })
   );
