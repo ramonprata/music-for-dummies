@@ -7,22 +7,13 @@ import { getNeckDesign } from '../../neck';
 import { setSelectedNote, setSelectedTab } from '../store';
 import DefaultTab from './DefaultTab';
 
-// import InstrumentTab from './InstrumentTab';
-// import { ScalesTab } from '../../scales';
-// import { ChordsTab } from '../../chords';
+import InstrumentTab from './InstrumentTab';
+import { ScalesTab } from '../../scales';
+import { ChordsTab } from '../../chords';
 
-const InstrumentTab = React.lazy(() => import('./InstrumentTab'));
-const ScalesTab = React.lazy(() => import('../../scales/views/ScalesTab'));
-const ChordsTab = React.lazy(() => import('../../chords/views/ChordsTab'));
-
-// const userLogged = localStorage.getItem('userLogged');
-// const ChordsTab = React.lazy(() => {
-//   if (userLogged) {
-//     return import('../../chords/views/ChordsTab');
-//   } else {
-//     return import('./FeedbackComponent');
-//   }
-// });
+// const InstrumentTab = React.lazy(() => import('./InstrumentTab'));
+// const ScalesTab = React.lazy(() => import('../../scales/views/ScalesTab'));
+// const ChordsTab = React.lazy(() => import('../../chords/views/ChordsTab'));
 
 const PanelConfig = () => {
   const { dispatch, selectedNeckModel, selectedNote, selectedTab } = useContextStore();
@@ -103,3 +94,12 @@ const PanelConfig = () => {
 };
 
 export default PanelConfig;
+
+// const userLogged = localStorage.getItem('userLogged');
+// const ChordsTab = React.lazy(() => {
+//   if (userLogged) {
+//     return import('../../chords/views/ChordsTab');
+//   } else {
+//     return import('./FeedbackComponent');
+//   }
+// });
