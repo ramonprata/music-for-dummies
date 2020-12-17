@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { appReducer, initialState, AppContext } from '../store/appContext';
+import { appReducer, initialState, AppContext } from './shared/store/appContext';
 
 export const AppContextProvider = (props) => {
   const [state, dispatch] = useReducer(appReducer, initialState);

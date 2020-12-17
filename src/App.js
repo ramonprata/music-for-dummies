@@ -4,6 +4,7 @@ import { MainPage } from './main/';
 import { ThemeProvider } from '@material-ui/core';
 import { AppContextProvider } from './shared/components/';
 import { theme } from './theme';
+import DemoReducer from './DemoReducer';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <AppContextProvider>
           <MainPage />
         </AppContextProvider>
+        {/* <DemoReducer /> */}
       </div>
     </ThemeProvider>
   );
