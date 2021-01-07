@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import React from 'react';
+import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core/';
 import GridNotesCol from './GridNotesCol';
 import { GRID_NOTE_LINE_HEIGHT } from '../../shared';
@@ -9,14 +9,12 @@ import { useContextStore } from '../../shared/hooks/useContextStore';
 const GridNotesLine = (props) => {
   const { showNotesOnInstrument } = useContextStore();
   const { stringNotes, notesRender } = props;
-  const useStyles = useMemo(() => getStyles(), []);
   const classes = useStyles();
 
   const { lineContainer } = classes;
 
   const getCols = () => {
     if (notesRender) {
-
       return stringNotes.map((stringNote, idx) => {
         if (idx > 0) {
           const activeNote = notesRender.find((noteRender) => noteRender.note === stringNote);
@@ -45,13 +43,11 @@ const GridNotesLine = (props) => {
   );
 };
 
-const getStyles = () =>
-  makeStyles(() =>
-    createStyles({
-      lineContainer: {
-        height: GRID_NOTE_LINE_HEIGHT,
-      },
-    })
-  );
+const useStyles = makeStyles({
+  lineContainer: {
+    height: GRID_NOTE_LINE_HEIGHT,
+    cursor: 'pointer',
+  },
+});
 
 export default GridNotesLine;

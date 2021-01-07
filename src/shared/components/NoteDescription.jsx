@@ -1,18 +1,12 @@
-import React, { useMemo } from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import React from 'react';
+import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import { Typography, Grid } from '@material-ui/core';
 
 const NoteDescription = (props) => {
   const { showNote, note, showOnlyDescription, noteColor, activeNote, ...styleProps } = props;
 
-  const useStyles = useMemo(() => getStyles(showNote, activeNote, noteColor, showOnlyDescription), [
-    showNote,
-    activeNote,
-    noteColor,
-    showOnlyDescription,
-  ]);
-  const classes = useStyles();
+  const classes = useStyles({ showNote, activeNote, noteColor, showOnlyDescription });
   const { noteContainer, noteDesc } = classes;
 
   const renderDescription = () => {
@@ -50,29 +44,32 @@ NoteDescription.propTypes = {
   noteColor: PropTypes.string,
 };
 
-const getStyles = (showNote, activeNote, noteColor, showOnlyDescription) =>
-  makeStyles((theme) => {
-    return createStyles({
-      noteContainer: {
-        border: `1px solid ${theme.inactiveNoteColor}`,
-        borderRadius: 4,
-        padding: 2,
-        '-webkit-box-shadow': '5px 5px 15px rgba(0,0,0,0.4)',
-        '-moz-box-shadow': '5px 5px 15px rgba(0,0,0,0.4)',
-        display: showNote ? 'flex' : 'none',
-        height: 30,
-        width: 30,
-        cursor: 'pointer',
-        backgroundColor: activeNote && noteColor ? noteColor : theme.inactiveNoteColor,
-        '& *': {
-          color: '#fff',
-          fontWeight: 'bold',
-        },
+const useStyles = makeStyles((theme) => {
+  return {
+    noteContainer: ({ showNote, activeNote, noteColor }) => ({
+      border: `1px solid ${theme.inactiveNoteColor}`,
+      borderRadius: 4,
+      padding: 2,
+      '-webkit-box-shadow': '5px 5px 15px rgba(0,0,0,0.4)',
+      '-moz-box-shadow': '5px 5px 15px rgba(0,0,0,0.4)',
+      opacity: showNote ? 1 : 0,
+      display: 'flex',
+      height: 30,
+      width: 30,
+      cursor: 'pointer',
+      backgroundColor: activeNote && noteColor ? noteColor : theme.inactiveNoteColor,
+      '& *': {
+        color: '#fff',
+        fontWeight: 'bold',
       },
-      noteDesc: {
-        color: showOnlyDescription ? noteColor : '#fff',
+      '&:hover': {
+        opacity: activeNote ? 1 : 0.7,
       },
-    });
-  });
+    }),
+    noteDesc: ({ showOnlyDescription, noteColor }) => ({
+      color: showOnlyDescription ? noteColor : '#fff',
+    }),
+  };
+});
 
 export default React.memo(NoteDescription);

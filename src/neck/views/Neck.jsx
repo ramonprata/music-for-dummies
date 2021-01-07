@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 import { NECK_WIDTH, FRETS_BOARD, GRID_NOTE_LINE_HEIGHT, getInstrumentStrings } from '../../shared';
 import { getNeckDesign } from '../necktUtils';
@@ -15,8 +15,7 @@ const Neck = () => {
   const instrumentStrings = useMemo(() => getInstrumentStrings(selectedInstrument), [
     selectedInstrument,
   ]);
-  const useStyles = useMemo(() => getStyles(instrumentStrings.length), [instrumentStrings.length]);
-  const classes = useStyles();
+  const classes = useStyles(instrumentStrings.length);
 
   const { neckContainer, containerFrets, containerStrings, fret } = classes;
 
@@ -56,34 +55,31 @@ const Neck = () => {
   );
 };
 
-const getStyles = (numberOfStrings) =>
-  makeStyles(() =>
-    createStyles({
-      neckContainer: {
-        height: numberOfStrings * GRID_NOTE_LINE_HEIGHT,
-      },
+const useStyles = makeStyles({
+  neckContainer: (numberOfStrings) => ({
+    height: numberOfStrings * GRID_NOTE_LINE_HEIGHT,
+  }),
 
-      containerFrets: {
-        zIndex: 0,
-        height: numberOfStrings * GRID_NOTE_LINE_HEIGHT,
-      },
+  containerFrets: (numberOfStrings) => ({
+    zIndex: 0,
+    height: numberOfStrings * GRID_NOTE_LINE_HEIGHT,
+  }),
 
-      containerStrings: {
-        zIndex: 1,
-        position: 'absolute',
-        width: NECK_WIDTH,
-      },
+  containerStrings: {
+    zIndex: 1,
+    position: 'absolute',
+    width: NECK_WIDTH,
+  },
 
-      fret: {
-        width: 6,
-        backgroundColor: 'rgba(139, 141, 141, 1)',
-        borderRadius: 2,
-        zIndex: 4,
-        '-webkit-box-shadow': '4px 0px 3px -1px #000, -4px 0px 3px -1px #000',
-        '-moz-box-shadow': '4px 0px 3px -1px #000, -4px 0px 3px -1px #000',
-        'box-shadow': '4px 0px 3px -1px #000, -4px 0px 3px -1px #000',
-      },
-    })
-  );
+  fret: {
+    width: 6,
+    backgroundColor: 'rgba(139, 141, 141, 1)',
+    borderRadius: 2,
+    zIndex: 4,
+    '-webkit-box-shadow': '4px 0px 3px -1px #000, -4px 0px 3px -1px #000',
+    '-moz-box-shadow': '4px 0px 3px -1px #000, -4px 0px 3px -1px #000',
+    'box-shadow': '4px 0px 3px -1px #000, -4px 0px 3px -1px #000',
+  },
+});
 
 export default React.memo(Neck, () => true);

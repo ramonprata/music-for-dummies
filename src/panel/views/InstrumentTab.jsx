@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import {
   Typography,
   RadioGroup,
@@ -17,7 +17,7 @@ import StringsColorSelect from './StringsColorSelect';
 const InstrumentConfig = (props) => {
   const { selectedInstrument, dispatch } = useContextStore();
   const { selectedNeck, woodNecksDesign, onSelectNeck } = props;
-  const classes = useStyles(props)();
+  const classes = useStyles();
   const { contolsContainer } = classes;
 
   const onSelectInstrument = (event) => {
@@ -73,14 +73,11 @@ const InstrumentConfig = (props) => {
   );
 };
 
-const useStyles = () =>
-  makeStyles(() =>
-    createStyles({
-      contolsContainer: {
-        padding: 16,
-      },
-    })
-  );
+const useStyles = makeStyles({
+  contolsContainer: {
+    padding: 16,
+  },
+});
 
 export default React.memo(InstrumentConfig, (p, n) => {
   const sameNeck = p.selectedNeck === n.selectedNeck;

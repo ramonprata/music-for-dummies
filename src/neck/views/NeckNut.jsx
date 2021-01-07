@@ -8,7 +8,7 @@ import { useNotesRender } from '../../shared/hooks';
 
 const NeckNut = (props) => {
   const { showNotesOnInstrument, selectedInstrument } = useContextStore();
-  const classes = useStyles(props)();
+  const classes = useStyles();
   const { containerNut, containerNote } = classes;
   const notesRender = useNotesRender();
   const instrumentStrings = getInstrumentStrings(selectedInstrument);
@@ -33,17 +33,14 @@ const NeckNut = (props) => {
   );
 };
 
-const useStyles = () =>
-  makeStyles(() =>
-    createStyles({
-      containerNut: {
-        backgroundColor: '#b4a576',
-        padding: '0 2px 0px 2px',
-      },
-      containerNote: {
-        marginTop: 4,
-      },
-    })
-  );
+const useStyles = makeStyles({
+  containerNut: {
+    backgroundColor: '#b4a576',
+    padding: '0 2px 0px 2px',
+  },
+  containerNote: {
+    marginTop: 4,
+  },
+});
 
 export default NeckNut;

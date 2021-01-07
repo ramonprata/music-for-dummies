@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 
 const CssGridContainer = (props) => {
   const { style, className } = props;
-  const classes = useStyles(props)();
+  const classes = useStyles(props);
   const { container } = classes;
 
   return (
@@ -63,37 +63,35 @@ CssGridContainer.defaultProps = {
   style: {},
 };
 
-const useStyles = (props) =>
-  makeStyles(() => {
-    const {
-      templateCol,
-      templateRow,
-      repeatCol,
-      repeatRow,
-      colGap,
-      rowGap,
-      gap,
+const useStyles = makeStyles({
+  container: ({
+    templateCol,
+    templateRow,
+    repeatCol,
+    repeatRow,
+    colGap,
+    rowGap,
+    gap,
+    justifyItems,
+    alignItems,
+    justifyContent,
+    alignContent,
+    children,
+    repeatNumber,
+  }) => {
+    const repeat = repeatNumber || (children && children.length);
+    return {
+      display: 'grid',
+      height: '100%',
+      gridTemplateColumns: repeatCol ? `repeat(${repeat},${templateCol})` : templateCol,
+      gridTemplateRows: repeatRow ? `repeat(${repeat},${templateRow})` : templateRow,
+      columnGap: gap ? `${gap}px` : `${colGap}px`,
+      rowGap: gap ? `${gap}px` : `${rowGap}px`,
       justifyItems,
       alignItems,
       justifyContent,
       alignContent,
-      children,
-      repeatNumber,
-    } = props;
-    const repeat = repeatNumber || (children && children.length);
-    return createStyles({
-      container: {
-        display: 'grid',
-        height: '100%',
-        gridTemplateColumns: repeatCol ? `repeat(${repeat},${templateCol})` : templateCol,
-        gridTemplateRows: repeatRow ? `repeat(${repeat},${templateRow})` : templateRow,
-        columnGap: gap ? `${gap}px` : `${colGap}px`,
-        rowGap: gap ? `${gap}px` : `${rowGap}px`,
-        justifyItems,
-        alignItems,
-        justifyContent,
-        alignContent,
-      },
-    });
-  });
+    };
+  },
+});
 export default CssGridContainer;

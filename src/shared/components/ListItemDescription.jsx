@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import { ListItem, Typography } from '@material-ui/core/';
 import { CssGridContainer, CssGridItem, NoteDescription } from '../../shared/components';
 import { showEnharmonicNotes } from '../utils';
@@ -16,7 +16,7 @@ const ListItemDescription = (props) => {
     active,
     enharmonicNotes,
   } = props;
-  const classes = useStyles(active)();
+  const classes = useStyles(active);
   const { itemContainer } = classes;
   const showSubDescription = Boolean(subDescription.length);
   const shouldRenderEnharmonicNotes = showEnharmonicNotes(notes, enharmonicNotes);
@@ -69,26 +69,25 @@ const ListItemDescription = (props) => {
   );
 };
 
-const useStyles = (active = false) =>
-  makeStyles((theme) =>
-    createStyles({
-      itemContainer: {
-        width: '100%',
-        minHeight: 62,
-        borderRadius: 4,
-        border: `solid 1px ${theme.palette.grey['300']}`,
-        borderWidth: active ? 3 : 1,
-        borderColor: active ? theme.palette.primary.main : theme.palette.grey['300'],
-        '&:hover': {
-          borderStyle: 'solid',
-          borderColor: theme.palette.primary.main,
-        },
-        '& *': {
-          fontWeight: active ? 'bold' : 'normal',
-        },
+const useStyles = makeStyles((theme) => {
+  return {
+    itemContainer: (active = false) => ({
+      width: '100%',
+      minHeight: 62,
+      borderRadius: 4,
+      border: `solid 1px ${theme.palette.grey['300']}`,
+      borderWidth: active ? 3 : 1,
+      borderColor: active ? theme.palette.primary.main : theme.palette.grey['300'],
+      '&:hover': {
+        borderStyle: 'solid',
+        borderColor: theme.palette.primary.main,
       },
-    })
-  );
+      '& *': {
+        fontWeight: active ? 'bold' : 'normal',
+      },
+    }),
+  };
+});
 
 ListItemDescription.propTypes = {
   notation: PropTypes.string.isRequired,
@@ -99,4 +98,4 @@ ListItemDescription.propTypes = {
   type: PropTypes.oneOf(['chord', 'scale']),
 };
 
-export default ListItemDescription;
+export default React.memo(ListItemDescription);

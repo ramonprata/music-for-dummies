@@ -1,10 +1,10 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import { Checkbox, Grid, Paper } from '@material-ui/core';
 
 const BoxSelectOption = (props) => {
   const { onSelect, value, selectedOption, bkgStyle } = props;
-  const classes = useStyles(props)();
+  const classes = useStyles();
   const { boxSelectContainer, boxSelect, activeBox } = classes;
 
   return (
@@ -33,30 +33,27 @@ const BoxSelectOption = (props) => {
   );
 };
 
-const useStyles = () =>
-  makeStyles(() =>
-    createStyles({
-      boxSelectContainer: {
-        cursor: 'pointer',
-        width: '100%',
-        height: '100%',
-      },
-      boxSelect: {
-        width: '100%',
-        height: '100%',
-        backgroundColor: '#ccc',
-        opacity: '0.2',
-        borderRadius: 4,
-        '&:hover': {
-          opacity: 1,
-          backgroundColor: 'transparent',
-        },
-      },
-      activeBox: {
-        opacity: 1,
-        backgroundColor: 'transparent',
-      },
-    })
-  );
+const useStyles = makeStyles({
+  boxSelectContainer: {
+    cursor: 'pointer',
+    width: '100%',
+    height: '100%',
+  },
+  boxSelect: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#ccc',
+    opacity: '0.2',
+    borderRadius: 4,
+    '&:hover': {
+      opacity: 1,
+      backgroundColor: 'transparent',
+    },
+  },
+  activeBox: {
+    opacity: 1,
+    backgroundColor: 'transparent',
+  },
+});
 
 export default BoxSelectOption;

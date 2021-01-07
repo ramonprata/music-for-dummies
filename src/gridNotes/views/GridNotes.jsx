@@ -1,24 +1,15 @@
 import React, { useEffect, useRef } from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core/';
 import { NECK_WIDTH, getInstrumentStrings, getStringNotes } from '../../shared';
 import GridNotesLine from './GridNotesLine';
 import { useNotesRender } from '../../shared/hooks';
-import { useMemo } from 'react';
 import { useState } from 'react';
 
 const GridNotes = (props) => {
-  const [showNotes, setShowNotes] = useState(false);
   const gridNotesRef = useRef(null);
 
-  useEffect(() => {
-    if (gridNotesRef && gridNotesRef.current) {
-      // console.log('gridNotesRef :>> ', gridNotesRef.current.getBoundingClientRect());
-    }
-  }, []);
-
   const { selectedInstrument } = props;
-  const useStyles = useMemo(() => getStyles(), []);
   const classes = useStyles();
 
   const { gridContainer } = classes;
@@ -46,15 +37,12 @@ const GridNotes = (props) => {
   );
 };
 
-const getStyles = () =>
-  makeStyles(() =>
-    createStyles({
-      gridContainer: {
-        width: NECK_WIDTH,
-        zIndex: 3,
-        position: 'absolute',
-      },
-    })
-  );
+const useStyles = makeStyles({
+  gridContainer: {
+    width: NECK_WIDTH,
+    zIndex: 3,
+    position: 'absolute',
+  },
+});
 
-export default React.memo(GridNotes);
+export default GridNotes;

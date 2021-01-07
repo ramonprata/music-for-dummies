@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 
 const CssGridItem = (props) => {
   const { className, style } = props;
-  const classes = useStyles(props)();
+  const classes = useStyles(props);
   const { item } = classes;
 
   return (
@@ -31,19 +31,14 @@ CssGridItem.defaultProps = {
   justify: 'stretch',
 };
 
-const useStyles = (props) => {
-  const { colStartEnd, rowStartEnd, startEnd, justify, align, placeSelf } = props;
-  return makeStyles(() =>
-    createStyles({
-      item: {
-        gridColumn: startEnd || colStartEnd,
-        gridRow: startEnd || rowStartEnd,
-        justifySelf: justify,
-        alignSelf: align,
-        placeSelf: placeSelf,
-      },
-    })
-  );
-};
+const useStyles = makeStyles({
+  item: ({ colStartEnd, rowStartEnd, startEnd, justify, align, placeSelf }) => ({
+    gridColumn: startEnd || colStartEnd,
+    gridRow: startEnd || rowStartEnd,
+    justifySelf: justify,
+    alignSelf: align,
+    placeSelf: placeSelf,
+  }),
+});
 
 export default CssGridItem;
