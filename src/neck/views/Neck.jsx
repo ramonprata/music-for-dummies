@@ -58,6 +58,7 @@ const Neck = () => {
 const useStyles = makeStyles({
   neckContainer: (numberOfStrings) => ({
     height: numberOfStrings * GRID_NOTE_LINE_HEIGHT,
+    position: 'relative',
   }),
 
   containerFrets: (numberOfStrings) => ({
@@ -68,6 +69,8 @@ const useStyles = makeStyles({
   containerStrings: {
     zIndex: 1,
     position: 'absolute',
+    top: 0,
+    right: 0,
     width: NECK_WIDTH,
   },
 

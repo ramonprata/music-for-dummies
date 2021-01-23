@@ -7,13 +7,13 @@ import PanelConfig from '../../panel/views/PanelConfig';
 import GridNotesContainer from '../../gridNotes/views/GridNotesContainer';
 import CssGridContainer from '../../shared/components/CssGridContainer';
 import CssGridItem from '../../shared/components/CssGridItem';
-import { useContextStore } from '../../shared/hooks';
+import { useContextStore, useWidthResize } from '../../shared/hooks';
 
 const MainPage = () => {
-  const classes = useStyles();
   const { selectedTab } = useContextStore();
-
-  const { pageContainer, neckContainer } = classes;
+  const { isMobile } = useWidthResize(758);
+  const classes = useStyles(isMobile);
+  const { pageContainer, neckContainer, instrumentContainer } = classes;
   const instrumentTabSelected = selectedTab === 0;
   return (
     <Paper square>
@@ -22,7 +22,11 @@ const MainPage = () => {
           <PanelConfig />
         </div>
 
-        <CssGridContainer alignContent="center" templateCol="34px auto">
+        <CssGridContainer
+          alignContent="center"
+          templateCol="34px auto"
+          className={instrumentContainer}
+        >
           <CssGridItem justify="center">
             <NeckNut />
           </CssGridItem>
@@ -40,20 +44,22 @@ const useStyles = makeStyles((theme) => {
   return {
     pageContainer: {
       width: window.innerWidth,
-      height: window.innerHeight,
       backgroundColor: theme.palette.primary.dark,
-      overflowX: 'auto',
       display: 'grid',
+      gridAutoColumns: '1fr',
       gridTemplateRows: '65vh 35vh',
+      overflowX: 'auto',
       justifyItems: 'center',
-      // gap: 16,
-    },
-    panelContainer: {
-      width: '65%',
       position: 'relative',
     },
+    panelContainer: (isMobile) => ({
+      width: isMobile ? '90%' : '65%',
+    }),
     neckContainer: {
       width: NECK_WIDTH,
+    },
+    instrumentContainer: {
+      marginBottom: 16,
     },
   };
 });

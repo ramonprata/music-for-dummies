@@ -50,7 +50,7 @@ const PanelConfig = () => {
   const renderChordsTab = () => {
     return (
       <DefaultTab onSelectNote={onChangeNote} selectedNote={selectedNote}>
-        <ChordsTab selectedNote={selectedNote} />,
+        <ChordsTab selectedNote={selectedNote} />
       </DefaultTab>
     );
   };

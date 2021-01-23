@@ -4,7 +4,6 @@ import { Grid } from '@material-ui/core/';
 import { NECK_WIDTH, getInstrumentStrings, getStringNotes } from '../../shared';
 import GridNotesLine from './GridNotesLine';
 import { useNotesRender } from '../../shared/hooks';
-import { useState } from 'react';
 
 const GridNotes = (props) => {
   const gridNotesRef = useRef(null);
